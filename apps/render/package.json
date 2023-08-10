@@ -1,0 +1,11 @@
+{
+  "name": "@ruicsh/render",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
