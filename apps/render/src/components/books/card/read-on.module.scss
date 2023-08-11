@@ -1,0 +1,11 @@
+.date {
+  border-top: 1px solid var(--color-mid-glare);
+  font-size: 0.7rem;
+  padding-top: 6px;
+}
+
+.starRating {
+  [role="img"] {
+    background-color: var(--color-mid);
+  }
+}

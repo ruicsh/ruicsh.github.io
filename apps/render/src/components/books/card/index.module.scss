@@ -1,0 +1,57 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  width: 100%;
+}
+
+.coverWrapper {
+  position: relative;
+
+  &::after {
+    background-image: url("https://books.apple.com/assets/images/book/iBooks_Covers_LTR_Flat-L_Spine_SoftLightBlend-535831fb9b8481f02a18e136be4dc8ca.png");
+    content: "";
+    height: 100%;
+    left: 0;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  > img {
+    aspect-ratio: 0.65;
+    border-radius: 2px;
+    box-shadow:
+      2px 2px 2px rgba(0 0 0 / 5%),
+      6px 6px 8px rgba(0 0 0 / 25%);
+    height: auto;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  gap: 6px;
+
+  > h1 {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  p {
+    color: var(--color-mid);
+    font-size: 0.7rem;
+    line-height: 1;
+
+    &:first-of-type {
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }
+}

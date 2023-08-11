@@ -5,7 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start",
-    "lint": "next lint"
+    "lint:css": "stylelint 'src/**/*.scss'",
+    "lint:ts": "tsc --noEmit",
+    "lint": "eslint src",
+    "start": "next start"
   }
 }

@@ -1,0 +1,18 @@
+.root {
+  border-bottom: 1px solid var(--color-mid);
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  padding: 1rem 0;
+  position: relative;
+  width: var(--wrapper-width);
+
+  &::after {
+    border-bottom: 1px solid var(--color-mid-glare);
+    bottom: 3px;
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+}
