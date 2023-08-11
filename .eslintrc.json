@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "turbo",
+    "next",
+    "next/core-web-vitals",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "jsx-a11y",
+    "testing-library",
+    "turbo",
+    "vitest"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off"
+  },
+  "overrides": [
+    {
+     "files": ["*.test.ts"],
+        "rules": {
+           "turbo/no-undeclared-env-vars": "off"   
+        }
+    }
+  ]
+}

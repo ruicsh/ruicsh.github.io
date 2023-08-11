@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@cinemite/*": ["./packages/*"]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "ESNext"
+  },
+  "exclude": ["node_modules/**/*", "**/*/dist/*"]
+}
