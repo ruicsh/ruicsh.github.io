@@ -5,11 +5,12 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "paths": {
-      "@cinemite/*": ["./packages/*"]
+      "@ruicsh/*": ["./packages/*"]
     },
     "resolveJsonModule": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["vitest/globals"]
   },
   "exclude": ["node_modules/**/*", "**/*/dist/*"]
 }

@@ -3,6 +3,7 @@
   "pipeline": {
     "lint": {},
     "lint:ts": {},
-    "lint:css": {}
+    "lint:css": {},
+    "test:ci": {}
   }
 }
