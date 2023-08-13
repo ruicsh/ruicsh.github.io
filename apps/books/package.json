@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
+    "link-shared-dir": "ln -s ../../shared shared",
     "lint:ts": "tsc --noEmit",
     "lint": "eslint src",
     "start": "tsx src/index.ts",

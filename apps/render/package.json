@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "link-shared-dir": "ln -s ../../shared shared",
     "lint:css": "stylelint 'src/**/*.scss'",
     "lint:ts": "tsc --noEmit",
     "lint": "eslint src",
