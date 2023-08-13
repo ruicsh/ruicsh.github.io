@@ -1,5 +1,5 @@
 import BooksList from "src/components/books/list";
-import { getBooks } from "src/props/books";
+import { getBooks } from "src/data/books";
 
 export const metadata = {
   title: "Books: Wishlist | ruicsh",

@@ -1,4 +1,4 @@
-import data from "./books.json";
+import csv from "csvtojson";
 
 interface IGetBooksArgs {
   collection?: "read" | "queue" | "wishlist";
@@ -7,21 +7,23 @@ interface IGetBooksArgs {
 export async function getBooks(args?: IGetBooksArgs) {
   const { collection } = args || ({} as IGetBooksArgs);
 
+  const data = (await csv().fromFile("./shared/books.csv")) as IBook[];
+
   let books: IBook[];
   if (collection === "read") {
     books = data
       .filter((book) => book.readOnDate)
       .sort((a, b) => b.readOnDate!.localeCompare(a.readOnDate!));
   } else if (collection === "queue") {
-    books = (data as IBook[])
+    books = data
       .filter((book) => book.ownedOnDate)
       .filter((book) => !book.readOnDate)
       .sort((a, b) => b.ownedOnDate!.localeCompare(a.ownedOnDate!));
   } else if (collection === "wishlist") {
-    books = (data as IBook[])
-      .filter((book) => book.wishedOnDate)
+    books = data
       .filter((book) => !book.ownedOnDate)
       .filter((book) => !book.readOnDate)
+      .filter((book) => book.wishedOnDate)
       .sort((a, b) => b.ownedOnDate!.localeCompare(a.wishedOnDate!));
   } else {
     books = data.sort((a, b) => {

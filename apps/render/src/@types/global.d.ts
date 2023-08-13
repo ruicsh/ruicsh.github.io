@@ -1,8 +1,8 @@
 interface IBook {
   cover: string;
   title: string;
-  author: string;
-  pages: number;
+  authors: string;
+  pageCount: number;
   wishedOnDate?: string;
   ownedOnDate?: string;
   readOnDate?: string;
