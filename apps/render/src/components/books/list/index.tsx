@@ -11,9 +11,9 @@ function BooksList(props: IProps) {
 
   return (
     <ul className={styles.root}>
-      {books.map((book) => (
+      {books.map((book, i) => (
         <li key={book.title}>
-          <Book book={book} />
+          <Book book={book} order={i} />
         </li>
       ))}
     </ul>

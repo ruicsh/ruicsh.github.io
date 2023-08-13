@@ -1,10 +1,13 @@
 interface IBook {
-  cover: string;
-  title: string;
   authors: string;
+  cover: string;
+  description?: string;
   pageCount: number;
-  wishedOnDate?: string;
   queuedOnDate?: string;
-  readOnDate?: string;
   rating?: number;
+  readOnDate?: string;
+  subtitle?: string;
+  title: string;
+  wishedOnDate?: string;
+  publishedDate?: string;
 }

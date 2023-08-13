@@ -1,6 +1,6 @@
 import StarRating from "src/library/star-rating";
 
-import styles from "./read-on.module.scss";
+import styles from "./index.module.scss";
 
 interface IProps {
   book: IBook;

@@ -1,9 +1,23 @@
 .root {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 12px;
   height: 100%;
+  position: relative;
   width: 100%;
+
+  &:hover {
+    cursor: default;
+
+    > aside {
+      display: flex;
+    }
+  }
+
+  > aside {
+    display: none;
+  }
 }
 
 .coverWrapper {
@@ -43,15 +57,28 @@
     font-size: 1.2rem;
     line-height: 1;
   }
+}
 
-  p {
-    color: var(--color-mid);
-    font-size: 0.7rem;
-    line-height: 1;
+.authors {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
 
-    &:first-of-type {
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
+.meta {
+  color: var(--color-mid);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.date {
+  border-top: 1px solid var(--color-mid-glare);
+  color: var(--color-mid);
+  font-size: 0.7rem;
+  padding-top: 2px;
+}
+
+.starRating {
+  [role="img"] {
+    background-color: var(--color-mid);
   }
 }
