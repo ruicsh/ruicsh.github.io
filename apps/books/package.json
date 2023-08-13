@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
-    "lint:css": "stylelint 'src/**/*.scss'",
     "lint:ts": "tsc --noEmit",
     "lint": "eslint src",
     "start": "tsx src/index.ts",
