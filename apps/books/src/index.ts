@@ -1,48 +1,45 @@
 import { setTimeout } from "node:timers/promises";
 
-import GoogleBooksApi from "src/services/google-books-api";
-import AmazonScraper from "src/services/amazon-scraper";
+import { cmsdbSchema } from "@ruicsh/cmsdb-schema";
+import { cmsdb, log } from "@ruicsh/services";
 
-async function getBookDetails(url: string) {
-  const amazonScraper = new AmazonScraper();
-  const googleBooksApi = new GoogleBooksApi();
-
-  await setTimeout(1_000);
-
-  const amazonBook = await amazonScraper.fetchBookPage({ url });
-  const volumeInfo = await googleBooksApi.findVolumeInfo({
-    isbn: amazonBook.isbn13,
-  });
-
-  const {
-    isbn13: isbn,
-    cover,
-    dimensions,
-    publisher,
-    publishedDate,
-  } = amazonBook;
-  const { title, subTitle, authors, description } = volumeInfo;
-
-  return {
-    isbn,
-    cover,
-    dimensions,
-    title,
-    subTitle,
-    authors,
-    publisher,
-    publishedDate,
-    description,
-  } as IBookDetails;
-}
+import { exportToCsv } from "./core/export-to-csv";
+import { getBookDetails } from "./core/get-book-details";
+import { getBooksFromInbox } from "./core/get-books-from-inbox";
+import { inboxDateField } from "./core/inbox-date-field";
+import { saveBook } from "./core/save-book";
 
 async function main() {
-  const url =
-    "https://www.amazon.co.uk/War-World-Historys-Age-Hatred/dp/0141013826/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1691795300&sr=8-1";
+  await cmsdbSchema.initialize();
 
-  const bookDetails = await getBookDetails(url);
+  const collections = ["read", "queue", "wishlist"] as IBookCollection[];
+  for await (const collection of collections) {
+    const books = await getBooksFromInbox({ collection });
+    log.info(`Found ${books.length} books in ${collection} inbox`);
 
-  console.log(bookDetails);
+    for await (const book of books) {
+      await setTimeout(1_000);
+      const bookDetails = await getBookDetails(book.url);
+      if (!bookDetails?.title) {
+        log.info("... failed.");
+        continue;
+      }
+
+      await saveBook({
+        ...bookDetails,
+        [inboxDateField[collection]]: book[inboxDateField[collection]],
+        rating: book.rating,
+        sourceUrl: book.url,
+      });
+    }
+
+    log.info(`Done with collection: ${collection}`);
+  }
+
+  await exportToCsv();
+
+  await cmsdb.destroy();
+  log.info("Done.");
 }
 
 main();

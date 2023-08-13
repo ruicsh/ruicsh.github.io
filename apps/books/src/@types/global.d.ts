@@ -1,11 +1,25 @@
-interface IBookDetails {
-  isbn: string;
+interface IScrapedBookDetails {
   cover: string;
-  dimensions: string;
-  title: string;
-  subTitle?: string;
-  authors: string[];
-  publisher: string;
+  isbn10: string;
+  isbn13: string;
+  pageCount: number;
   publishedDate: string;
-  description: string;
+  publisher: string;
 }
+
+interface IBookDetails {
+  authors: string;
+  cover: string;
+  description: string;
+  isbn10: string;
+  isbn13: string;
+  pageCount: number;
+  publishedDate: string;
+  publisher: string;
+  subTitle?: string;
+  title: string;
+  rating?: string;
+  sourceUrl: string;
+}
+
+type IBookCollection = "read" | "queue" | "wishlist";

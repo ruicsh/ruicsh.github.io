@@ -22,6 +22,10 @@ class GoogleBooksApi {
 
     const data = await fetch<IGoogleBookApiVolumesResponse>(url.href);
     const json = await data.json();
+    if (json.totalItems === 0) {
+      return undefined;
+    }
+
     const [volume] = json.items;
 
     return volume?.volumeInfo;

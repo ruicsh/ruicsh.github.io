@@ -53,12 +53,13 @@ class AmazonScraper {
         const label = $item.find(".rpi-attribute-label span").text().trim();
         const value = $item.find(".rpi-attribute-value span").text().trim();
 
-        if (/Dimensions/i.test(label)) {
-          acc.dimensions = value;
-        }
-
         if (/Publisher/i.test(label)) {
           acc.publisher = value;
+        }
+
+        if (/Print length/i.test(label)) {
+          const [, pageCount] = /(\d+)/.exec(value) ?? [];
+          acc.pageCount = Number(pageCount);
         }
 
         if (/Publication date/i.test(label)) {
@@ -75,7 +76,7 @@ class AmazonScraper {
         }
 
         return acc;
-      }, {} as IAmazonBookDetails);
+      }, {} as IScrapedBookDetails);
   }
 }
 
