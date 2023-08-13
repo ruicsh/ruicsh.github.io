@@ -8,6 +8,7 @@ interface IScrapedBookDetails {
 }
 
 interface IBookDetails {
+  id?: string;
   authors: string;
   cover: string;
   description: string;
@@ -18,8 +19,18 @@ interface IBookDetails {
   publisher: string;
   subtitle?: string;
   title: string;
-  rating?: string;
+  rating?: number;
   sourceUrl: string;
 }
+
+interface IBookOnInbox {
+  wishedOnDate?: string;
+  queuedOnDate?: string;
+  readOnDate?: string;
+  rating?: number;
+  sourceUrl: string;
+}
+
+type IBookToSave = IBookOnInbox & IBookDetails;
 
 type IBookCollection = "read" | "queue" | "wishlist";
