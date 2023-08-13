@@ -36,6 +36,7 @@ function Image(props: IProps) {
       width={size.width}
       height={size.height}
       alt={alt}
+      loading="lazy"
     />
   );
 }
