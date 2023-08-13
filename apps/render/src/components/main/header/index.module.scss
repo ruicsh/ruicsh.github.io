@@ -1,5 +1,5 @@
 .root {
-  border-bottom: 1px solid var(--color-mid-glare);
+  border-bottom: 1px solid rgba(0 0 0 / 10%);
   display: flex;
   justify-content: flex-end;
   margin: 0 auto;
@@ -8,8 +8,8 @@
   width: var(--wrapper-width);
 
   &::after {
-    border-bottom: 1px solid var(--color-mid-glare);
-    bottom: 2px;
+    border-bottom: 1px solid rgba(0 0 0 / 10%);
+    bottom: 1px;
     content: "";
     left: 0;
     position: absolute;
