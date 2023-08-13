@@ -1,7 +1,0 @@
-node_modules
-.turbo
-.DS_Store
-*.log
-.env
-shared
-inbox
