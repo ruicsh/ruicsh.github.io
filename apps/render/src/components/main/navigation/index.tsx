@@ -12,10 +12,10 @@ function MainNavigation() {
     <nav aria-label="primary">
       <ul className={styles.list}>
         {[
-          { href: "til", label: "Today I Learned" },
-          { href: "bookmarks", label: "Bookmarks" },
+          // { href: "til", label: "Today I Learned" },
+          // { href: "bookmarks", label: "Bookmarks" },
           { href: "books", label: "Books" },
-          { href: "films", label: "Films" },
+          // { href: "films", label: "Films" },
         ]
           .map((link) => ({
             ...link,
