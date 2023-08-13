@@ -74,7 +74,7 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }} workspace @ruicsh/render build
+        run: ${{ steps.detect-package-manager.outputs.runner }} workspace @ruicsh/render build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
