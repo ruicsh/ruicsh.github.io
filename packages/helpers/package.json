@@ -1,0 +1,11 @@
+{
+  "name": "@ruicsh/helpers",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "main": "src/index.ts",
+  "typings": "src/index.ts",
+  "scripts": {
+    "lint:ts": "tsc --noEmit",
+    "lint": "eslint src"
+  }
+}
