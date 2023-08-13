@@ -16,7 +16,7 @@ interface IBookDetails {
   pageCount: number;
   publishedDate: string;
   publisher: string;
-  subTitle?: string;
+  subtitle?: string;
   title: string;
   rating?: string;
   sourceUrl: string;

@@ -76,7 +76,7 @@ export async function getBookDetails(url: string) {
   }
 
   const { isbn10, isbn13, cover, publisher, publishedDate } = scrapedBook;
-  const { title, subTitle, authors, description } = googleBook;
+  const { title, subtitle, authors, description } = googleBook;
 
   const bookDetails: Partial<IBookDetails> = {
     authors: authors.join(", "),
@@ -87,7 +87,7 @@ export async function getBookDetails(url: string) {
     pageCount: scrapedBook.pageCount || googleBook.pageCount,
     publishedDate,
     publisher,
-    subTitle,
+    subtitle,
     title,
   };
 

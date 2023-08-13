@@ -4,7 +4,7 @@ interface IGoogleBookApiVolumeInfo {
   pageCount: number;
   publishedDate: string;
   publisher: string;
-  subTitle: string;
+  subtitle: string;
   title: string;
 }
 
