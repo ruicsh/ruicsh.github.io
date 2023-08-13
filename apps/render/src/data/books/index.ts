@@ -16,19 +16,19 @@ export async function getBooks(args?: IGetBooksArgs) {
       .sort((a, b) => b.readOnDate!.localeCompare(a.readOnDate!));
   } else if (collection === "queue") {
     books = data
-      .filter((book) => book.ownedOnDate)
+      .filter((book) => book.queuedOnDate)
       .filter((book) => !book.readOnDate)
-      .sort((a, b) => b.ownedOnDate!.localeCompare(a.ownedOnDate!));
+      .sort((a, b) => b.queuedOnDate!.localeCompare(a.queuedOnDate!));
   } else if (collection === "wishlist") {
     books = data
-      .filter((book) => !book.ownedOnDate)
+      .filter((book) => !book.queuedOnDate)
       .filter((book) => !book.readOnDate)
       .filter((book) => book.wishedOnDate)
-      .sort((a, b) => b.ownedOnDate!.localeCompare(a.wishedOnDate!));
+      .sort((a, b) => b.queuedOnDate!.localeCompare(a.wishedOnDate!));
   } else {
     books = data.sort((a, b) => {
-      const aDate = a.readOnDate || a.ownedOnDate || a.wishedOnDate;
-      const bDate = b.readOnDate || b.ownedOnDate || b.wishedOnDate;
+      const aDate = a.readOnDate || a.queuedOnDate || a.wishedOnDate;
+      const bDate = b.readOnDate || b.queuedOnDate || b.wishedOnDate;
       return bDate!.localeCompare(aDate!);
     });
   }

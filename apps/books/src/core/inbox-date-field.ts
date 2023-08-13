@@ -1,5 +1,5 @@
 export const inboxDateField = {
   read: "readOnDate",
-  queue: "ownedOnDate",
+  queue: "queuedOnDate",
   wishlist: "wishedOnDate",
 };

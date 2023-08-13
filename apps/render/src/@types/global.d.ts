@@ -4,7 +4,7 @@ interface IBook {
   authors: string;
   pageCount: number;
   wishedOnDate?: string;
-  ownedOnDate?: string;
+  queuedOnDate?: string;
   readOnDate?: string;
   rating?: number;
 }
