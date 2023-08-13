@@ -8,6 +8,7 @@
     "lint:css": "stylelint 'src/**/*.scss'",
     "lint:ts": "tsc --noEmit",
     "lint": "eslint src",
+    "serve": "serve out",
     "start": "next start"
   }
 }
