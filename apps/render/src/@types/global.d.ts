@@ -11,3 +11,5 @@ interface IBook {
   wishedOnDate?: string;
   publishedDate?: string;
 }
+
+type IBooksCollection = "read" | "queue" | "wishlist";
