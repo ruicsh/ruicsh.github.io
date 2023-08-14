@@ -9,24 +9,25 @@ function MainNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="primary">
+    <nav aria-label="primary" className={styles.root}>
       <ul className={styles.list}>
         {[
-          // { href: "til", label: "Today I Learned" },
-          // { href: "bookmarks", label: "Bookmarks" },
-          { href: "books", label: "Books" },
-          // { href: "films", label: "Films" },
+          { href: "/", label: "Home" },
+          // { href: "/til", label: "Today I Learned" },
+          // { href: "/bookmarks", label: "Bookmarks" },
+          { href: "/books", label: "Books" },
+          // { href: "/films", label: "Films" },
         ]
           .map((link) => ({
             ...link,
-            isActive: new RegExp(link.href).test(pathname),
+            isActive: link.href === pathname,
           }))
           .map(({ href, label, isActive }) => (
             <li key={href}>
               <Link
                 aria-selected={isActive}
                 className={styles.link}
-                href={`/${href}`}
+                href={href}
               >
                 {label}
               </Link>

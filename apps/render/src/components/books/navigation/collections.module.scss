@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+}
+
+.option {
+  border-right: 1px solid rgba(0 0 0 / 20%);
+  padding-right: 16px;
+
+  &:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+.link {
+  font-family: var(--font-special);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+
+  &[aria-selected="true"] {
+    color: var(--color-primary);
+  }
+}

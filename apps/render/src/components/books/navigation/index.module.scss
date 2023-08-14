@@ -1,9 +1,7 @@
-.link {
-  font-family: var(--font-special);
-  font-size: 1.8rem;
-  font-weight: 400;
-
-  &[aria-selected="true"] {
-    color: var(--color-primary);
-  }
+.root {
+  align-items: center;
+  border-bottom: 2px solid var(--color-dark);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }

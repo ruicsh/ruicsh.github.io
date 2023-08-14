@@ -1,13 +1,16 @@
+import path from "node:path";
+
 import csv from "csvtojson";
 
 interface IGetBooksArgs {
-  collection?: "read" | "queue" | "wishlist";
+  collection?: IBooksCollection;
 }
 
 export async function getBooks(args?: IGetBooksArgs) {
   const { collection } = args || ({} as IGetBooksArgs);
 
-  const data = (await csv().fromFile("./shared/books.csv")) as IBook[];
+  const booksCsvFile = path.join(process.cwd(), "shared/books.csv");
+  const data = (await csv().fromFile(booksCsvFile)) as IBook[];
 
   let books: IBook[];
   if (collection === "read") {
@@ -24,7 +27,7 @@ export async function getBooks(args?: IGetBooksArgs) {
       .filter((book) => !book.queuedOnDate)
       .filter((book) => !book.readOnDate)
       .filter((book) => book.wishedOnDate)
-      .sort((a, b) => b.queuedOnDate!.localeCompare(a.wishedOnDate!));
+      .sort((a, b) => b.wishedOnDate!.localeCompare(a.wishedOnDate!));
   } else {
     books = data.sort((a, b) => {
       const aDate = a.readOnDate || a.queuedOnDate || a.wishedOnDate;

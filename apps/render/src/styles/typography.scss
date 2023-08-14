@@ -12,8 +12,8 @@ a {
   text-decoration: none;
   transition: color 0.1s ease-in-out;
 
-  &:hover {
-    color: var(--color-primary);
+  &:hover:not([aria-selected="true"]) {
+    color: var(--color-dark);
     text-decoration: underline;
   }
 }

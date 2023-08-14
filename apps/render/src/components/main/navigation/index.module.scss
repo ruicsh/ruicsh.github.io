@@ -1,16 +1,24 @@
 .list {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   justify-content: space-between;
+  margin: 0;
 }
 
 .link {
-  color: var(--color-mid);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: rgba(0 0 0 / 40%);
   font-family: var(--font-special);
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &:hover:not([aria-selected="true"]) {
+    text-decoration: none;
+  }
 
   &[aria-selected="true"] {
-    color: var(--color-primary);
+    color: var(--color-dark);
   }
 }

@@ -1,0 +1,10 @@
+.root {
+  align-items: center;
+  display: flex;
+
+  [role="img"] {
+    background-color: var(--color-mid);
+    height: 48px;
+    width: 48px;
+  }
+}

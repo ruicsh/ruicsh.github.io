@@ -1,10 +1,10 @@
-import BooksList from "src/components/books/list";
+import Books from "src/components/books";
 import { getBooks } from "src/data/books";
 
-async function Books() {
+async function BooksPage() {
   const books = await getBooks();
 
-  return <BooksList books={books} />;
+  return <Books books={books} />;
 }
 
-export default Books;
+export default BooksPage;
