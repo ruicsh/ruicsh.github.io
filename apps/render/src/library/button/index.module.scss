@@ -1,0 +1,14 @@
+.root {
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(0 0 0 / 5%);
+  }
+}

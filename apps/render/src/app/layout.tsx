@@ -1,5 +1,8 @@
 import type { PropsWithChildren } from "react";
 
+import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
+import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
+
 import "src/styles/reset.scss";
 import "src/styles/variables.scss";
 import "src/styles/typography.scss";

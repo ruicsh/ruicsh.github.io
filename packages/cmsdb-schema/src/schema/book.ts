@@ -13,16 +13,16 @@ export async function initialize(knex: Knex) {
     t.string("authors");
     t.float("rating").nullable();
 
-    t.date("readOnDate").nullable();
-    t.date("queuedOnDate").nullable();
-    t.date("wishedOnDate").nullable();
+    t.date("readOnDate").nullable().defaultTo(null);
+    t.date("queuedOnDate").nullable().defaultTo(null);
+    t.date("wishedOnDate").nullable().defaultTo(null);
 
     t.string("isbn10");
     t.string("isbn13");
     t.string("cover");
-    t.text("subtitle").nullable();
-    t.text("description").nullable();
-    t.integer("pageCount").nullable();
+    t.text("subtitle").nullable().defaultTo(null);
+    t.text("description").nullable().defaultTo(null);
+    t.integer("pageCount").nullable().defaultTo(null);
     t.date("publishedDate");
     t.string("publisher");
 

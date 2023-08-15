@@ -12,14 +12,22 @@
   }
 }
 
-.icStarEmpty {
+.iconGrid {
+  mask-image: var(--icon-grid);
+}
+
+.iconList {
+  mask-image: var(--icon-list);
+}
+
+.iconStarEmpty {
   mask-image: var(--icon-star-empty);
 }
 
-.icStarFilled {
+.iconStarFilled {
   mask-image: var(--icon-star-filled);
 }
 
-.icStarHalf {
+.iconStarHalf {
   mask-image: var(--icon-star-half);
 }

@@ -4,7 +4,7 @@ import IconButton from "src/library/button/icon";
 import styles from "./display-options.module.scss";
 
 interface IProps {
-  onChange: (newDisplay: string) => void;
+  onChange: (newDisplay?: string) => void;
 }
 
 function DisplayOptions(props: IProps) {
@@ -12,7 +12,7 @@ function DisplayOptions(props: IProps) {
 
   return (
     <div className={styles.root}>
-      <IconButton icon={IconType.Grid} onClick={() => onChange("grid")} />
+      <IconButton icon={IconType.Grid} onClick={() => onChange(undefined)} />
       <IconButton icon={IconType.List} onClick={() => onChange("table")} />
     </div>
   );

@@ -5,7 +5,12 @@ import { usePathname } from "next/navigation";
 
 import styles from "./collections.module.scss";
 
-function BookCollections() {
+interface IProps {
+  display?: string;
+}
+
+function BookCollections(props: IProps) {
+  const { display } = props;
   const pathname = usePathname();
 
   return (
@@ -16,13 +21,26 @@ function BookCollections() {
         { href: "/books/queue", label: "Queue" },
         { href: "/books/read", label: "Read" },
       ]
-        .map((link) => ({
-          ...link,
-          isActive: new RegExp(`${link.href}$`).test(pathname),
-        }))
+        .map((link) => {
+          let { href } = link;
+          if (display) {
+            href += `?display=${display}`;
+          }
+
+          return {
+            label: link.label,
+            href,
+            isActive: new RegExp(`${link.href}$`).test(pathname),
+          };
+        })
         .map(({ href, label, isActive }) => (
           <li key={`books-nav-${href}`} className={styles.option}>
-            <Link aria-selected={isActive} className={styles.link} href={href}>
+            <Link
+              aria-selected={isActive}
+              className={styles.link}
+              href={href}
+              scroll={false}
+            >
               {label}
             </Link>
           </li>

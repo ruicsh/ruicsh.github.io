@@ -26,7 +26,7 @@ function Book(props: IProps) {
         <Image src={cover} alt="foobar" />
       </div>
       <div className={styles.metadata}>
-        <h1>{title}</h1>
+        <h1 className={styles.title}>{title}</h1>
         <p className={styles.authors}>{authors}</p>
         <p className={styles.meta}>
           {[

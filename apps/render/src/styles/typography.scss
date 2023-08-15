@@ -10,10 +10,9 @@ h6 {
 a {
   color: var(--color-dark);
   text-decoration: none;
-  transition: color 0.1s ease-in-out;
+  transition: color 0.2s ease-in-out;
 
   &:hover:not([aria-selected="true"]) {
     color: var(--color-dark);
-    text-decoration: underline;
   }
 }

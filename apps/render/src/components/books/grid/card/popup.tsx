@@ -12,7 +12,7 @@ function BookPopup(props: IProps) {
   const { authors, description, pageCount, publishedDate, subtitle, title } =
     book;
   const cls = clsx(styles.root, {
-    [styles.popupOnTheLeft]: order % 5 === 4,
+    [styles.popupOnTheLeft]: order % 6 === 5,
   });
 
   const df = new Intl.DateTimeFormat("en-GB", {

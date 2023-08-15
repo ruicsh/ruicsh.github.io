@@ -3,6 +3,8 @@ import clsx from "clsx";
 import styles from "./index.module.scss";
 
 export enum IconType {
+  Grid,
+  List,
   StarEmpty,
   StarFilled,
   StarHalf,
@@ -16,9 +18,11 @@ interface IProps {
 function Icon(props: IProps) {
   const { className, icon } = props;
   const cls = clsx(styles.root, className, {
-    [styles.icStarEmpty]: icon === IconType.StarEmpty,
-    [styles.icStarFilled]: icon === IconType.StarFilled,
-    [styles.icStarHalf]: icon === IconType.StarHalf,
+    [styles.iconGrid]: icon === IconType.Grid,
+    [styles.iconList]: icon === IconType.List,
+    [styles.iconStarEmpty]: icon === IconType.StarEmpty,
+    [styles.iconStarFilled]: icon === IconType.StarFilled,
+    [styles.iconStarHalf]: icon === IconType.StarHalf,
   });
 
   return <div aria-hidden="true" className={cls} role="img" />;

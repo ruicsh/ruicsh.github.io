@@ -52,11 +52,12 @@
   flex-direction: column;
   font-size: 0.8rem;
   gap: 6px;
+}
 
-  > h1 {
-    font-size: 1.2rem;
-    line-height: 1;
-  }
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .authors {

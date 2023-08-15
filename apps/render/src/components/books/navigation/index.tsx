@@ -3,15 +3,16 @@ import DisplayOptions from "./display-options";
 import styles from "./index.module.scss";
 
 interface IProps {
-  onChangeDisplay: (newDisplay: string) => void;
+  display?: string;
+  onChangeDisplay: (newDisplay?: string) => void;
 }
 
 function BooksNavigation(props: IProps) {
-  const { onChangeDisplay } = props;
+  const { display, onChangeDisplay } = props;
 
   return (
     <nav className={styles.root}>
-      <Collections />
+      <Collections display={display} />
       <DisplayOptions onChange={onChangeDisplay} />
     </nav>
   );
