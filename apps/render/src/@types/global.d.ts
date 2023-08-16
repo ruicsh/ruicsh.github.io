@@ -1,15 +1,15 @@
 interface IBook {
   authors: string;
-  cover: string;
   description?: string;
   pageCount: number;
+  publishedDate?: string;
   queuedOnDate?: string;
   rating?: number;
   readOnDate?: string;
+  slug: string;
   subtitle?: string;
   title: string;
   wishedOnDate?: string;
-  publishedDate?: string;
 }
 
 type IBooksCollection = "read" | "queue" | "wishlist";

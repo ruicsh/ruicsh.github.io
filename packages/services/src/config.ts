@@ -17,6 +17,14 @@ const config = convict({
       },
     },
   },
+  bunnyCdn: {
+    apiKey: {
+      doc: "The API key for BunnyCDN.",
+      format: String,
+      default: undefined,
+      env: "BUNNY_API_KEY",
+    },
+  },
 });
 
 config.validate({ allowed: "strict" });

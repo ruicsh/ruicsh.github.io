@@ -50,8 +50,12 @@ jobs:
         run: yarn workspace @ruicsh/books start
         env:
           GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+          BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
+          BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Build with Next.js
         run: yarn workspace @ruicsh/render build
+        env:
+          NEXT_PUBLIC_BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:

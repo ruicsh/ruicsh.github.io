@@ -9,11 +9,11 @@ export async function getBooks(args?: IGetBooksArgs) {
 
   const commonFields = [
     "authors",
-    "cover",
     "description",
     "pageCount",
     "publishedDate",
     "publisher",
+    "slug",
     "subtitle",
     "title",
   ];

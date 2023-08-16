@@ -1,9 +1,12 @@
 import { setTimeout } from "node:timers/promises";
 
 import { log, cmsdb } from "@ruicsh/services";
+import slugify from "slugify";
 
 import GoogleBooksApi from "src/services/google-books-api";
 import BookScraper from "src/services/scrapers";
+
+import { resizeCover } from "./resize-cover";
 
 export async function getBookDetails(book: IBookOnInbox) {
   const { sourceUrl } = book;
@@ -14,8 +17,8 @@ export async function getBookDetails(book: IBookOnInbox) {
 
   await setTimeout(1_000);
   const scraper = new BookScraper();
-  const slug = scraper.getSlugFromUrl(sourceUrl);
-  log.info(`Fetching book details from ${slug}`);
+  const sourceSlug = scraper.getSlugFromUrl(sourceUrl);
+  log.info(`Fetching book details from ${sourceSlug}`);
 
   const scrapedBook = await scraper.fetchBookPage({ url: sourceUrl });
   if (!scrapedBook) {
@@ -46,9 +49,12 @@ export async function getBookDetails(book: IBookOnInbox) {
     pageCount: scrapedBook.pageCount || googleBook.pageCount,
     publishedDate,
     publisher,
+    slug: slugify(title, { lower: true }),
     subtitle,
     title,
   };
+
+  await resizeCover(bookDetails);
 
   return bookDetails as IBookDetails;
 }

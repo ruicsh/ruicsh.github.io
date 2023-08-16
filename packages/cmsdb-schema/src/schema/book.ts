@@ -9,6 +9,7 @@ export async function initialize(knex: Knex) {
   await knex.schema.createTable("book", async (t) => {
     t.string("id").primary();
 
+    t.string("slug");
     t.string("title").notNullable();
     t.string("authors");
     t.float("rating").nullable();

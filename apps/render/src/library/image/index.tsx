@@ -21,6 +21,11 @@ function Image(props: IProps) {
   const [size, setSize] = useState<ISize>({ width: 0, height: 0 });
   const cls = clsx(className);
 
+  // eslint-disable-next-line turbo/no-undeclared-env-vars
+  const pullZone = process.env.NEXT_PUBLIC_BUNNY_PULL_ZONE || "unknown";
+  const srcUrl = new URL(`https://${pullZone}.b-cdn.net`);
+  srcUrl.pathname = src;
+
   useEffect(() => {
     if (!rootRef.current) return;
 
@@ -32,7 +37,7 @@ function Image(props: IProps) {
     <NextImage
       className={cls}
       ref={rootRef}
-      src={src}
+      src={srcUrl.href}
       width={size.width}
       height={size.height}
       alt={alt}

@@ -8,19 +8,20 @@ interface IScrapedBookDetails {
 }
 
 interface IBookDetails {
-  id?: string;
   authors: string;
   cover: string;
   description: string;
+  id?: string;
   isbn10: string;
   isbn13: string;
   pageCount: number;
   publishedDate: string;
   publisher: string;
+  rating?: number;
+  slug?: string;
+  sourceUrl: string;
   subtitle?: string;
   title: string;
-  rating?: number;
-  sourceUrl: string;
 }
 
 interface IBookOnInbox {
