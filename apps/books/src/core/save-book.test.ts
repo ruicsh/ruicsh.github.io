@@ -5,8 +5,8 @@ import { cmsdb, reset } from "src/services/cmsdb/db-test";
 import { saveBook } from "./save-book";
 
 const book = {
-  title: "b1",
-  authors: "a1",
+  title: "B1",
+  authors: "A1",
   sourceUrl: "https://foo.dev/book-1",
 } as IBookToSave;
 
@@ -42,14 +42,14 @@ describe("save book", () => {
     it("inserts a second book", async () => {
       await saveBook(wishedBook, cmsdb);
       await saveBook(
-        { ...wishedBook, title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { ...wishedBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
         cmsdb
       );
       const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
       const expected = [
-        { title: "b1", sourceUrl: "https://foo.dev/book-1" },
-        { title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { title: "B1", sourceUrl: "https://foo.dev/book-1" },
+        { title: "B2", sourceUrl: "https://foo.dev/book-2" },
       ];
       expect(actual).toHaveLength(2);
       expect(actual).toStrictEqual(expected);
@@ -57,10 +57,10 @@ describe("save book", () => {
 
     it("updates an existing book", async () => {
       await saveBook(wishedBook, cmsdb);
-      await saveBook({ ...wishedBook, title: "b2" }, cmsdb);
+      await saveBook({ ...wishedBook, title: "B2" }, cmsdb);
       const actual = await cmsdb("book").select();
 
-      const expected = { ...book, title: "b2", id: expect.anything() };
+      const expected = { ...book, title: "B2", id: expect.anything() };
       expect(actual).toHaveLength(1);
       expect(actual[0]).toMatchObject(expected);
     });
@@ -117,14 +117,14 @@ describe("save book", () => {
     it("inserts a second book", async () => {
       await saveBook(enqueuedBook, cmsdb);
       await saveBook(
-        { ...enqueuedBook, title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { ...enqueuedBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
         cmsdb
       );
       const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
       const expected = [
-        { title: "b1", sourceUrl: "https://foo.dev/book-1" },
-        { title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { title: "B1", sourceUrl: "https://foo.dev/book-1" },
+        { title: "B2", sourceUrl: "https://foo.dev/book-2" },
       ];
       expect(actual).toHaveLength(2);
       expect(actual).toStrictEqual(expected);
@@ -132,10 +132,10 @@ describe("save book", () => {
 
     it("updates an existing book", async () => {
       await saveBook(enqueuedBook, cmsdb);
-      await saveBook({ ...enqueuedBook, title: "b2" }, cmsdb);
+      await saveBook({ ...enqueuedBook, title: "B2" }, cmsdb);
       const actual = await cmsdb("book").select();
 
-      const expected = { ...book, title: "b2", id: expect.anything() };
+      const expected = { ...book, title: "B2", id: expect.anything() };
       expect(actual).toHaveLength(1);
       expect(actual[0]).toMatchObject(expected);
     });
@@ -177,14 +177,14 @@ describe("save book", () => {
     it("inserts a second book", async () => {
       await saveBook(readBook, cmsdb);
       await saveBook(
-        { ...readBook, title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { ...readBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
         cmsdb
       );
       const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
       const expected = [
-        { title: "b1", sourceUrl: "https://foo.dev/book-1" },
-        { title: "b2", sourceUrl: "https://foo.dev/book-2" },
+        { title: "B1", sourceUrl: "https://foo.dev/book-1" },
+        { title: "B2", sourceUrl: "https://foo.dev/book-2" },
       ];
       expect(actual).toHaveLength(2);
       expect(actual).toStrictEqual(expected);
@@ -192,12 +192,94 @@ describe("save book", () => {
 
     it("updates an existing book", async () => {
       await saveBook(readBook, cmsdb);
-      await saveBook({ ...readBook, title: "b2" }, cmsdb);
+      await saveBook({ ...readBook, title: "B2" }, cmsdb);
       const actual = await cmsdb("book").select();
 
-      const expected = { ...book, title: "b2", id: expect.anything() };
+      const expected = { ...book, title: "B2", id: expect.anything() };
       expect(actual).toHaveLength(1);
       expect(actual[0]).toMatchObject(expected);
+    });
+  });
+
+  describe("categories", () => {
+    const bookWithCategories = { ...book, categories: "C1;C2" };
+
+    it("inserts new categories", async () => {
+      await saveBook(bookWithCategories, cmsdb);
+
+      const actual = await cmsdb("book")
+        .join("book_categories", { "book.id": "book_categories.bookId" })
+        .join("category", { "book_categories.categoryId": "category.id" })
+        .select(["book.title", "category.slug", "category.label"])
+        .orderBy("category.slug");
+
+      const expected = [
+        { title: "B1", slug: "c1", label: "C1" },
+        { title: "B1", slug: "c2", label: "C2" },
+      ];
+      expect(actual).toHaveLength(2);
+      expect(actual).toStrictEqual(expected);
+    });
+
+    it("uses exiting categories, creates new one", async () => {
+      const book1 = { ...book, categories: "C1;C2" };
+      const book2 = {
+        ...book,
+        title: "B2",
+        sourceUrl: "https://foo.dev/book-2",
+        categories: "C1;C2; C3",
+      };
+      await saveBook(book1, cmsdb);
+      await saveBook(book2, cmsdb);
+
+      const actual = await cmsdb("book")
+        .join("book_categories", { "book.id": "book_categories.bookId" })
+        .join("category", { "book_categories.categoryId": "category.id" })
+        .select(["book.title", "category.slug", "category.label"])
+        .orderBy(["book.title", "category.slug"]);
+
+      const expected = [
+        { title: "B1", slug: "c1", label: "C1" },
+        { title: "B1", slug: "c2", label: "C2" },
+        { title: "B2", slug: "c1", label: "C1" },
+        { title: "B2", slug: "c2", label: "C2" },
+        { title: "B2", slug: "c3", label: "C3" },
+      ];
+      expect(actual).toStrictEqual(expected);
+    });
+
+    it("handles no categories", async () => {
+      const book1 = { ...book };
+      await saveBook(book1, cmsdb);
+
+      const actual = await cmsdb("book")
+        .leftJoin("book_categories", { "book.id": "book_categories.bookId" })
+        .leftJoin("category", { "book_categories.categoryId": "category.id" })
+        .select(["book.title", "category.slug", "category.label"])
+        .orderBy("category.slug");
+
+      const expected = [{ title: "B1", slug: null, label: null }];
+      expect(actual).toStrictEqual(expected);
+    });
+
+    it("changes categories", async () => {
+      const book1 = { ...book, categories: "C1;C2;C3" };
+      const book2 = { ...book, categories: "C1;C4;C5" };
+      await saveBook(book1, cmsdb);
+      await saveBook(book2, cmsdb);
+
+      const actual = await cmsdb("book")
+        .leftJoin("book_categories", { "book.id": "book_categories.bookId" })
+        .leftJoin("category", { "book_categories.categoryId": "category.id" })
+        .select(["book.title", "category.slug", "category.label"])
+        .orderBy("category.slug");
+
+      const expected = [
+        { title: "B1", slug: "c1", label: "C1" },
+        { title: "B1", slug: "c4", label: "C4" },
+        { title: "B1", slug: "c5", label: "C5" },
+      ];
+      expect(actual).toStrictEqual(expected);
     });
   });
 });
