@@ -5,7 +5,6 @@ import csv from "csvtojson";
 export async function getBooksFromInbox() {
   const url = new URL("https://raw.githubusercontent.com");
   url.pathname = "/ruicsh/ruicsh.github.io/inbox/books.csv";
-
   const response = await fetch(url.href);
   if (!response?.body) {
     throw new Error(`Can't find ${url.href}`);

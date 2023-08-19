@@ -24,4 +24,6 @@ async function main() {
   log.info("Done.");
 }
 
-main();
+main().then(() => {
+  process.exit(0);
+});
