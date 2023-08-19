@@ -1,5 +1,5 @@
 import Books from "src/components/books";
-import { getBooks } from "src/data/books";
+import { getBooks, getCategories } from "src/data/books";
 
 export const metadata = {
   title: "Books: Wishlist | ruicsh",
@@ -13,8 +13,11 @@ async function BooksCollectionPage(props: IProps) {
   const { params } = props;
   const [collection] = params.collection || [];
   const books = await getBooks({ collection });
+  const categories = await getCategories();
 
-  return <Books books={books} collection={collection} />;
+  return (
+    <Books books={books} categories={categories} collection={collection} />
+  );
 }
 
 export function generateStaticParams() {

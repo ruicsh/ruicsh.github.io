@@ -16,19 +16,14 @@ function MainNavigation() {
           // { href: "/til", label: "Today I Learned" },
           // { href: "/bookmarks", label: "Bookmarks" },
           { href: "/books", label: "Books" },
-          // { href: "/films", label: "Films" },
         ]
           .map((link) => ({
             ...link,
             isActive: link.href === pathname,
           }))
           .map(({ href, label, isActive }) => (
-            <li key={href}>
-              <Link
-                aria-selected={isActive}
-                className={styles.link}
-                href={href}
-              >
+            <li key={href} className={styles.link}>
+              <Link aria-selected={isActive} href={href}>
                 {label}
               </Link>
             </li>

@@ -1,19 +1,20 @@
 import Collections from "./collections";
 import DisplayOptions from "./display-options";
+import Categories from "./categories";
 import styles from "./index.module.scss";
 
 interface IProps {
-  display?: string;
-  onChangeDisplay: (newDisplay?: string) => void;
+  categories: ICategory[];
 }
 
 function BooksNavigation(props: IProps) {
-  const { display, onChangeDisplay } = props;
+  const { categories } = props;
 
   return (
     <nav className={styles.root}>
-      <Collections display={display} />
-      <DisplayOptions onChange={onChangeDisplay} />
+      <Collections />
+      <DisplayOptions />
+      <Categories categories={categories} />
     </nav>
   );
 }

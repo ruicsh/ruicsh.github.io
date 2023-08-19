@@ -9,11 +9,11 @@ export interface IProps {
 }
 
 function Button(props: PropsWithChildren<IProps>) {
-  const { children, className, onClick } = props;
+  const { children, className, onClick, ...restOfProps } = props;
   const cls = clsx(styles.root, className);
 
   return (
-    <button className={cls} onClick={onClick}>
+    <button className={cls} onClick={onClick} {...restOfProps}>
       {children}
     </button>
   );

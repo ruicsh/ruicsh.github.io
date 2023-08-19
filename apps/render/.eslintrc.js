@@ -3,7 +3,6 @@ const baseConfig = require("../../.eslintrc.json");
 baseConfig.extends = [
   ...baseConfig.extends,
   "next",
-  "next/core-web-vitals",
   "plugin:jsx-a11y/recommended",
 ];
 

@@ -1,4 +1,5 @@
 interface IBook {
+  id?: string;
   authors: string;
   description?: string;
   pageCount: number;
@@ -10,6 +11,12 @@ interface IBook {
   subtitle?: string;
   title: string;
   wishedOnDate?: string;
+  categories?: string[];
+}
+
+interface ICategory {
+  label: string;
+  slug: string;
 }
 
 type IBooksCollection = "read" | "queue" | "wishlist";

@@ -8,17 +8,24 @@
 .link {
   border: 1px solid transparent;
   border-radius: 4px;
-  color: rgba(0 0 0 / 40%);
-  font-family: var(--font-special);
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
 
-  &:hover:not([aria-selected="true"]) {
-    text-decoration: none;
+  &:first-of-type {
+    padding-left: 6px;
   }
 
-  &[aria-selected="true"] {
-    color: var(--color-dark);
+  > a {
+    color: rgba(0 0 0 / 40%);
+    font-family: var(--font-special);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &:hover:not([aria-selected="true"]) {
+      text-decoration: none;
+    }
+
+    &[aria-selected="true"] {
+      color: var(--color-dark);
+    }
   }
 }

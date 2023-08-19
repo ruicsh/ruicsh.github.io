@@ -1,17 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import styles from "./collections.module.scss";
 
-interface IProps {
-  display?: string;
-}
-
-function BookCollections(props: IProps) {
-  const { display } = props;
+function BookCollections() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return (
     <ul className={styles.root}>
@@ -22,15 +16,15 @@ function BookCollections(props: IProps) {
         { href: "/books/read", label: "Read" },
       ]
         .map((link) => {
-          let { href } = link;
-          if (display) {
-            href += `?display=${display}`;
-          }
+          const url = new URL("http://to");
+          url.pathname = link.href;
+          const sp = new URLSearchParams(searchParams.toString());
+          url.search = sp.toString();
 
           return {
             label: link.label,
-            href,
-            isActive: new RegExp(`${link.href}$`).test(pathname),
+            href: url.href.replace(url.origin, ""),
+            isActive: pathname === url.pathname,
           };
         })
         .map(({ href, label, isActive }) => (

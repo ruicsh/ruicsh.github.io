@@ -1,39 +1,33 @@
 "use client";
 
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import Grid from "./grid";
-import Table from "./table";
 import Navigation from "./navigation";
+import Table from "./table";
 
 interface IProps {
   books: IBook[];
+  categories: ICategory[];
   collection: IBooksCollection;
 }
 
 function Books(props: IProps) {
-  const { books, collection } = props;
-  const router = useRouter();
+  const { categories, collection } = props;
   const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const display = searchParams.get("d") || undefined;
+  const activeCategories = searchParams.get("c")?.split("|") || [];
 
-  const [display, setDisplay] = useState<string | undefined>(
-    searchParams.get("display") || undefined
-  );
-
-  const onChangeDisplay = (newDisplay?: string) => {
-    let href = pathname;
-    if (newDisplay) {
-      href += `?display=${newDisplay}`;
-    }
-    router.push(href);
-    setDisplay(newDisplay);
-  };
+  let { books } = props;
+  if (activeCategories.length > 0) {
+    books = props.books.filter((book) =>
+      activeCategories.some((category) => book.categories?.includes(category))
+    );
+  }
 
   return (
     <>
-      <Navigation display={display} onChangeDisplay={onChangeDisplay} />
+      <Navigation categories={categories} />
       {!display && <Grid books={books} />}
       {display === "table" && <Table books={books} collection={collection} />}
     </>
