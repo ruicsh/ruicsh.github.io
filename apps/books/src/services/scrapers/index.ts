@@ -1,13 +1,15 @@
-import AmazonScraper from "src/services/scrapers/amazon.co.uk";
-import BlackwellsScraper from "src/services/scrapers/blackwells.co.uk";
-import HiveScraper from "src/services/scrapers/hive.co.uk";
-import PostscriptScraper from "src/services/scrapers/psbooks.co.uk";
+import AmazonScraper from "./amazon.co.uk";
+import BlackwellsScraper from "./blackwells.co.uk";
+import HiveScraper from "./hive.co.uk";
+import PostscriptScraper from "./psbooks.co.uk";
+import AbebooksScraper from "./abebooks.co.uk";
 
 interface IFetchBookArgs {
   url: string;
 }
 
 class BookScraper {
+  $abebooks = new AbebooksScraper();
   $amazon = new AmazonScraper();
   $hive = new HiveScraper();
   $psbooks = new PostscriptScraper();
@@ -30,6 +32,9 @@ class BookScraper {
     }
     if (/blackwells/.test(parsed.hostname)) {
       return this.$blackwells.fetchBookPage({ url });
+    }
+    if (/abebooks/.test(parsed.hostname)) {
+      return this.$abebooks.fetchBookPage({ url });
     }
 
     return null;
@@ -54,7 +59,10 @@ class BookScraper {
       const [, , slug] = parsed.pathname.split("/");
       return slug;
     }
-
+    if (/abebooks/.test(parsed.hostname)) {
+      const [, , slug] = parsed.pathname.split("/");
+      return slug;
+    }
     return null;
   }
 }

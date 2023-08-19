@@ -31,4 +31,11 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.text(html));
   }),
+
+  rest.get(/abebooks\.co\.uk/, async (req, res, ctx) => {
+    const filePath = path.join(__dirname, "__data__/abebooks-book.html");
+    const html = await fs.promises.readFile(filePath, "utf8");
+
+    return res(ctx.status(200), ctx.text(html));
+  }),
 ];
