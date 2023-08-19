@@ -1,4 +1,5 @@
 import fletch from "@tuplo/fletcher";
+import type { AnyNode, Cheerio } from "cheerio";
 import * as df from "date-fns";
 
 interface IFetchBookArgs {
@@ -15,7 +16,7 @@ class BlackwellsScraper {
     return { ...details, cover };
   }
 
-  $getBookDetails($page: cheerio.Cheerio) {
+  $getBookDetails($page: Cheerio<AnyNode>) {
     const $productInfo = $page.find(".product-detail");
 
     const isbn = this.$getIsbn($productInfo);
@@ -26,28 +27,28 @@ class BlackwellsScraper {
     return { ...isbn, pageCount, publisher, publishedDate };
   }
 
-  $getPageCount($productInfo: cheerio.Cheerio) {
+  $getPageCount($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemprop=numberOfPages]").text().trim();
     if (!txt) return undefined;
 
     return Number(txt);
   }
 
-  $getPublisher($productInfo: cheerio.Cheerio) {
+  $getPublisher($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemprop=publisher]").text().trim();
     if (!txt) return undefined;
 
     return txt;
   }
 
-  $getPublishedDate($productInfo: cheerio.Cheerio) {
+  $getPublishedDate($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemProp=datePublished]").text();
     const date = df.parse(txt, "dd MMM yyyy", new Date());
 
     return date.toISOString().slice(0, 10);
   }
 
-  $getIsbn($productInfo: cheerio.Cheerio) {
+  $getIsbn($productInfo: Cheerio<AnyNode>) {
     let isbn10;
     let isbn13;
     const txt = $productInfo.find("[itemprop=isbn]").text().trim();

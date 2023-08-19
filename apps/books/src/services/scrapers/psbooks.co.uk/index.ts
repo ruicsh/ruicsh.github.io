@@ -1,5 +1,5 @@
 import fletch from "@tuplo/fletcher";
-import $ from "cheerio";
+import $, { type AnyNode, type Cheerio } from "cheerio";
 
 interface IFetchBookArgs {
   url: string;
@@ -15,7 +15,7 @@ class PostscriptScraper {
     return { ...details, cover };
   }
 
-  $getBookDetails($page: cheerio.Cheerio) {
+  $getBookDetails($page: Cheerio<AnyNode>) {
     const $productInfo = $page.find(".product-information__details");
 
     const isbn = this.$getIsbn($productInfo);
@@ -26,7 +26,7 @@ class PostscriptScraper {
     return { ...isbn, publisher, pageCount };
   }
 
-  $getPageCount($productInfo: cheerio.Cheerio) {
+  $getPageCount($productInfo: Cheerio<AnyNode>) {
     const txt = this.$getValueForLabel($productInfo, "Pages");
     if (!txt) return undefined;
 
@@ -35,7 +35,7 @@ class PostscriptScraper {
     return Number(pageCount);
   }
 
-  $getIsbn($productInfo: cheerio.Cheerio) {
+  $getIsbn($productInfo: Cheerio<AnyNode>) {
     const txt = this.$getValueForLabel($productInfo, "ISBN");
     if (!txt) return undefined;
 
@@ -51,7 +51,7 @@ class PostscriptScraper {
     return { isbn10, isbn13 };
   }
 
-  $getValueForLabel($productInfo: cheerio.Cheerio, label: string) {
+  $getValueForLabel($productInfo: Cheerio<AnyNode>, label: string) {
     const rg = new RegExp(label, "i");
     const value = $productInfo
       .find("li")
@@ -68,7 +68,7 @@ class PostscriptScraper {
     return $value.find(".value").text().trim();
   }
 
-  $getCover($page: cheerio.Cheerio) {
+  $getCover($page: Cheerio<AnyNode>) {
     const imageUrl = $page.find("[property=og:image]").attr("content");
     if (!imageUrl) return undefined;
 

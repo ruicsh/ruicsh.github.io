@@ -1,4 +1,5 @@
 import fletch from "@tuplo/fletcher";
+import type { AnyNode, Cheerio } from "cheerio";
 import * as df from "date-fns";
 
 interface IFetchBookArgs {
@@ -15,7 +16,7 @@ class HiveScraper {
     return { ...details, cover };
   }
 
-  $getBookDetails($page: cheerio.Cheerio) {
+  $getBookDetails($page: Cheerio<AnyNode>) {
     const $productInfo = $page.find(".productInfoWrapGrid .productInfo");
 
     const pageCount = this.$getPageCount($productInfo);
@@ -26,25 +27,25 @@ class HiveScraper {
     return { pageCount: Number(pageCount), publisher, publishedDate, ...isbn };
   }
 
-  $getPageCount($productInfo: cheerio.Cheerio) {
+  $getPageCount($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemProp=numberOfPages]").text();
     const [, pageCount] = /(\d+) pages/.exec(txt) || [];
 
     return Number(pageCount);
   }
 
-  $getPublisher($productInfo: cheerio.Cheerio) {
+  $getPublisher($productInfo: Cheerio<AnyNode>) {
     return $productInfo.find("[itemProp=publisher]").text().trim();
   }
 
-  $getPublishedDate($productInfo: cheerio.Cheerio) {
+  $getPublishedDate($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemProp=datePublished]").text();
     const date = df.parse(txt, "dd/MM/yyyy", new Date());
 
     return date.toISOString().slice(0, 10);
   }
 
-  $getIsbn($productInfo: cheerio.Cheerio) {
+  $getIsbn($productInfo: Cheerio<AnyNode>) {
     let isbn10;
     let isbn13;
     const txt = $productInfo.find("[itemProp=isbn]").text().trim();
@@ -58,7 +59,7 @@ class HiveScraper {
     return { isbn10, isbn13 };
   }
 
-  $getCover($page: cheerio.Cheerio) {
+  $getCover($page: Cheerio<AnyNode>) {
     const imageUrl = $page.find("[name=twitter:image]").attr("content");
     if (!imageUrl) return undefined;
 

@@ -1,7 +1,7 @@
 import vm from "node:vm";
 
 import fletch from "@tuplo/fletcher";
-import $ from "cheerio";
+import $, { type AnyNode, type Cheerio } from "cheerio";
 
 interface IPageMediaData {
   audibleData: undefined;
@@ -26,7 +26,7 @@ class AmazonScraper {
     return { ...details, cover };
   }
 
-  $getCover($page: cheerio.Cheerio) {
+  $getCover($page: Cheerio<AnyNode>) {
     const script = $page.find("script:contains('imageGalleryData')").html();
 
     const lines = script?.split("\n") ?? [];
@@ -44,7 +44,7 @@ class AmazonScraper {
     return imageGalleryData?.mainUrl;
   }
 
-  $getBookDetails($page: cheerio.Cheerio) {
+  $getBookDetails($page: Cheerio<AnyNode>) {
     return $page
       .find("#rich_product_information [role='listitem']")
       .toArray()
