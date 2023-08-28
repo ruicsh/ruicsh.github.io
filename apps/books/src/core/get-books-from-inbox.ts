@@ -1,6 +1,5 @@
 import { Readable } from "node:stream";
-
-import csv from "csvtojson";
+import { parse } from "csv-parse";
 
 export async function getBooksFromInbox() {
   const url = new URL("https://raw.githubusercontent.com");
@@ -11,17 +10,20 @@ export async function getBooksFromInbox() {
   }
 
   // @ts-expect-error needs ReadableStream<any> instead of ReadableStream<Uint8Array>
-  const stream = Readable.fromWeb(response.body);
+  const parser = Readable.fromWeb(response.body).pipe(
+    parse({ columns: true, delimiter: ",", trim: true })
+  );
 
-  const books = await csv()
-    .fromStream(stream)
-    .subscribe((book) => ({
+  const books = [];
+  for await (const book of parser) {
+    books.push({
       ...book,
       queuedOnDate: book.queuedOnDate ? book.queuedOnDate : undefined,
       wishedOnDate: book.wishedOnDate ? book.wishedOnDate : undefined,
       readOnDate: book.readOnDate ? book.readOnDate : undefined,
       rating: book.rating ? Number(book.rating) : undefined,
-    }));
+    });
+  }
 
   return books as IBookOnInbox[];
 }
