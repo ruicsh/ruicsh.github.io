@@ -23,13 +23,13 @@ function Pages(props: IProps) {
   return (
     <section className={styles.root}>
       <NavButton
-        role="first"
+        dataRole="first"
         isDisabled={isFirstDisabled}
         icon={IconType.Step}
         link={getRoute({ collection, page: 1 })}
       />
       <NavButton
-        role="prev"
+        dataRole="prev"
         isDisabled={isPrevDisabled}
         icon={IconType.Arrow}
         link={getRoute({ collection, page: page - 1 })}
@@ -38,13 +38,13 @@ function Pages(props: IProps) {
         Page <strong>{page}</strong> of <strong>{numberOfPages}</strong>
       </span>
       <NavButton
-        role="next"
+        dataRole="next"
         isDisabled={isNextDisabled}
         icon={IconType.Arrow}
         link={getRoute({ collection, page: page + 1 })}
       />
       <NavButton
-        role="last"
+        dataRole="last"
         isDisabled={isLastDisabled}
         icon={IconType.Step}
         link={getRoute({ collection, page: numberOfPages })}

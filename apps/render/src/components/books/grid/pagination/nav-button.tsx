@@ -9,18 +9,18 @@ interface IProps {
   icon: IconType;
   isDisabled: boolean;
   link: string;
-  role: "next" | "prev" | "first" | "last";
+  dataRole: "next" | "prev" | "first" | "last";
 }
 
 function NavButton(props: IProps) {
-  const { icon, isDisabled, link, role } = props;
+  const { icon, isDisabled, link, dataRole } = props;
 
   if (isDisabled) {
     return (
       <IconButton
         className={styles.root}
         icon={icon}
-        data-role={role}
+        data-role={dataRole}
         disabled={isDisabled}
       />
     );
@@ -31,7 +31,7 @@ function NavButton(props: IProps) {
       <IconButton
         className={styles.root}
         icon={icon}
-        data-role={role}
+        data-role={dataRole}
         disabled={isDisabled}
       />
     </Link>
