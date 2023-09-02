@@ -1,5 +1,3 @@
-import styles from "./items.module.scss";
-
 interface IProps {
   page: number;
   totalItems: number;
@@ -11,7 +9,7 @@ function Items(props: IProps) {
   const end = start + 18 > totalItems ? totalItems : start + 18 - 1;
 
   return (
-    <span className={styles.root}>
+    <span>
       <strong>{start}</strong> to <strong>{end}</strong> of{" "}
       <strong>{totalItems}</strong>
     </span>
