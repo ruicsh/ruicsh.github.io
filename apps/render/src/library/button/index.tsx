@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 
 export interface IProps {
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
