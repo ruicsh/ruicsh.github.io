@@ -43,30 +43,24 @@ export async function getBooks(args?: IGetBooksArgs) {
   if (collection === "read") {
     data = await cmsdb("book")
       .select([...commonFields, "readOnDate", "rating"])
-      .whereNot({ readOnDate: "" })
-      .orWhereNotNull("readOnDate")
+      .whereNotNull("readOnDate")
       .orderBy("readOnDate", "desc")
       .limit(limit)
       .offset(offset);
   } else if (collection === "queue") {
     data = await cmsdb("book")
       .select([...commonFields, "queuedOnDate"])
-      .whereNot({ queuedOnDate: "" })
-      .orWhereNotNull("queuedOnDate")
-      .andWhere({ readOnDate: "" })
-      .orWhereNull("readOnDate")
+      .whereNotNull("queuedOnDate")
+      .whereNull("readOnDate")
       .orderBy("queuedOnDate", "desc")
       .limit(limit)
       .offset(offset);
   } else if (collection === "wishlist") {
     data = await cmsdb("book")
       .select([...commonFields, "wishedOnDate"])
-      .whereNot({ wishedOnDate: "" })
-      .orWhereNotNull("wishedOnDate")
-      .andWhere({ queuedOnDate: "" })
-      .orWhereNull("queuedOnDate")
-      .andWhere({ readOnDate: "" })
-      .orWhereNull("readOnDate")
+      .whereNotNull("wishedOnDate")
+      .whereNull("queuedOnDate")
+      .whereNull("readOnDate")
       .orderBy("wishedOnDate", "desc")
       .limit(limit)
       .offset(offset);

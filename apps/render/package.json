@@ -9,6 +9,7 @@
     "lint:css": "stylelint 'src/**/*.scss'",
     "lint:ts": "tsc --noEmit",
     "lint": "eslint src",
+    "normalize-db": "tsx sh/normalize-db.ts",
     "serve": "serve out",
     "start": "next start"
   }

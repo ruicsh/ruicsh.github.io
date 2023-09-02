@@ -53,7 +53,9 @@ jobs:
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
           BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Build with Next.js
-        run: yarn workspace @ruicsh/render build
+        run: |
+          yarn workspace @ruicsh/render normalize-db
+          yarn workspace @ruicsh/render build
         env:
           NEXT_PUBLIC_BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Upload artifact
