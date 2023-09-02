@@ -1,0 +1,12 @@
+.root {
+  align-items: center;
+  border-color: var(--color-mid-glare);
+  border-style: solid;
+  border-width: 1px 0;
+  color: var(--color-mid);
+  display: flex;
+  font-size: 0.8rem;
+  gap: 32px;
+  justify-content: flex-end;
+  padding: 12px 0;
+}

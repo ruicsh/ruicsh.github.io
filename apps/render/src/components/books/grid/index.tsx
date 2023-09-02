@@ -1,12 +1,18 @@
 import Book from "./card";
+import Pagination from "./pagination";
+
 import styles from "./index.module.scss";
 
 interface IProps {
   books: IBook[];
+  collection: IBooksCollection;
+  numberOfPages: number;
+  page: number;
+  totalItems: number;
 }
 
 function BooksGrid(props: IProps) {
-  const { books = [] } = props;
+  const { books = [], collection, numberOfPages, page, totalItems } = props;
 
   return (
     <>
@@ -17,6 +23,12 @@ function BooksGrid(props: IProps) {
           </li>
         ))}
       </ul>
+      <Pagination
+        collection={collection}
+        numberOfPages={numberOfPages}
+        page={page}
+        totalItems={totalItems}
+      />
     </>
   );
 }

@@ -1,5 +1,7 @@
 import { cmsdb } from "@ruicsh/services";
 
+export const ITEMS_PER_PAGE = 18;
+
 export async function getBookCategories() {
   return cmsdb("book_categories")
     .innerJoin("category", { "book_categories.categoryId": "category.id" })
@@ -15,11 +17,15 @@ export async function getBookCategories() {
 }
 
 interface IGetBooksArgs {
-  collection?: IBooksCollection;
+  collection: IBooksCollection;
+  page?: number;
 }
 
 export async function getBooks(args?: IGetBooksArgs) {
-  const { collection } = args || ({} as IGetBooksArgs);
+  const { collection, page } = args || ({} as IGetBooksArgs);
+
+  const offset = page ? (page - 1) * ITEMS_PER_PAGE : 0;
+  const limit = page ? ITEMS_PER_PAGE : -1;
 
   const commonFields = [
     "id",
@@ -38,26 +44,34 @@ export async function getBooks(args?: IGetBooksArgs) {
     data = await cmsdb("book")
       .select([...commonFields, "readOnDate", "rating"])
       .whereNot({ readOnDate: "" })
-      .orderBy("readOnDate", "desc");
+      .orderBy("readOnDate", "desc")
+      .limit(limit)
+      .offset(offset);
   } else if (collection === "queue") {
     data = await cmsdb("book")
       .select([...commonFields, "queuedOnDate"])
       .whereNot({ queuedOnDate: "" })
       .andWhere({ readOnDate: "" })
-      .orderBy("queuedOnDate", "desc");
+      .orderBy("queuedOnDate", "desc")
+      .limit(limit)
+      .offset(offset);
   } else if (collection === "wishlist") {
     data = await cmsdb("book")
       .select([...commonFields, "wishedOnDate"])
       .whereNot({ wishedOnDate: "" })
       .andWhere({ queuedOnDate: "" })
       .andWhere({ readOnDate: "" })
-      .orderBy("wishedOnDate", "desc");
+      .orderBy("wishedOnDate", "desc")
+      .limit(limit)
+      .offset(offset);
   } else {
     data = await cmsdb("book")
       .select(commonFields)
       .orderBy("wishedOnDate", "desc")
       .orderBy("queuedOnDate", "desc")
-      .orderBy("readOnDate", "desc");
+      .orderBy("readOnDate", "desc")
+      .limit(limit)
+      .offset(offset);
   }
 
   const bookCategories = await getBookCategories();
@@ -71,6 +85,20 @@ export async function getBooks(args?: IGetBooksArgs) {
   }
 
   return books;
+}
+
+interface IGetCollectionMetaArgs {
+  collection: IBooksCollection;
+}
+
+export async function getCollectionMeta(args: IGetCollectionMetaArgs) {
+  const { collection } = args;
+  const books = await getBooks({ collection });
+
+  const { length: totalItems } = books;
+  const numberOfPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+  return { totalItems, numberOfPages };
 }
 
 export async function getCategories() {
