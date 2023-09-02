@@ -12,6 +12,10 @@
   }
 }
 
+.iconArrow {
+  mask-image: var(--icon-arrow);
+}
+
 .iconGrid {
   mask-image: var(--icon-grid);
 }
@@ -30,4 +34,8 @@
 
 .iconStarHalf {
   mask-image: var(--icon-star-half);
+}
+
+.iconStep {
+  mask-image: var(--icon-step);
 }
