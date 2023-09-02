@@ -11,12 +11,12 @@ interface IProps {
   categories: ICategory[];
   collection: IBooksCollection;
   numberOfPages: number;
-  page: number;
+  page?: number;
   totalItems: number;
 }
 
 function Books(props: IProps) {
-  const { categories, collection, numberOfPages, page, totalItems } = props;
+  const { categories, collection, numberOfPages, page = 1, totalItems } = props;
   const searchParams = useSearchParams();
   const display = searchParams.get("d") || undefined;
   const activeCategories = searchParams.get("c")?.split("|") || [];

@@ -2211,10 +2211,10 @@ eslint-plugin-turbo@1.10.13:
   dependencies:
     dotenv "16.0.3"
 
-eslint-plugin-vitest@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.3.0.tgz#d6ac2890171b9b60074a76b0e80db3fa35c94e2b"
-  integrity sha512-NmEOOXQvU9f/30xlRk5Upv3VgDacFv8CaSiHjn3K/JthV2qUFF/l5gICP2vVTNETzYMx2ucmUOyOabeSKxkesA==
+eslint-plugin-vitest@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.3.1.tgz#fbbb72bbb444f5e6c37b8ddf79e4ee13bf1a3d3f"
+  integrity sha512-GeR3zISHmqUGWK2sfW+eyCZivMqiQYzPf9UttHXBiEyMveS/jkKLHCrHUllwr3Hz1+i0zoseANd2xL0cFha8Eg==
   dependencies:
     "@typescript-eslint/utils" "^6.5.0"
     typescript "^5.2.2"

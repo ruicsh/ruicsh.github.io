@@ -6,18 +6,17 @@ export const metadata = {
 };
 
 interface IParams {
-  slug: [IBooksCollection, "page", number];
+  collection: IBooksCollection;
 }
 
 interface IProps {
   params: IParams;
 }
 
-async function BooksCollectionPage(props: IProps) {
+async function BookCollectionPage(props: IProps) {
   const { params } = props;
-  const [collection = "queue", , pageString] = params.slug || [];
-  const page = Number(pageString || 1);
-  const books = await getBooks({ collection, page });
+  const { collection } = params;
+  const books = await getBooks({ collection, page: 1 });
   const meta = await getCollectionMeta({ collection });
   const { numberOfPages, totalItems } = meta;
   const categories = await getCategories();
@@ -28,7 +27,6 @@ async function BooksCollectionPage(props: IProps) {
       categories={categories}
       collection={collection}
       numberOfPages={numberOfPages}
-      page={page}
       totalItems={totalItems}
     />
   );
@@ -37,16 +35,7 @@ async function BooksCollectionPage(props: IProps) {
 export async function generateStaticParams() {
   const collections = ["wishlist", "queue", "read"] as IBooksCollection[];
 
-  const params = [] as IParams[];
-  for await (const collection of collections) {
-    const { numberOfPages } = await getCollectionMeta({ collection });
-
-    new Array(numberOfPages).forEach((_, index) => {
-      params.push({ slug: [collection, "page", index + 1] });
-    });
-  }
-
-  return params;
+  return collections.map((collection) => ({ collection }));
 }
 
-export default BooksCollectionPage;
+export default BookCollectionPage;
