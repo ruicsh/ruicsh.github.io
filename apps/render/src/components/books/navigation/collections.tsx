@@ -10,10 +10,9 @@ function BookCollections() {
   return (
     <ul className={styles.root}>
       {[
-        { href: "/books", label: "All" },
-        { href: "/books/wishlist", label: "Wishlist" },
         { href: "/books/queue", label: "Queue" },
         { href: "/books/read", label: "Read" },
+        { href: "/books/wishlist", label: "Wishlist" },
       ]
         .map((link) => {
           const url = new URL("http://to");

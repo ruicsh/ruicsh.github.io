@@ -26,8 +26,16 @@ function DisplayOptions() {
 
   return (
     <div className={styles.root}>
-      <IconButton icon={IconType.Grid} onClick={() => onChange(undefined)} />
-      <IconButton icon={IconType.List} onClick={() => onChange("table")} />
+      <IconButton
+        className={styles.button}
+        icon={IconType.Grid}
+        onClick={() => onChange(undefined)}
+      />
+      <IconButton
+        className={styles.button}
+        icon={IconType.List}
+        onClick={() => onChange("table")}
+      />
     </div>
   );
 }
