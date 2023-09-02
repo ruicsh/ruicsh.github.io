@@ -44,6 +44,7 @@ export async function getBooks(args?: IGetBooksArgs) {
     data = await cmsdb("book")
       .select([...commonFields, "readOnDate", "rating"])
       .whereNot({ readOnDate: "" })
+      .orWhereNotNull("readOnDate")
       .orderBy("readOnDate", "desc")
       .limit(limit)
       .offset(offset);
@@ -51,7 +52,9 @@ export async function getBooks(args?: IGetBooksArgs) {
     data = await cmsdb("book")
       .select([...commonFields, "queuedOnDate"])
       .whereNot({ queuedOnDate: "" })
+      .orWhereNotNull("queuedOnDate")
       .andWhere({ readOnDate: "" })
+      .orWhereNull("readOnDate")
       .orderBy("queuedOnDate", "desc")
       .limit(limit)
       .offset(offset);
@@ -59,8 +62,11 @@ export async function getBooks(args?: IGetBooksArgs) {
     data = await cmsdb("book")
       .select([...commonFields, "wishedOnDate"])
       .whereNot({ wishedOnDate: "" })
+      .orWhereNotNull("wishedOnDate")
       .andWhere({ queuedOnDate: "" })
+      .orWhereNull("queuedOnDate")
       .andWhere({ readOnDate: "" })
+      .orWhereNull("readOnDate")
       .orderBy("wishedOnDate", "desc")
       .limit(limit)
       .offset(offset);
