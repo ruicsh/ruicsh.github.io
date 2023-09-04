@@ -18,9 +18,10 @@ export async function initialize(knex: Knex) {
     t.date("queuedOnDate").nullable().defaultTo(null);
     t.date("wishedOnDate").nullable().defaultTo(null);
 
-    t.string("isbn10");
-    t.string("isbn13");
+    t.string("isbn10", 13);
+    t.string("isbn13", 13);
     t.string("cover");
+    t.string("coverColor", 8).nullable().defaultTo(null);
     t.text("subtitle").nullable().defaultTo(null);
     t.text("description").nullable().defaultTo(null);
     t.integer("pageCount").nullable().defaultTo(null);

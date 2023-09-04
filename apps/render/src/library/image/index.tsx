@@ -1,7 +1,7 @@
 "use client";
 
 import NextImage from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, type CSSProperties } from "react";
 import clsx from "clsx";
 
 interface ISize {
@@ -13,10 +13,12 @@ interface IProps {
   className?: string;
   src: string;
   alt: string;
+  style?: CSSProperties;
+  blurDataUrl?: string;
 }
 
 function Image(props: IProps) {
-  const { alt, className, src } = props;
+  const { alt, className, src, style, blurDataUrl } = props;
   const rootRef = useRef<HTMLImageElement>(null);
   const [size, setSize] = useState<ISize>({ width: 0, height: 0 });
   const cls = clsx(className);
@@ -35,13 +37,16 @@ function Image(props: IProps) {
 
   return (
     <NextImage
+      alt={alt}
+      style={style}
+      blurDataURL={blurDataUrl}
       className={cls}
+      height={size.height}
+      loading="lazy"
+      placeholder={blurDataUrl ? "blur" : "empty"}
       ref={rootRef}
       src={srcUrl.href}
       width={size.width}
-      height={size.height}
-      alt={alt}
-      loading="lazy"
     />
   );
 }

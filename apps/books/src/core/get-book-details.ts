@@ -1,11 +1,14 @@
 import { setTimeout } from "node:timers/promises";
 
-import { log, cmsdb } from "@ruicsh/services";
+import { cmsdb, log } from "@ruicsh/services";
 import slugify from "slugify";
+import sharp from "sharp";
 
 import GoogleBooksApi from "src/services/google-books-api";
 import BookScraper from "src/services/scrapers";
+import { get } from "src/helpers/get";
 
+import { getCoverColor } from "./get-cover-color";
 import { resizeCover } from "./resize-cover";
 
 export async function getBookDetails(book: IBookOnInbox) {
@@ -54,7 +57,13 @@ export async function getBookDetails(book: IBookOnInbox) {
     title,
   };
 
-  await resizeCover(bookDetails);
+  if (!cover) return null;
+
+  const remote = await get(cover);
+  const src = remote.pipe(sharp());
+
+  await resizeCover(bookDetails, src);
+  bookDetails.coverColor = await getCoverColor(bookDetails);
 
   return bookDetails as IBookDetails;
 }

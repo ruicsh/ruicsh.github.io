@@ -12,6 +12,8 @@ interface IBook {
   title: string;
   wishedOnDate?: string;
   categories?: string[];
+  coverColor: string;
+  coverBlurDataUrl: string;
 }
 
 interface ICategory {

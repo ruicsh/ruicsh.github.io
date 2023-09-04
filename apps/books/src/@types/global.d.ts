@@ -10,6 +10,7 @@ interface IScrapedBookDetails {
 interface IBookDetails {
   authors: string;
   cover: string;
+  coverColor: string;
   description: string;
   id?: string;
   isbn10: string;

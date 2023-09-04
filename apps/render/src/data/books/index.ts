@@ -37,6 +37,7 @@ export async function getBooks(args?: IGetBooksArgs) {
     "slug",
     "subtitle",
     "title",
+    "coverColor",
   ];
 
   let data: IBook[];

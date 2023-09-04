@@ -8,6 +8,7 @@
     "lint": "eslint src",
     "start": "tsx src/index.ts",
     "test:ci": "vitest run",
-    "test": "vitest --watch"
+    "test": "vitest --watch",
+    "tools": "tsx src/tools --task"
   }
 }

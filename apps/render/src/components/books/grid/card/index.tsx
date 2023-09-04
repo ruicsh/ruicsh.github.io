@@ -14,7 +14,7 @@ interface IProps {
 
 function Book(props: IProps) {
   const { book, order } = props;
-  const { slug, pageCount, publishedDate, title, authors } = book;
+  const { slug, pageCount, publishedDate, title, authors, coverColor } = book;
 
   const df = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",
@@ -23,7 +23,11 @@ function Book(props: IProps) {
   return (
     <article className={styles.root}>
       <div className={styles.coverWrapper}>
-        <Image src={`/books/covers/${slug}.jpg`} alt={title} />
+        <Image
+          src={`/books/covers/${slug}.jpg`}
+          style={{ backgroundColor: coverColor }}
+          alt={title}
+        />
       </div>
       <div className={styles.metadata}>
         <h1 className={styles.title}>{title}</h1>
