@@ -1,7 +1,6 @@
 import sharp from "sharp";
 
-import { get } from "src/helpers/get";
-import { rgbToHex } from "src/helpers/rgb-to-hex";
+import { get, rgbToHex } from "@ruicsh/helpers";
 
 export async function getCoverColor(bookDetails: Partial<IBookDetails>) {
   const { cover } = bookDetails;

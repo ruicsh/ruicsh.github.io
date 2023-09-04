@@ -1,10 +1,8 @@
 import { setTimeout } from "node:timers/promises";
 
+import { get, rgbToHex } from "@ruicsh/helpers";
 import { cmsdb, log } from "@ruicsh/services";
 import sharp from "sharp";
-
-import { get } from "src/helpers/get";
-import { rgbToHex } from "src/helpers/rgb-to-hex";
 
 export async function getCoverColor() {
   const books = await cmsdb("book")

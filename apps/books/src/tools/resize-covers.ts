@@ -1,10 +1,9 @@
 import path from "node:path";
 import { setTimeout } from "node:timers/promises";
 
+import { get } from "@ruicsh/helpers";
 import { BunnyCdn, cmsdb, log } from "@ruicsh/services";
 import sharp from "sharp";
-
-import { get } from "src/helpers/get";
 
 const bunny = new BunnyCdn();
 

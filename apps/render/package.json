@@ -12,5 +12,8 @@
     "normalize-db": "tsx sh/normalize-db.ts",
     "serve": "serve out",
     "start": "next start"
+  },
+  "dependencies": {
+    "@ruicsh/services": "*"
   }
 }

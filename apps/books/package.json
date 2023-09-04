@@ -10,5 +10,9 @@
     "test:ci": "vitest run",
     "test": "vitest --watch",
     "tools": "tsx src/tools --task"
+  },
+  "dependencies": {
+    "@ruicsh/helpers": "*",
+    "@ruicsh/services": "*"
   }
 }
