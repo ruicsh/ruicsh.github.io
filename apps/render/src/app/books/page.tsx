@@ -1,5 +1,5 @@
 import Books from "src/components/books";
-import { getBooks, getCategories, getCollectionMeta } from "src/data/books";
+import { getBooks, getGenres, getCollectionMeta } from "src/data/books";
 
 export const metadata = {
   title: "Books: Wishlist | ruicsh",
@@ -11,12 +11,12 @@ async function BooksPage() {
   const books = await getBooks({ collection, page });
   const meta = await getCollectionMeta({ collection });
   const { numberOfPages, totalItems } = meta;
-  const categories = await getCategories();
+  const genres = await getGenres();
 
   return (
     <Books
       books={books}
-      categories={categories}
+      genres={genres}
       collection={collection}
       numberOfPages={numberOfPages}
       totalItems={totalItems}

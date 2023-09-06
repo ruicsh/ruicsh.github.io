@@ -1,20 +1,20 @@
 import Collections from "./collections";
 import DisplayOptions from "./display-options";
-import Categories from "./categories";
+import Genres from "./genres";
 import styles from "./index.module.scss";
 
 interface IProps {
-  categories: ICategory[];
+  genres: IBookGenre[];
 }
 
 function BooksNavigation(props: IProps) {
-  const { categories } = props;
+  const { genres } = props;
 
   return (
     <nav className={styles.root}>
       <Collections />
       <DisplayOptions />
-      <Categories categories={categories} />
+      <Genres genres={genres} />
     </nav>
   );
 }

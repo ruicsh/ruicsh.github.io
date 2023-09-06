@@ -26,7 +26,7 @@ interface IBookDetails {
 }
 
 interface IBookOnInbox {
-  categories: string;
+  genres: string;
   wishedOnDate?: string;
   queuedOnDate?: string;
   readOnDate?: string;

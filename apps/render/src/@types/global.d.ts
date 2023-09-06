@@ -16,7 +16,7 @@ interface IBook {
   coverBlurDataUrl: string;
 }
 
-interface ICategory {
+interface IBookGenre {
   label: string;
   slug: string;
 }

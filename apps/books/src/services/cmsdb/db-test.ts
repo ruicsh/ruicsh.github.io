@@ -10,8 +10,8 @@ const config: Knex.Config = {
 
 export async function reset(k: Knex) {
   await k("book").truncate();
-  await k("book_categories").truncate();
-  await k("category").truncate();
+  await k("book_genres").truncate();
+  await k("genre").truncate();
 }
 
 export const cmsdb = knex(config);

@@ -1,12 +1,12 @@
 import type { Knex } from "knex";
 
 export async function initialize(knex: Knex) {
-  const hasTable = await knex.schema.hasTable("category");
+  const hasTable = await knex.schema.hasTable("genre");
   if (hasTable) {
     return;
   }
 
-  await knex.schema.createTable("category", async (t) => {
+  await knex.schema.createTable("genre", async (t) => {
     t.string("id").primary();
 
     t.string("slug").notNullable().unique();

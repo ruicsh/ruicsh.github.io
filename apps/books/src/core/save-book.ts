@@ -3,33 +3,33 @@ import { cmsdb } from "@ruicsh/services";
 import type { Knex } from "knex";
 import slugify from "slugify";
 
-interface IRegisterBookCategoryArgs {
+interface IRegisterBookGenreArgs {
   bookId: string;
-  category: string;
+  genre: string;
   db: Knex;
 }
 
-async function registerBookCategory(args: IRegisterBookCategoryArgs) {
-  const { bookId, category, db = cmsdb } = args;
-  const slug = slugify(category.trim(), { lower: true });
-  let { id: categoryId } =
-    (await db("category").where({ slug }).select("id").first()) || {};
+async function registerBookGenre(args: IRegisterBookGenreArgs) {
+  const { bookId, genre, db = cmsdb } = args;
+  const slug = slugify(genre.trim(), { lower: true });
+  let { id: genreId } =
+    (await db("genre").where({ slug }).select("id").first()) || {};
 
-  if (!categoryId) {
-    categoryId = cuid();
-    await db("category").insert({
-      id: categoryId,
+  if (!genreId) {
+    genreId = cuid();
+    await db("genre").insert({
+      id: genreId,
       slug,
-      label: category.trim(),
+      label: genre.trim(),
       type: "books",
     });
   }
 
-  await db("book_categories").insert({ bookId, categoryId });
+  await db("book_genres").insert({ bookId, genreId });
 }
 
 export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
-  const { categories, ...restOfBook } = book;
+  const { genres, ...restOfBook } = book;
   const bookToSave = { ...restOfBook, id: book.id || cuid() };
 
   const [{ id: bookId }] = await db("book")
@@ -38,9 +38,9 @@ export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
     .merge()
     .returning("id");
 
-  await db("book_categories").where({ bookId }).del();
+  await db("book_genres").where({ bookId }).del();
 
-  for await (const category of categories?.split(";") || []) {
-    await registerBookCategory({ bookId, category, db });
+  for await (const genre of genres?.split(";") || []) {
+    await registerBookGenre({ bookId, genre, db });
   }
 }

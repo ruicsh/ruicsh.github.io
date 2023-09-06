@@ -2,10 +2,10 @@ import { cmsdb } from "@ruicsh/services";
 
 export const ITEMS_PER_PAGE = 18;
 
-export async function getBookCategories() {
-  return cmsdb("book_categories")
-    .innerJoin("category", { "book_categories.categoryId": "category.id" })
-    .select("book_categories.bookId", "category.slug")
+export async function getBookGenres() {
+  return cmsdb("book_genres")
+    .innerJoin("genre", { "book_genres.genreId": "genre.id" })
+    .select("book_genres.bookId", "genre.slug")
     .then((rows) =>
       rows.reduce((acc, row) => {
         const { bookId, slug } = row;
@@ -75,13 +75,13 @@ export async function getBooks(args?: IGetBooksArgs) {
       .offset(offset);
   }
 
-  const bookCategories = await getBookCategories();
+  const bookGenres = await getBookGenres();
   const books = [];
   for (const book of data) {
     const { id, ...restOnBook } = book;
     if (!id) continue;
 
-    const fresh = { ...restOnBook, categories: bookCategories[id] || [] };
+    const fresh = { ...restOnBook, genres: bookGenres[id] || [] };
     books.push(fresh);
   }
 
@@ -102,6 +102,6 @@ export async function getCollectionMeta(args: IGetCollectionMetaArgs) {
   return { totalItems, numberOfPages };
 }
 
-export async function getCategories() {
-  return cmsdb("category").select("label", "slug").orderBy("label");
+export async function getGenres() {
+  return cmsdb("genre").select("label", "slug").orderBy("label");
 }

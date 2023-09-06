@@ -201,17 +201,17 @@ describe("save book", () => {
     });
   });
 
-  describe("categories", () => {
-    const bookWithCategories = { ...book, categories: "C1;C2" };
+  describe("genres", () => {
+    const bookWithGenres = { ...book, genres: "C1;C2" };
 
-    it("inserts new categories", async () => {
-      await saveBook(bookWithCategories, cmsdb);
+    it("inserts new genres", async () => {
+      await saveBook(bookWithGenres, cmsdb);
 
       const actual = await cmsdb("book")
-        .join("book_categories", { "book.id": "book_categories.bookId" })
-        .join("category", { "book_categories.categoryId": "category.id" })
-        .select(["book.title", "category.slug", "category.label"])
-        .orderBy("category.slug");
+        .join("book_genres", { "book.id": "book_genres.bookId" })
+        .join("genre", { "book_genres.genreId": "genre.id" })
+        .select(["book.title", "genre.slug", "genre.label"])
+        .orderBy("genre.slug");
 
       const expected = [
         { title: "B1", slug: "c1", label: "C1" },
@@ -221,22 +221,22 @@ describe("save book", () => {
       expect(actual).toStrictEqual(expected);
     });
 
-    it("uses exiting categories, creates new one", async () => {
-      const book1 = { ...book, categories: "C1;C2" };
+    it("uses exiting genres, creates new one", async () => {
+      const book1 = { ...book, genres: "C1;C2" };
       const book2 = {
         ...book,
         title: "B2",
         sourceUrl: "https://foo.dev/book-2",
-        categories: "C1;C2; C3",
+        genres: "C1;C2; C3",
       };
       await saveBook(book1, cmsdb);
       await saveBook(book2, cmsdb);
 
       const actual = await cmsdb("book")
-        .join("book_categories", { "book.id": "book_categories.bookId" })
-        .join("category", { "book_categories.categoryId": "category.id" })
-        .select(["book.title", "category.slug", "category.label"])
-        .orderBy(["book.title", "category.slug"]);
+        .join("book_genres", { "book.id": "book_genres.bookId" })
+        .join("genre", { "book_genres.genreId": "genre.id" })
+        .select(["book.title", "genre.slug", "genre.label"])
+        .orderBy(["book.title", "genre.slug"]);
 
       const expected = [
         { title: "B1", slug: "c1", label: "C1" },
@@ -248,31 +248,31 @@ describe("save book", () => {
       expect(actual).toStrictEqual(expected);
     });
 
-    it("handles no categories", async () => {
+    it("handles no genres", async () => {
       const book1 = { ...book };
       await saveBook(book1, cmsdb);
 
       const actual = await cmsdb("book")
-        .leftJoin("book_categories", { "book.id": "book_categories.bookId" })
-        .leftJoin("category", { "book_categories.categoryId": "category.id" })
-        .select(["book.title", "category.slug", "category.label"])
-        .orderBy("category.slug");
+        .leftJoin("book_genres", { "book.id": "book_genres.bookId" })
+        .leftJoin("genre", { "book_genres.genreId": "genre.id" })
+        .select(["book.title", "genre.slug", "genre.label"])
+        .orderBy("genre.slug");
 
       const expected = [{ title: "B1", slug: null, label: null }];
       expect(actual).toStrictEqual(expected);
     });
 
-    it("changes categories", async () => {
-      const book1 = { ...book, categories: "C1;C2;C3" };
-      const book2 = { ...book, categories: "C1;C4;C5" };
+    it("changes genres", async () => {
+      const book1 = { ...book, genres: "C1;C2;C3" };
+      const book2 = { ...book, genres: "C1;C4;C5" };
       await saveBook(book1, cmsdb);
       await saveBook(book2, cmsdb);
 
       const actual = await cmsdb("book")
-        .leftJoin("book_categories", { "book.id": "book_categories.bookId" })
-        .leftJoin("category", { "book_categories.categoryId": "category.id" })
-        .select(["book.title", "category.slug", "category.label"])
-        .orderBy("category.slug");
+        .leftJoin("book_genres", { "book.id": "book_genres.bookId" })
+        .leftJoin("genre", { "book_genres.genreId": "genre.id" })
+        .select(["book.title", "genre.slug", "genre.label"])
+        .orderBy("genre.slug");
 
       const expected = [
         { title: "B1", slug: "c1", label: "C1" },
