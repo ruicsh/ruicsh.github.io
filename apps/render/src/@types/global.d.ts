@@ -1,7 +1,15 @@
+type IBooksCollection = "read" | "queue" | "wishlist";
+
+type IDisplayMode = "grid" | "table";
+
 interface IBook {
-  id?: string;
   authors: string;
+  collection?: IBooksCollection;
+  coverBlurDataUrl: string;
+  coverColor: string;
   description?: string;
+  genres?: string[];
+  id?: string;
   pageCount: number;
   publishedDate?: string;
   queuedOnDate?: string;
@@ -11,14 +19,9 @@ interface IBook {
   subtitle?: string;
   title: string;
   wishedOnDate?: string;
-  categories?: string[];
-  coverColor: string;
-  coverBlurDataUrl: string;
 }
 
 interface IBookGenre {
   label: string;
   slug: string;
 }
-
-type IBooksCollection = "read" | "queue" | "wishlist";

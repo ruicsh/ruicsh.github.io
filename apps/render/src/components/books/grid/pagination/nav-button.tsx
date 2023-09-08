@@ -1,40 +1,34 @@
-import Link from "next/link";
+import { type MouseEvent } from "react";
 
+import { useBooksStore } from "src/store/books";
 import { IconType } from "src/library/icon";
 import IconButton from "src/library/button/icon";
 
 import styles from "./nav-button.module.scss";
 
 interface IProps {
+  dataRole: "next" | "prev" | "first" | "last";
   icon: IconType;
   isDisabled: boolean;
-  link: string;
-  dataRole: "next" | "prev" | "first" | "last";
+  toPage: number;
 }
 
 function NavButton(props: IProps) {
-  const { icon, isDisabled, link, dataRole } = props;
+  const { icon, isDisabled, dataRole } = props;
 
-  if (isDisabled) {
-    return (
-      <IconButton
-        className={styles.root}
-        icon={icon}
-        data-role={dataRole}
-        disabled={isDisabled}
-      />
-    );
-  }
+  const onClick = (event: MouseEvent) => {
+    event.preventDefault();
+    useBooksStore.getState().setPage(props.toPage);
+  };
 
   return (
-    <Link href={link}>
-      <IconButton
-        className={styles.root}
-        icon={icon}
-        data-role={dataRole}
-        disabled={isDisabled}
-      />
-    </Link>
+    <IconButton
+      className={styles.root}
+      data-role={dataRole}
+      disabled={isDisabled}
+      icon={icon}
+      onClick={onClick}
+    />
   );
 }
 

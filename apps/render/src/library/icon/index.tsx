@@ -10,6 +10,7 @@ export enum IconType {
   StarFilled,
   StarHalf,
   Step,
+  XMark,
 }
 
 interface IProps {
@@ -27,6 +28,7 @@ function Icon(props: IProps) {
     [styles.iconStarFilled]: icon === IconType.StarFilled,
     [styles.iconStarHalf]: icon === IconType.StarHalf,
     [styles.iconStep]: icon === IconType.Step,
+    [styles.iconXMark]: icon === IconType.XMark,
   });
 
   return <div aria-hidden="true" className={cls} role="img" />;

@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  line-height: 1.5rem;
+  position: relative;
+}
+
+.toggleButton {
+  border-radius: 0;
+  border-right: 1px solid rgba(0 0 0 / 10%);
+  color: var(--color-mid);
+  font-size: 0.6rem;
+  padding: 0 6px;
+  text-transform: uppercase;
+
+  &[aria-selected="true"] {
+    background-color: rgba(0 0 0 / 3%);
+  }
+}
+
+.list {
+  background-color: var(--color-light);
+  border: 1px solid rgba(0 0 0 / 10%);
+  box-shadow: 10px 10px 15px rgba(0 0 0 / 20%);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  width: 180px;
+  z-index: 2;
+}

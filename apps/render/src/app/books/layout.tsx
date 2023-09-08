@@ -1,10 +1,6 @@
-import type { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 
 import styles from "./layout.module.scss";
-
-export const metadata = {
-  title: "Books | ruicsh",
-};
 
 interface IProps {}
 

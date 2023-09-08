@@ -1,4 +1,5 @@
 import { cmsdb } from "@ruicsh/services";
+import { type Knex } from "knex";
 
 export const ITEMS_PER_PAGE = 18;
 
@@ -16,13 +17,22 @@ export async function getBookGenres() {
     );
 }
 
+function getCollection(book: IBook): IBooksCollection {
+  const { readOnDate, queuedOnDate } = book;
+  if (readOnDate) return "read";
+  if (queuedOnDate) return "queue";
+
+  return "wishlist";
+}
+
 interface IGetBooksArgs {
+  db?: Knex;
   collection: IBooksCollection;
   page?: number;
 }
 
 export async function getBooks(args?: IGetBooksArgs) {
-  const { collection, page } = args || ({} as IGetBooksArgs);
+  const { collection, page, db = cmsdb } = args || ({} as IGetBooksArgs);
 
   const offset = page ? (page - 1) * ITEMS_PER_PAGE : 0;
   const limit = page ? ITEMS_PER_PAGE : -1;
@@ -38,18 +48,21 @@ export async function getBooks(args?: IGetBooksArgs) {
     "subtitle",
     "title",
     "coverColor",
+    "wishedOnDate",
+    "queuedOnDate",
+    "readOnDate",
   ];
 
   let data: IBook[];
   if (collection === "read") {
-    data = await cmsdb("book")
+    data = await db("book")
       .select([...commonFields, "readOnDate", "rating"])
       .whereNotNull("readOnDate")
       .orderBy("readOnDate", "desc")
       .limit(limit)
       .offset(offset);
   } else if (collection === "queue") {
-    data = await cmsdb("book")
+    data = await db("book")
       .select([...commonFields, "queuedOnDate"])
       .whereNotNull("queuedOnDate")
       .whereNull("readOnDate")
@@ -57,7 +70,7 @@ export async function getBooks(args?: IGetBooksArgs) {
       .limit(limit)
       .offset(offset);
   } else if (collection === "wishlist") {
-    data = await cmsdb("book")
+    data = await db("book")
       .select([...commonFields, "wishedOnDate"])
       .whereNotNull("wishedOnDate")
       .whereNull("queuedOnDate")
@@ -66,7 +79,7 @@ export async function getBooks(args?: IGetBooksArgs) {
       .limit(limit)
       .offset(offset);
   } else {
-    data = await cmsdb("book")
+    data = await db("book")
       .select(commonFields)
       .orderBy("wishedOnDate", "desc")
       .orderBy("queuedOnDate", "desc")
@@ -81,7 +94,11 @@ export async function getBooks(args?: IGetBooksArgs) {
     const { id, ...restOnBook } = book;
     if (!id) continue;
 
-    const fresh = { ...restOnBook, genres: bookGenres[id] || [] };
+    const fresh = {
+      ...restOnBook,
+      collection: getCollection(book),
+      genres: bookGenres[id] || [],
+    };
     books.push(fresh);
   }
 

@@ -1,6 +1,8 @@
 import Collections from "./collections";
-import DisplayOptions from "./display-options";
+import DisplayMode from "./display-mode";
 import Genres from "./genres";
+import Status from "./status";
+
 import styles from "./index.module.scss";
 
 interface IProps {
@@ -13,8 +15,11 @@ function BooksNavigation(props: IProps) {
   return (
     <nav className={styles.root}>
       <Collections />
-      <DisplayOptions />
-      <Genres genres={genres} />
+      <DisplayMode />
+      <div className={styles.footer}>
+        <Genres genres={genres} />
+        <Status genres={genres} />
+      </div>
     </nav>
   );
 }

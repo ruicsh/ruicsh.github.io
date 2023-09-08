@@ -1,4 +1,4 @@
-import type { ICellRendererParams } from "ag-grid-community";
+import { type ICellRendererParams } from "ag-grid-community";
 
 import StarRating from "src/library/star-rating";
 

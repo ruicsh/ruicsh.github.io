@@ -18,24 +18,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
       - name: Checkout data
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
         with:
           ref: data
           path: shared
           clean: false
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@main
         with:
           node-version: "18"
           cache: yarn
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@main
         with:
           static_site_generator: next
       - name: Restore cache
-        uses: actions/cache@v3
+        uses: actions/cache@main
         with:
           path: |
             .next/cache
@@ -55,11 +55,12 @@ jobs:
       - name: Build with Next.js
         run: |
           yarn workspace @ruicsh/render normalize-db
+          yarn workspace @ruicsh/render static:data
           yarn workspace @ruicsh/render build
         env:
           NEXT_PUBLIC_BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@main
         with:
           path: ./apps/render/out
 
@@ -88,4 +89,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@main

@@ -1,20 +1,26 @@
-import type { PropsWithChildren } from "react";
 import clsx from "clsx";
+import { type MouseEvent, type PropsWithChildren } from "react";
 
 import styles from "./index.module.scss";
 
 export interface IProps {
   className?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  isActive?: boolean;
+  onClick?: (event: MouseEvent) => void;
 }
 
 function Button(props: PropsWithChildren<IProps>) {
-  const { children, className, onClick, ...restOfProps } = props;
+  const { children, className, isActive, onClick, ...restOfProps } = props;
   const cls = clsx(styles.root, className);
 
   return (
-    <button className={cls} onClick={onClick} {...restOfProps}>
+    <button
+      className={cls}
+      aria-pressed={isActive}
+      onClick={onClick}
+      {...restOfProps}
+    >
       {children}
     </button>
   );

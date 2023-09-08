@@ -1,43 +1,32 @@
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import Button from "src/library/button";
+import { useBooksStore } from "src/store/books";
 
 import styles from "./collections.module.scss";
 
 function BookCollections() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const activeCollection = useBooksStore((state) => state.collection);
+
+  const onClickOption = (collection: string) => () => {
+    useBooksStore.getState().setCollection(collection as IBooksCollection);
+  };
 
   return (
     <ul className={styles.root}>
       {[
-        { href: "/books/queue", label: "Queue" },
-        { href: "/books/read", label: "Read" },
-        { href: "/books/wishlist", label: "Wishlist" },
-      ]
-        .map((link) => {
-          const url = new URL("http://to");
-          url.pathname = link.href;
-          const sp = new URLSearchParams(searchParams.toString());
-          url.search = sp.toString();
-
-          return {
-            label: link.label,
-            href: url.href.replace(url.origin, ""),
-            isActive: pathname === url.pathname,
-          };
-        })
-        .map(({ href, label, isActive }) => (
-          <li key={`books-nav-${href}`} className={styles.option}>
-            <Link
-              aria-selected={isActive}
-              className={styles.link}
-              href={href}
-              scroll={false}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+        { value: "queue", label: "Queue" },
+        { value: "read", label: "Read" },
+        { value: "wishlist", label: "Wishlist" },
+      ].map(({ value, label }) => (
+        <li key={`books-nav-${value}`} className={styles.option}>
+          <Button
+            className={styles.button}
+            onClick={onClickOption(value)}
+            isActive={value === activeCollection}
+          >
+            {label}
+          </Button>
+        </li>
+      ))}
     </ul>
   );
 }

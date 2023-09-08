@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "next build",
+    "build": "yarn static:data; next build",
     "dev": "next dev",
     "link-shared-dir": "ln -s ../../shared shared",
     "lint:css": "stylelint 'src/**/*.scss'",
@@ -11,7 +11,8 @@
     "lint": "eslint src",
     "normalize-db": "tsx sh/normalize-db.ts",
     "serve": "serve out",
-    "start": "next start"
+    "start": "next start",
+    "static:data": "tsx src/static/index.ts"
   },
   "dependencies": {
     "@ruicsh/services": "*"

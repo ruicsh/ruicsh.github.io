@@ -1,4 +1,4 @@
-import type { ColDef } from "ag-grid-community";
+import { type ColDef } from "ag-grid-community";
 
 import RatingCellRenderer from "./rating-cell-renderer";
 
@@ -25,3 +25,23 @@ export const defaultColDef: ColDef = {
 export const components = {
   ratingCellRenderer: RatingCellRenderer,
 };
+
+export function getColumnDefs(collection: IBooksCollection) {
+  const newColumnDefs = JSON.parse(JSON.stringify(columnDefs)) as ColDef[];
+  const showFields = [];
+
+  if (collection === "read") {
+    showFields.push("rating", "readOnDate");
+  } else if (collection === "queue") {
+    showFields.push("queuedOnDate");
+  } else if (collection === "wishlist") {
+    showFields.push("wishedOnDate");
+  }
+
+  for (const field of showFields) {
+    const index = newColumnDefs.findIndex((column) => column.field === field);
+    newColumnDefs[index].hide = false;
+  }
+
+  return newColumnDefs;
+}

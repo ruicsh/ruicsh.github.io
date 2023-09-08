@@ -6,3 +6,13 @@
   justify-content: space-between;
   position: relative;
 }
+
+.footer {
+  align-items: center;
+  border-top: 1px solid rgba(0 0 0 / 10%);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 8px 0;
+  width: 100%;
+}

@@ -9,12 +9,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 18
-      - run: yarn install --frozen-lockfile --no-audit
-      - run: yarn lint
-      - run: yarn lint:css
-      - run: yarn lint:ts
-      - run: yarn test:ci
+      - run: |
+          yarn install --frozen-lockfile --no-audit
+          yarn lint
+          yarn lint:css
+          yarn lint:ts
+          yarn test:ci
