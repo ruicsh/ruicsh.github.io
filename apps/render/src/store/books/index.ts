@@ -1,8 +1,10 @@
-import { create } from "zustand";
+import { create, type StateCreator } from "zustand";
+import { persist } from "zustand/middleware";
 
-import { type IBooksState } from "./books.d";
+import { type IBooksState, type IPersistedBooksState } from "./books.d";
+import { storageOptions } from "./storage";
 
-export const useBooksStore = create<IBooksState>()((set) => ({
+const booksStore: StateCreator<IBooksState> = (set) => ({
   collection: "queue",
   setCollection: (collection: IBooksCollection) => set({ collection }),
 
@@ -33,4 +35,9 @@ export const useBooksStore = create<IBooksState>()((set) => ({
 
       return { activeGenres: genres, page: 1 };
     }),
-}));
+});
+
+export const useBooksStore = create<
+  IBooksState,
+  [["zustand/persist", IPersistedBooksState]]
+>(persist(booksStore, storageOptions));

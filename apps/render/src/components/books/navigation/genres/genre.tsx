@@ -12,11 +12,10 @@ function CategoryOption(props: IProps) {
   const { genre } = props;
   const { slug, label } = genre;
   const activeGenres = useBooksStore((state) => state.activeGenres);
-  const toggleActiveGenre = useBooksStore((state) => state.toggleActiveGenre);
   const isActive = activeGenres.includes(slug);
 
   const onToggleGenre = (activeGenre: string) => {
-    toggleActiveGenre(activeGenre);
+    useBooksStore.getState().toggleActiveGenre(activeGenre);
   };
 
   return (
@@ -24,7 +23,7 @@ function CategoryOption(props: IProps) {
       <Button
         className={styles.button}
         onClick={() => onToggleGenre(slug)}
-        aria-selected={isActive}
+        isActive={isActive}
       >
         <Checkbox checked={isActive} />
         <span>{label}</span>

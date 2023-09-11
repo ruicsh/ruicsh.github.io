@@ -1,8 +1,8 @@
 "use client";
 
-import NextImage from "next/image";
-import { useEffect, useState, useRef, type CSSProperties } from "react";
 import clsx from "clsx";
+import NextImage from "next/image";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 interface ISize {
   width: number;

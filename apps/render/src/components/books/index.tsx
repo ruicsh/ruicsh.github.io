@@ -18,6 +18,7 @@ function Books(props: IProps) {
 
   useEffect(() => {
     useBooksStore.getState().fetchBooks();
+    useBooksStore.persist.rehydrate();
   }, []);
 
   return (

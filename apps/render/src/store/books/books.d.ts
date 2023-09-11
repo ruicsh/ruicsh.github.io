@@ -15,3 +15,8 @@ export interface IBooksState {
   activeGenres: string[];
   toggleActiveGenre: (activeGenre: string) => void;
 }
+
+export type IPersistedBooksState = Pick<
+  IBooksState,
+  "activeGenres" | "collection" | "displayMode" | "page"
+>;
