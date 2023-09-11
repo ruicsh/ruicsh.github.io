@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-import { useClickOutside } from "src/hooks/use-click-outside";
+import useClickOutside from "src/hooks/use-click-outside";
 import Button from "src/library/button";
 
 import GenreOption from "./genre";

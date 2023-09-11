@@ -5,7 +5,7 @@ interface IUseClickOutsideArgs {
   onClickOutside: () => void;
 }
 
-export function useClickOutside(args: IUseClickOutsideArgs) {
+function useClickOutside(args: IUseClickOutsideArgs) {
   const { elementRef, onClickOutside } = args;
 
   const handleClick: EventListener = useCallback(
@@ -32,3 +32,5 @@ export function useClickOutside(args: IUseClickOutsideArgs) {
 
   return { elementRef };
 }
+
+export default useClickOutside;
