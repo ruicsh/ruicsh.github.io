@@ -1,10 +1,9 @@
 import AmazonScraper from ".";
 
 describe("amazon scraper", () => {
-  it("scrape amazon book page", async () => {
+  it("scrape amazon book page from image gallery", async () => {
     const scraper = new AmazonScraper();
-    const url =
-      "https://www.amazon.co.uk/Man-Moon-Voyages-Apollo-Astronauts/dp/0241363152/ref=sr_1_1?crid=RMDR1GVY22MU&keywords=a+man+on+the+moon+andrew+chaikin&qid=1691766521&sprefix=A+Man+on+the+Moon%2Caps%2C129&sr=8-1#detailBullets_feature_div";
+    const url = "https://www.amazon.co.uk/book-1";
     const actual = await scraper.fetchBookPage({ url });
 
     const expected = {
@@ -14,6 +13,22 @@ describe("amazon scraper", () => {
       publisher: "Penguin",
       publishedDate: "2019-06-13",
       pageCount: 704,
+    };
+    expect(actual).toStrictEqual(expected);
+  });
+
+  it("scrape amazon book page from image block", async () => {
+    const scraper = new AmazonScraper();
+    const url = "https://www.amazon.co.uk/book-2";
+    const actual = await scraper.fetchBookPage({ url });
+
+    const expected = {
+      cover: "https://m.media-amazon.com/images/I/81PKUwQLQhL._SL1500_.jpg",
+      isbn10: "0192802488",
+      isbn13: "9780192802484",
+      pageCount: 184,
+      publishedDate: "2007-03-22",
+      publisher: "OUP Oxford",
     };
     expect(actual).toStrictEqual(expected);
   });

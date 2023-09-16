@@ -12,6 +12,19 @@ interface IPageMediaData {
   };
 }
 
+interface IPageImageBlock {
+  data: {
+    colorImages: {
+      initial: [
+        {
+          hiRes: string;
+          variant: string;
+        },
+      ];
+    };
+  };
+}
+
 interface IFetchBookArgs {
   url: string;
 }
@@ -27,21 +40,58 @@ class AmazonScraper {
   }
 
   $getCover($page: Cheerio<AnyNode>) {
+    const fromImageBlock = this.$getCoverFromImageBlock($page);
+    const fromImageGallery = this.$getCoverFromImageGalleryData($page);
+
+    return fromImageBlock || fromImageGallery;
+  }
+
+  $getCoverFromImageBlock($page: Cheerio<AnyNode>) {
+    const script = $page.find("script:contains('ImageBlockATF')").html();
+
+    const lines = script?.split("\n") ?? [];
+    const startIndex = lines.findIndex((line) => /var data/i.test(line));
+    const endIndex = lines.findIndex((line) =>
+      /dp60InLastPositionUnrolledImageBlock/i.test(line)
+    );
+
+    const src = lines.slice(startIndex, endIndex).join("\n");
+    try {
+      const code = new vm.Script(`${src}}`);
+
+      const sandbox = {};
+      vm.createContext(sandbox);
+      code.runInContext(sandbox);
+      const { data } = sandbox as IPageImageBlock;
+      const { colorImages } = data;
+      const main = colorImages.initial.find((i) => i.variant === "MAIN");
+
+      return main?.hiRes;
+    } catch (error) {
+      return undefined;
+    }
+  }
+
+  $getCoverFromImageGalleryData($page: Cheerio<AnyNode>) {
     const script = $page.find("script:contains('imageGalleryData')").html();
 
     const lines = script?.split("\n") ?? [];
     const startIndex = lines.findIndex((line) => /var data/i.test(line));
     const endIndex = lines.findIndex((line) => /return data/i.test(line));
-
     const src = lines.slice(startIndex, endIndex).join("\n");
-    const code = new vm.Script(src);
-    const sandbox = { audibleData: undefined };
-    vm.createContext(sandbox);
-    code.runInContext(sandbox);
-    const { data } = sandbox as IPageMediaData;
-    const [imageGalleryData] = data.imageGalleryData || [];
 
-    return imageGalleryData?.mainUrl;
+    try {
+      const code = new vm.Script(src);
+      const sandbox = { audibleData: undefined };
+      vm.createContext(sandbox);
+      code.runInContext(sandbox);
+      const { data } = sandbox as IPageMediaData;
+      const [imageGalleryData] = data?.imageGalleryData || [];
+
+      return imageGalleryData?.mainUrl;
+    } catch (error) {
+      return undefined;
+    }
   }
 
   $getBookDetails($page: Cheerio<AnyNode>) {

@@ -14,8 +14,15 @@ export const handlers = [
     }
   ),
 
-  rest.get(/www\.amazon\.co\.uk/, async (req, res, ctx) => {
+  rest.get(/www\.amazon\.co\.uk\/book-1/, async (req, res, ctx) => {
     const filePath = path.join(__dirname, "__data__/amazon-book.html");
+    const html = await fs.promises.readFile(filePath, "utf8");
+
+    return res(ctx.status(200), ctx.text(html));
+  }),
+
+  rest.get(/www\.amazon\.co\.uk\/book-2/, async (req, res, ctx) => {
+    const filePath = path.join(__dirname, "__data__/amazon-book-2.html");
     const html = await fs.promises.readFile(filePath, "utf8");
 
     return res(ctx.status(200), ctx.text(html));
