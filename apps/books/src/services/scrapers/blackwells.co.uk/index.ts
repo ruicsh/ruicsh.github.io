@@ -10,45 +10,45 @@ class BlackwellsScraper {
   async fetchBookPage(args: IFetchBookArgs) {
     const { url } = args;
     const $page = await fletch.html(url);
-    const details = this.$getBookDetails($page);
-    const cover = this.$getCover(details.isbn13 || details.isbn10 || "");
+    const details = this.#getBookDetails($page);
+    const cover = this.#getCover(details.isbn13 || details.isbn10 || "");
 
     return { ...details, cover };
   }
 
-  $getBookDetails($page: Cheerio<AnyNode>) {
+  #getBookDetails($page: Cheerio<AnyNode>) {
     const $productInfo = $page.find(".product-detail");
 
-    const isbn = this.$getIsbn($productInfo);
-    const pageCount = this.$getPageCount($productInfo);
-    const publisher = this.$getPublisher($productInfo);
-    const publishedDate = this.$getPublishedDate($productInfo);
+    const isbn = this.#getIsbn($productInfo);
+    const pageCount = this.#getPageCount($productInfo);
+    const publisher = this.#getPublisher($productInfo);
+    const publishedDate = this.#getPublishedDate($productInfo);
 
     return { ...isbn, pageCount, publisher, publishedDate };
   }
 
-  $getPageCount($productInfo: Cheerio<AnyNode>) {
+  #getPageCount($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemprop=numberOfPages]").text().trim();
     if (!txt) return undefined;
 
     return Number(txt);
   }
 
-  $getPublisher($productInfo: Cheerio<AnyNode>) {
+  #getPublisher($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemprop=publisher]").text().trim();
     if (!txt) return undefined;
 
     return txt;
   }
 
-  $getPublishedDate($productInfo: Cheerio<AnyNode>) {
+  #getPublishedDate($productInfo: Cheerio<AnyNode>) {
     const txt = $productInfo.find("[itemProp=datePublished]").text();
     const date = df.parse(txt, "dd MMM yyyy", new Date());
 
     return date.toISOString().slice(0, 10);
   }
 
-  $getIsbn($productInfo: Cheerio<AnyNode>) {
+  #getIsbn($productInfo: Cheerio<AnyNode>) {
     let isbn10;
     let isbn13;
     const txt = $productInfo.find("[itemprop=isbn]").text().trim();
@@ -62,7 +62,7 @@ class BlackwellsScraper {
     return { isbn10, isbn13 };
   }
 
-  $getCover(isbn: string) {
+  #getCover(isbn: string) {
     const url = new URL("https://blackwells.co.uk");
     url.pathname = `/jacket/500x500/${isbn}.webp`;
 

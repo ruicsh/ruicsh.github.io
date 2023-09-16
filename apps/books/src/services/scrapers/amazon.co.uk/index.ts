@@ -33,20 +33,20 @@ class AmazonScraper {
   async fetchBookPage(args: IFetchBookArgs) {
     const { url } = args;
     const $page = await fletch.html(url);
-    const details = this.$getBookDetails($page);
-    const cover = this.$getCover($page);
+    const details = this.#getBookDetails($page);
+    const cover = this.#getCover($page);
 
     return { ...details, cover };
   }
 
-  $getCover($page: Cheerio<AnyNode>) {
-    const fromImageBlock = this.$getCoverFromImageBlock($page);
-    const fromImageGallery = this.$getCoverFromImageGalleryData($page);
+  #getCover($page: Cheerio<AnyNode>) {
+    const fromImageBlock = this.#getCoverFromImageBlock($page);
+    const fromImageGallery = this.#getCoverFromImageGalleryData($page);
 
     return fromImageBlock || fromImageGallery;
   }
 
-  $getCoverFromImageBlock($page: Cheerio<AnyNode>) {
+  #getCoverFromImageBlock($page: Cheerio<AnyNode>) {
     const script = $page.find("script:contains('ImageBlockATF')").html();
 
     const lines = script?.split("\n") ?? [];
@@ -72,7 +72,7 @@ class AmazonScraper {
     }
   }
 
-  $getCoverFromImageGalleryData($page: Cheerio<AnyNode>) {
+  #getCoverFromImageGalleryData($page: Cheerio<AnyNode>) {
     const script = $page.find("script:contains('imageGalleryData')").html();
 
     const lines = script?.split("\n") ?? [];
@@ -94,7 +94,7 @@ class AmazonScraper {
     }
   }
 
-  $getBookDetails($page: Cheerio<AnyNode>) {
+  #getBookDetails($page: Cheerio<AnyNode>) {
     return $page
       .find("#rich_product_information [role='listitem']")
       .toArray()

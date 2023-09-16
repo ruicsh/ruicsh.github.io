@@ -9,25 +9,25 @@ class PostscriptScraper {
   async fetchBookPage(args: IFetchBookArgs) {
     const { url } = args;
     const $page = await fletch.html(url);
-    const details = this.$getBookDetails($page);
-    const cover = this.$getCover($page);
+    const details = this.#getBookDetails($page);
+    const cover = this.#getCover($page);
 
     return { ...details, cover };
   }
 
-  $getBookDetails($page: Cheerio<AnyNode>) {
+  #getBookDetails($page: Cheerio<AnyNode>) {
     const $productInfo = $page.find(".product-information__details");
 
-    const isbn = this.$getIsbn($productInfo);
+    const isbn = this.#getIsbn($productInfo);
 
-    const pageCount = this.$getPageCount($productInfo);
-    const publisher = this.$getValueForLabel($productInfo, "Publisher");
+    const pageCount = this.#getPageCount($productInfo);
+    const publisher = this.#getValueForLabel($productInfo, "Publisher");
 
     return { ...isbn, publisher, pageCount };
   }
 
-  $getPageCount($productInfo: Cheerio<AnyNode>) {
-    const txt = this.$getValueForLabel($productInfo, "Pages");
+  #getPageCount($productInfo: Cheerio<AnyNode>) {
+    const txt = this.#getValueForLabel($productInfo, "Pages");
     if (!txt) return undefined;
 
     const [, pageCount] = /(\d+)pp/.exec(txt) || [];
@@ -35,8 +35,8 @@ class PostscriptScraper {
     return Number(pageCount);
   }
 
-  $getIsbn($productInfo: Cheerio<AnyNode>) {
-    const txt = this.$getValueForLabel($productInfo, "ISBN");
+  #getIsbn($productInfo: Cheerio<AnyNode>) {
+    const txt = this.#getValueForLabel($productInfo, "ISBN");
     if (!txt) return undefined;
 
     let isbn10;
@@ -51,7 +51,7 @@ class PostscriptScraper {
     return { isbn10, isbn13 };
   }
 
-  $getValueForLabel($productInfo: Cheerio<AnyNode>, label: string) {
+  #getValueForLabel($productInfo: Cheerio<AnyNode>, label: string) {
     const rg = new RegExp(label, "i");
     const value = $productInfo
       .find("li")
@@ -68,7 +68,7 @@ class PostscriptScraper {
     return $value.find(".value").text().trim();
   }
 
-  $getCover($page: Cheerio<AnyNode>) {
+  #getCover($page: Cheerio<AnyNode>) {
     const imageUrl = $page.find("[property=og:image]").attr("content");
     if (!imageUrl) return undefined;
 
