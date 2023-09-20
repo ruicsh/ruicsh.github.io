@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "yarn static:data; next build",
-    "dev": "next dev",
+    "dev": "yarn static:data; next dev",
     "link-shared-dir": "ln -s ../../shared shared",
     "lint:css": "stylelint 'src/**/*.scss'",
     "lint:ts": "tsc --noEmit",

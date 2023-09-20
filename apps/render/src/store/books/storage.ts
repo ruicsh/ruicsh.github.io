@@ -1,9 +1,10 @@
-import lz from "lz-string";
 import {
   createJSONStorage,
   type PersistOptions,
   type StateStorage,
 } from "zustand/middleware";
+
+import { compress, decompress } from "src/lib/compress";
 
 import { type IBooksState, type IPersistedBooksState } from "./books.d";
 
@@ -12,18 +13,20 @@ function getUrlSearch() {
 }
 
 const storage: StateStorage = {
-  getItem(key: string) {
+  async getItem(key: string) {
     const sp = new URLSearchParams(getUrlSearch());
     const compressed = sp.get(key) ?? "";
-    const decompressed = lz.decompressFromEncodedURIComponent(compressed);
+
+    const decompressed = await decompress(compressed);
     const state = JSON.parse(decompressed || "{}");
+
     return state;
   },
-  setItem(key: string, newValue: string) {
-    const sp = new URLSearchParams();
+  async setItem(key: string, newValue: string) {
     const jsonStr = JSON.stringify(newValue);
-    const compressed = lz.compressToEncodedURIComponent(jsonStr);
-    sp.set(key, compressed);
+    const compressed = await compress(jsonStr);
+
+    const sp = new URLSearchParams({ [key]: compressed });
     const qs = sp.toString();
     window.history.replaceState(null, "", `?${qs}`);
   },

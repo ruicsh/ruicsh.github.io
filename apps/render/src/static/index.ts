@@ -8,7 +8,7 @@ import { pressStaticBooks } from "./books";
 async function main() {
   const staticDataDir = path.join(process.cwd(), "/public/static/data");
   if (!fs.existsSync(staticDataDir)) {
-    fs.mkdirSync(staticDataDir);
+    fs.mkdirSync(staticDataDir, { recursive: true });
   }
 
   await pressStaticBooks({ staticDataDir, cmsdb });
