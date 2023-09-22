@@ -26,7 +26,7 @@ const storage: StateStorage = {
       window.history.pushState(null, "", `?${sp.toString()}`);
     }
   },
-  removeItem(key: string) {
+  removeItem: (key: string) => {
     const sp = new URLSearchParams(window.location.search);
     sp.delete(key);
     const qs = sp.toString();
@@ -37,9 +37,13 @@ const storage: StateStorage = {
 export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
   {
     name: "books",
-    partialize(state) {
-      const { books, isBooksLoading, ...restOfState } = state;
-      return restOfState;
+    partialize: (state) => {
+      const { books, isBooksLoading, activeGenres, ...restOfState } = state;
+
+      return {
+        ...restOfState,
+        activeGenres: activeGenres.length ? activeGenres : undefined,
+      };
     },
     skipHydration: true,
     storage: createJSONStorage(() => storage),

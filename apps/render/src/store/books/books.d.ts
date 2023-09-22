@@ -16,7 +16,7 @@ export interface IBooksState {
   toggleActiveGenre: (activeGenre: string) => void;
 }
 
-export type IPersistedBooksState = Pick<
-  IBooksState,
-  "activeGenres" | "collection" | "displayMode" | "page"
->;
+export interface IPersistedBooksState
+  extends Pick<IBooksState, "collection" | "displayMode" | "page"> {
+  activeGenres?: string[];
+}
