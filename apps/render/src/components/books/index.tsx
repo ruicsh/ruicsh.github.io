@@ -19,6 +19,13 @@ function Books(props: IProps) {
   useEffect(() => {
     useBooksStore.getState().fetchBooks();
     useBooksStore.persist.rehydrate();
+
+    const onPopState = () => useBooksStore.persist.rehydrate();
+    window.addEventListener("popstate", onPopState);
+
+    return () => {
+      window.removeEventListener("popstate", onPopState);
+    };
   }, []);
 
   return (

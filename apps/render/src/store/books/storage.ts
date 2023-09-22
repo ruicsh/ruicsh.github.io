@@ -4,34 +4,30 @@ import {
   type StateStorage,
 } from "zustand/middleware";
 
-import { compress, decompress } from "src/lib/compress";
-
 import { type IBooksState, type IPersistedBooksState } from "./books.d";
 
-function getUrlSearch() {
-  return window.location.search.slice(1);
-}
-
 const storage: StateStorage = {
-  async getItem(key: string) {
-    const sp = new URLSearchParams(getUrlSearch());
-    const compressed = sp.get(key) ?? "";
+  getItem: () => {
+    const sp = new URLSearchParams(window.location.search);
+    const state = Object.fromEntries(sp.entries());
+    const activeGenres = state.activeGenres?.trim()?.split(",") ?? [];
 
-    const decompressed = await decompress(compressed);
-    const state = JSON.parse(decompressed || "{}");
+    const readState = {
+      state: { ...state, activeGenres },
+      version: 0,
+    };
 
-    return state;
+    return JSON.stringify(readState);
   },
-  async setItem(key: string, newValue: string) {
-    const jsonStr = JSON.stringify(newValue);
-    const compressed = await compress(jsonStr);
-
-    const sp = new URLSearchParams({ [key]: compressed });
-    const qs = sp.toString();
-    window.history.replaceState(null, "", `?${qs}`);
+  setItem: (_, newValue: string) => {
+    const { state } = JSON.parse(newValue);
+    const sp = new URLSearchParams(state);
+    if (sp.toString() !== window.location.search.slice(1)) {
+      window.history.pushState(null, "", `?${sp.toString()}`);
+    }
   },
   removeItem(key: string) {
-    const sp = new URLSearchParams(getUrlSearch());
+    const sp = new URLSearchParams(window.location.search);
     sp.delete(key);
     const qs = sp.toString();
     window.location.search = qs;
@@ -41,12 +37,10 @@ const storage: StateStorage = {
 export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
   {
     name: "books",
-    partialize: (state) => ({
-      activeGenres: state.activeGenres,
-      collection: state.collection,
-      displayMode: state.displayMode,
-      page: state.page,
-    }),
+    partialize(state) {
+      const { books, isBooksLoading, ...restOfState } = state;
+      return restOfState;
+    },
     skipHydration: true,
     storage: createJSONStorage(() => storage),
   };

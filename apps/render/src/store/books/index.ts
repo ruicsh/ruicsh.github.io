@@ -1,7 +1,7 @@
 import { create, type StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { type IBooksState, type IPersistedBooksState } from "./books.d";
+import { type IBooksState } from "./books.d";
 import { storageOptions } from "./storage";
 
 const booksStore: StateCreator<IBooksState> = (set) => ({
@@ -37,7 +37,6 @@ const booksStore: StateCreator<IBooksState> = (set) => ({
     }),
 });
 
-export const useBooksStore = create<
-  IBooksState,
-  [["zustand/persist", IPersistedBooksState]]
->(persist(booksStore, storageOptions));
+export const useBooksStore = create<IBooksState>()(
+  persist(booksStore, storageOptions)
+);
