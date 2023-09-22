@@ -68,12 +68,13 @@ jobs:
         id: git-check
         run: |
           cd shared
-          echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+          modified=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+          echo "modified=$modified" >> "$GITHUB_OUTPUT"
       - name: Update changes in GitHub repository
         if: steps.git-check.outputs.modified == 'true'
         run: |
           cd shared
-          git config --global user.name 'Joibot' 
+          git config --global user.name 'joibot' 
           git config --global user.email 'bot@tuplo.co.uk'
           git add -A
           git commit -m '[automated commit] update cmsdb data'
