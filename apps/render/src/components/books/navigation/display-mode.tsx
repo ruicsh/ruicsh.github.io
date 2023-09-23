@@ -1,12 +1,17 @@
 import IconButton from "src/library/button/icon";
 import { IconType } from "src/library/icon";
-import { useBooksStore } from "src/store/books";
+import { useDispatch } from "src/store/books";
 
 import styles from "./display-mode.module.scss";
 
 function DisplayMode() {
-  const onChange = (newDisplayMode?: IDisplayMode) => {
-    useBooksStore.getState().setDisplayMode(newDisplayMode);
+  const dispatch = useDispatch();
+
+  const onChange = (newDisplayMode: IDisplayMode) => {
+    dispatch({
+      type: "SET_DISPLAY_MODE",
+      payload: { displayMode: newDisplayMode },
+    });
   };
 
   return (

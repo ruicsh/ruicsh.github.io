@@ -10,9 +10,12 @@ interface IProps {
 
 function StatusGenre(props: IProps) {
   const { className, genre } = props;
+  const dispatch = useBooksStore((state) => state.dispatch);
   const cls = clsx(className);
 
-  const toggleActiveGenre = useBooksStore((state) => state.toggleActiveGenre);
+  const toggleActiveGenre = (activeGenre: string) => {
+    dispatch({ type: "TOGGLE_GENRE", payload: { genre: activeGenre } });
+  };
 
   return (
     <Pillow

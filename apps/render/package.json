@@ -12,7 +12,9 @@
     "normalize-db": "tsx sh/normalize-db.ts",
     "serve": "serve out",
     "start": "next start",
-    "static:data": "tsx src/static/index.ts"
+    "static:data": "tsx src/static/index.ts",
+    "test:ci": "vitest run",
+    "test": "vitest --watch"
   },
   "dependencies": {
     "@ruicsh/services": "*"

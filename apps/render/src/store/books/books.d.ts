@@ -1,19 +1,18 @@
+export type IAction =
+  | { type: "SET_COLLECTION"; payload: { collection: IBooksCollection } }
+  | { type: "SET_DISPLAY_MODE"; payload: { displayMode: IDisplayMode } }
+  | { type: "SET_BOOKS"; payload: { books: IBook[] } }
+  | { type: "SET_PAGE"; payload: { page: number } }
+  | { type: "TOGGLE_GENRE"; payload: { genre: string } };
+
 export interface IBooksState {
-  isBooksLoading: boolean;
   books: IBook[];
-  fetchBooks: () => Promise<void>;
-
-  collection: IBooksCollection;
-  setCollection: (collection: IBooksCollection) => void;
-
+  collection?: IBooksCollection;
+  dispatch: (action: IAction) => IAction;
   displayMode: IDisplayMode;
-  setDisplayMode: (displayMode?: IDisplayMode) => void;
-
-  page: number;
-  setPage: (page: number) => void;
-
   genres: string[];
-  toggleActiveGenre: (activeGenre: string) => void;
+  isBooksLoading: boolean;
+  page: number;
 }
 
 export interface IPersistedBooksState

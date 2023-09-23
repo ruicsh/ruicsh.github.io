@@ -4,7 +4,7 @@ import { type IBooksState } from "./books.d";
 
 const ITEMS_PER_PAGE = 18;
 
-function getSortByField(collection: string) {
+function getSortByField(collection?: string) {
   switch (collection) {
     case "read":
       return "readOnDate";

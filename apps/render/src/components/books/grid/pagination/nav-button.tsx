@@ -1,8 +1,8 @@
 import { type MouseEvent } from "react";
 
-import { useBooksStore } from "src/store/books";
-import { IconType } from "src/library/icon";
 import IconButton from "src/library/button/icon";
+import { IconType } from "src/library/icon";
+import { useDispatch } from "src/store/books";
 
 import styles from "./nav-button.module.scss";
 
@@ -14,11 +14,12 @@ interface IProps {
 }
 
 function NavButton(props: IProps) {
-  const { icon, isDisabled, dataRole } = props;
+  const { icon, isDisabled, dataRole, toPage } = props;
+  const dispatch = useDispatch();
 
   const onClick = (event: MouseEvent) => {
     event.preventDefault();
-    useBooksStore.getState().setPage(props.toPage);
+    dispatch({ type: "SET_PAGE", payload: { page: toPage } });
   };
 
   return (

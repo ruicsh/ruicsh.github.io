@@ -11,9 +11,11 @@ const storage: StateStorage = {
     const sp = new URLSearchParams(window.location.search);
     const state = Object.fromEntries(sp.entries());
     const genres = state.genres?.trim()?.split(",") ?? [];
+    const page = Number(state.page) || 1;
+    const collection = state.collection || "queue";
 
     const readState = {
-      state: { ...state, genres },
+      state: { ...state, genres, page, collection },
       version: 0,
     };
 

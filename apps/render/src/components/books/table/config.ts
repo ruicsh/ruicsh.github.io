@@ -26,7 +26,7 @@ export const components = {
   ratingCellRenderer: RatingCellRenderer,
 };
 
-export function getColumnDefs(collection: IBooksCollection) {
+export function getColumnDefs(collection?: IBooksCollection) {
   const newColumnDefs = JSON.parse(JSON.stringify(columnDefs)) as ColDef[];
   const showFields = [];
 

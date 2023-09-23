@@ -1,13 +1,14 @@
 import Button from "src/library/button";
-import { useBooksStore } from "src/store/books";
+import { useBooksStore, useDispatch } from "src/store/books";
 
 import styles from "./collections.module.scss";
 
 function BookCollections() {
   const activeCollection = useBooksStore((state) => state.collection);
+  const dispatch = useDispatch();
 
-  const onClickOption = (collection: string) => () => {
-    useBooksStore.getState().setCollection(collection as IBooksCollection);
+  const onClickOption = (collection: IBooksCollection) => () => {
+    dispatch({ type: "SET_COLLECTION", payload: { collection } });
   };
 
   return (
@@ -20,7 +21,7 @@ function BookCollections() {
         <li key={`books-nav-${value}`} className={styles.option}>
           <Button
             className={styles.button}
-            onClick={onClickOption(value)}
+            onClick={onClickOption(value as IBooksCollection)}
             isActive={value === activeCollection}
           >
             {label}

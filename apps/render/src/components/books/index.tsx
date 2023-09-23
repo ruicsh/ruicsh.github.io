@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { useBooksStore } from "src/store/books";
+import { useBooksStore, useDispatch } from "src/store/books";
 
 import Grid from "./grid";
 import Navigation from "./navigation";
@@ -14,10 +14,16 @@ interface IProps {
 
 function Books(props: IProps) {
   const { genres } = props;
+  const dispatch = useDispatch();
   const displayMode = useBooksStore((state) => state.displayMode || "grid");
 
   useEffect(() => {
-    useBooksStore.getState().fetchBooks();
+    fetch("/static/data/books.json")
+      .then((response) => response.json())
+      .then((books) => dispatch({ type: "SET_BOOKS", payload: { books } }));
+  }, []);
+
+  useEffect(() => {
     useBooksStore.persist.rehydrate();
 
     const onPopState = () => useBooksStore.persist.rehydrate();
