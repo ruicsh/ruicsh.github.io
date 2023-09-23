@@ -12,11 +12,11 @@ export interface IBooksState {
   page: number;
   setPage: (page: number) => void;
 
-  activeGenres: string[];
+  genres: string[];
   toggleActiveGenre: (activeGenre: string) => void;
 }
 
 export interface IPersistedBooksState
   extends Pick<IBooksState, "collection" | "displayMode" | "page"> {
-  activeGenres?: string[];
+  genres?: string[];
 }

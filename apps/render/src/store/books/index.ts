@@ -22,10 +22,10 @@ const booksStore: StateCreator<IBooksState> = (set) => ({
     set({ books, isBooksLoading: false });
   },
 
-  activeGenres: [],
+  genres: [],
   toggleActiveGenre: (activeGenre: string) =>
     set((state) => {
-      const genres = Array.from(state.activeGenres);
+      const genres = Array.from(state.genres);
       const index = genres.indexOf(activeGenre);
       if (index > -1) {
         genres.splice(index, 1);
@@ -33,7 +33,7 @@ const booksStore: StateCreator<IBooksState> = (set) => ({
         genres.push(activeGenre);
       }
 
-      return { activeGenres: genres, page: 1 };
+      return { genres, page: 1 };
     }),
 });
 

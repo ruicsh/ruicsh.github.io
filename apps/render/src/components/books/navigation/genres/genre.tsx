@@ -11,7 +11,7 @@ interface IProps {
 function CategoryOption(props: IProps) {
   const { genre } = props;
   const { slug, label } = genre;
-  const activeGenres = useBooksStore((state) => state.activeGenres);
+  const activeGenres = useBooksStore((state) => state.genres);
   const isActive = activeGenres.includes(slug);
 
   const onToggleGenre = (activeGenre: string) => {

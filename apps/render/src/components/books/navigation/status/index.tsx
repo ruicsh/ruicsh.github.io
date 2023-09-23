@@ -10,7 +10,7 @@ interface IProps {
 
 function Status(props: IProps) {
   const { genres } = props;
-  const activeGenres = useBooksStore((state) => state.activeGenres);
+  const activeGenres = useBooksStore((state) => state.genres);
 
   return (
     <div className={styles.root}>

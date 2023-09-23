@@ -17,7 +17,7 @@ function getSortByField(collection: string) {
 
 export const selectBooks = createSelector(
   (state: IBooksState) => state.books,
-  (state: IBooksState) => state.activeGenres,
+  (state: IBooksState) => state.genres,
   (state: IBooksState) => state.page,
   (state: IBooksState) => state.collection,
   (state: IBooksState) => state.displayMode,

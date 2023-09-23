@@ -10,10 +10,10 @@ const storage: StateStorage = {
   getItem: () => {
     const sp = new URLSearchParams(window.location.search);
     const state = Object.fromEntries(sp.entries());
-    const activeGenres = state.activeGenres?.trim()?.split(",") ?? [];
+    const genres = state.genres?.trim()?.split(",") ?? [];
 
     const readState = {
-      state: { ...state, activeGenres },
+      state: { ...state, genres },
       version: 0,
     };
 
@@ -38,11 +38,11 @@ export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
   {
     name: "books",
     partialize: (state) => {
-      const { books, isBooksLoading, activeGenres, ...restOfState } = state;
+      const { books, isBooksLoading, genres, ...restOfState } = state;
 
       return {
         ...restOfState,
-        activeGenres: activeGenres.length ? activeGenres : undefined,
+        genres: genres.length ? genres : undefined,
       };
     },
     skipHydration: true,
