@@ -2,6 +2,7 @@ import Loader from "src/library/loader";
 import { useBooksStore } from "src/store/books";
 import { selectBooks } from "src/store/books/selectors";
 
+import EmptyList from "../empty";
 import Book from "./card";
 import Pagination from "./pagination";
 
@@ -14,6 +15,10 @@ function BooksGrid() {
 
   if (isBooksLoading) {
     return <Loader className={styles.root} />;
+  }
+
+  if (books.length === 0) {
+    return <EmptyList />;
   }
 
   return (

@@ -5,7 +5,9 @@ import clsx from "clsx";
 import { useBooksStore } from "src/store/books";
 import { selectBooks } from "src/store/books/selectors";
 
+import EmptyList from "../empty";
 import { components, defaultColDef, getColumnDefs } from "./config";
+
 import styles from "./index.module.scss";
 
 function BooksTable() {
@@ -17,6 +19,10 @@ function BooksTable() {
     const { columnApi } = event;
     columnApi.autoSizeColumns(["title"]);
   };
+
+  if (books.length === 0) {
+    return <EmptyList />;
+  }
 
   return (
     <div className={cls}>
