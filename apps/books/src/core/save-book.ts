@@ -1,6 +1,6 @@
 import { cuid } from "@ruicsh/helpers";
 import { cmsdb } from "@ruicsh/services";
-import type { Knex } from "knex";
+import { type Knex } from "knex";
 import slugify from "slugify";
 
 interface IRegisterBookGenreArgs {

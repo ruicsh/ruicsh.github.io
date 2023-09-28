@@ -1,4 +1,4 @@
-import type { Knex } from "knex";
+import { type Knex } from "knex";
 
 export async function initialize(knex: Knex) {
   const hasTable = await knex.schema.hasTable("book");

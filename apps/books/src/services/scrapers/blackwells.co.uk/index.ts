@@ -1,5 +1,5 @@
 import fletch from "@tuplo/fletcher";
-import type { AnyNode, Cheerio } from "cheerio";
+import { type AnyNode, type Cheerio } from "cheerio";
 import * as df from "date-fns";
 
 interface IFetchBookArgs {

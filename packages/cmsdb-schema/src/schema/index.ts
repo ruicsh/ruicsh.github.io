@@ -1,4 +1,4 @@
-import type { Knex } from "knex";
+import { type Knex } from "knex";
 
 import { cmsdb } from "../services/db";
 import * as book from "./book";

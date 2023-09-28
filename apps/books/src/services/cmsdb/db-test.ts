@@ -1,4 +1,4 @@
-import knex, { Knex } from "knex";
+import knex, { type Knex } from "knex";
 
 const config: Knex.Config = {
   client: "sqlite3",
