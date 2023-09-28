@@ -41,6 +41,8 @@ export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
   await db("book_genres").where({ bookId }).del();
 
   for await (const genre of genres?.split(";") || []) {
+    if (genre.trim().length === 0) continue;
+
     await registerBookGenre({ bookId, genre, db });
   }
 }
