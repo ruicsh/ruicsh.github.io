@@ -5,21 +5,16 @@ import {
 } from "zustand/middleware";
 
 import { type IBooksState, type IPersistedBooksState } from "./books.d";
+import { initialState } from "./reducer";
 
 const storage: StateStorage = {
   getItem: () => {
     const sp = new URLSearchParams(window.location.search);
     const state = Object.fromEntries(sp.entries());
-    const genres = state.genres?.trim()?.split(",") ?? [];
-    const page = Number(state.page) || 1;
-    const collection = state.collection || "queue";
+    const genres = state.genres?.trim()?.split(",");
+    const freshState = { state: { ...state, genres }, version: 0 };
 
-    const readState = {
-      state: { ...state, genres, page, collection },
-      version: 0,
-    };
-
-    return JSON.stringify(readState);
+    return JSON.stringify(freshState);
   },
   setItem: (_, newValue: string) => {
     const { state } = JSON.parse(newValue);
@@ -39,6 +34,15 @@ const storage: StateStorage = {
 export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
   {
     name: "books",
+    merge: (persistedState, currentState) => {
+      const { dispatch } = currentState;
+
+      if (Object.keys(persistedState || {}).length === 0) {
+        return { ...initialState, collection: "queue", dispatch };
+      }
+
+      return { ...currentState, ...(persistedState || {}) };
+    },
     partialize: (state) => {
       const { books, isBooksLoading, genres, ...restOfState } = state;
 
