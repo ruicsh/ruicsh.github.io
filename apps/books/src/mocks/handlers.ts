@@ -1,58 +1,36 @@
-import fs from "node:fs";
 import path from "node:path";
 
-import { rest } from "msw";
+import { http } from "msw";
+
+import { replyWithFile } from "./helpers";
 
 export const handlers = [
-  rest.get(
+  http.get(
     "https://raw.githubusercontent.com/ruicsh/ruicsh.github.io/inbox/books.csv",
-    async (req, res, ctx) => {
-      const filePath = path.join(__dirname, "__data__/books.csv");
-      const csv = await fs.promises.readFile(filePath, "utf8");
-
-      return res(ctx.status(200), ctx.text(csv));
-    }
+    () => replyWithFile(path.join(__dirname, "__data__/books.csv"))
   ),
 
-  rest.get(/www\.amazon\.co\.uk\/book-1/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/amazon-book.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
+  http.get(/www\.amazon\.co\.uk\/book-1/, () =>
+    replyWithFile(path.join(__dirname, "__data__/amazon-book.html"))
+  ),
 
-    return res(ctx.status(200), ctx.text(html));
-  }),
+  http.get(/www\.amazon\.co\.uk\/book-2/, () =>
+    replyWithFile(path.join(__dirname, "__data__/amazon-book-2.html"))
+  ),
 
-  rest.get(/www\.amazon\.co\.uk\/book-2/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/amazon-book-2.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
+  http.get(/www\.hive\.co\.uk/, () =>
+    replyWithFile(path.join(__dirname, "__data__/hive-book.html"))
+  ),
 
-    return res(ctx.status(200), ctx.text(html));
-  }),
+  http.get(/www\.psbooks\.co\.uk/, () =>
+    replyWithFile(path.join(__dirname, "__data__/psbooks-book.html"))
+  ),
 
-  rest.get(/www\.hive\.co\.uk/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/hive-book.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
+  http.get(/blackwells\.co\.uk/, () =>
+    replyWithFile(path.join(__dirname, "__data__/blackwells-book.html"))
+  ),
 
-    return res(ctx.status(200), ctx.text(html));
-  }),
-
-  rest.get(/www\.psbooks\.co\.uk/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/psbooks-book.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
-
-    return res(ctx.status(200), ctx.text(html));
-  }),
-
-  rest.get(/blackwells\.co\.uk/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/blackwells-book.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
-
-    return res(ctx.status(200), ctx.text(html));
-  }),
-
-  rest.get(/abebooks\.co\.uk/, async (req, res, ctx) => {
-    const filePath = path.join(__dirname, "__data__/abebooks-book.html");
-    const html = await fs.promises.readFile(filePath, "utf8");
-
-    return res(ctx.status(200), ctx.text(html));
-  }),
+  http.get(/abebooks\.co\.uk/, () =>
+    replyWithFile(path.join(__dirname, "__data__/abebooks-book.html"))
+  ),
 ];
