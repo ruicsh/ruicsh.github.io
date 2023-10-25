@@ -7,7 +7,7 @@ interface IProps {
   order: number;
 }
 
-function BookPopup(props: IProps) {
+export function Popup(props: IProps) {
   const { book, order } = props;
   const { authors, description, pageCount, publishedDate, subtitle, title } =
     book;
@@ -36,5 +36,3 @@ function BookPopup(props: IProps) {
     </aside>
   );
 }
-
-export default BookPopup;

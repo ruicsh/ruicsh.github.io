@@ -18,7 +18,7 @@ interface IProps {
   icon: IconType;
 }
 
-function Icon(props: IProps) {
+export function Icon(props: IProps) {
   const { className, icon } = props;
   const cls = clsx(styles.root, className, {
     [styles.iconArrow]: icon === IconType.Arrow,
@@ -33,5 +33,3 @@ function Icon(props: IProps) {
 
   return <div aria-hidden="true" className={cls} role="img" />;
 }
-
-export default Icon;

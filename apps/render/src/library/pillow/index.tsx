@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Icon, { IconType } from "src/library/icon";
+import { Icon, IconType } from "src/library/icon";
 
 import styles from "./index.module.scss";
 
@@ -10,7 +10,7 @@ interface IProps {
   onClick: () => void;
 }
 
-function Pillow(props: IProps) {
+export function Pillow(props: IProps) {
   const { className, label, onClick } = props;
   const cls = clsx(styles.root, className);
 
@@ -21,5 +21,3 @@ function Pillow(props: IProps) {
     </button>
   );
 }
-
-export default Pillow;

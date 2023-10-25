@@ -1,6 +1,6 @@
 import { type MouseEvent } from "react";
 
-import IconButton from "src/library/button/icon";
+import { IconButton } from "src/library/button/icon";
 import { IconType } from "src/library/icon";
 import { useDispatch } from "src/store/books";
 
@@ -13,7 +13,7 @@ interface IProps {
   toPage: number;
 }
 
-function NavButton(props: IProps) {
+export function NavButton(props: IProps) {
   const { icon, isDisabled, dataRole, toPage } = props;
   const dispatch = useDispatch();
 
@@ -32,5 +32,3 @@ function NavButton(props: IProps) {
     />
   );
 }
-
-export default NavButton;

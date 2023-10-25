@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 
-import useClickOutside from "src/hooks/use-click-outside";
-import Button from "src/library/button";
+import { useClickOutside } from "src/hooks/use-click-outside";
+import { Button } from "src/library/button";
 
-import GenreOption from "./genre";
+import { Genre } from "./genre";
 
 import styles from "./index.module.scss";
 
@@ -11,7 +11,7 @@ interface IProps {
   genres: IBookGenre[];
 }
 
-function BookGenres(props: IProps) {
+export function Genres(props: IProps) {
   const { genres } = props;
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const popupRef = useRef<HTMLUListElement>(null);
@@ -34,12 +34,10 @@ function BookGenres(props: IProps) {
       {isPopupOpen && (
         <ul className={styles.list} ref={popupRef} onMouseLeave={onTogglePopup}>
           {genres.map((genre) => (
-            <GenreOption key={`nav-genre-option-${genre.slug}`} genre={genre} />
+            <Genre key={`nav-genre-option-${genre.slug}`} genre={genre} />
           ))}
         </ul>
       )}
     </div>
   );
 }
-
-export default BookGenres;

@@ -1,9 +1,9 @@
-import Button from "src/library/button";
+import { Button } from "src/library/button";
 import { useBooksStore, useDispatch } from "src/store/books";
 
 import styles from "./collections.module.scss";
 
-function BookCollections() {
+export function Collections() {
   const activeCollection = useBooksStore((state) => state.collection);
   const dispatch = useDispatch();
 
@@ -31,5 +31,3 @@ function BookCollections() {
     </ul>
   );
 }
-
-export default BookCollections;

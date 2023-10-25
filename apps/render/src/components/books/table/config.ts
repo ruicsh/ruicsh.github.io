@@ -1,6 +1,6 @@
 import { type ColDef } from "ag-grid-community";
 
-import RatingCellRenderer from "./rating-cell-renderer";
+import { RatingCellRenderer } from "./rating-cell-renderer";
 
 export const columnDefs: ColDef[] = [
   { field: "title" },

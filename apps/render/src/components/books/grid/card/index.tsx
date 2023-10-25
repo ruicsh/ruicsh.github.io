@@ -1,9 +1,9 @@
-import Image from "src/library/image";
+import { Image } from "src/library/image";
 
-import QueuedOn from "./queued-on";
-import ReadOn from "./read-on";
-import WishedOn from "./wished-on";
-import Popup from "./popup";
+import { Popup } from "./popup";
+import { QueuedOn } from "./queued-on";
+import { ReadOn } from "./read-on";
+import { WishedOn } from "./wished-on";
 
 import styles from "./index.module.scss";
 
@@ -12,7 +12,7 @@ interface IProps {
   order: number;
 }
 
-function Book(props: IProps) {
+export function Book(props: IProps) {
   const { book, order } = props;
   const { slug, pageCount, publishedDate, title, authors, coverColor } = book;
 
@@ -46,5 +46,3 @@ function Book(props: IProps) {
     </article>
   );
 }
-
-export default Book;

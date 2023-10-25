@@ -1,12 +1,11 @@
-import Navigation from "../navigation";
+import { MainNavigation } from "../navigation";
+
 import styles from "./index.module.scss";
 
-function MainHeader() {
+export function MainHeader() {
   return (
     <header className={styles.root}>
-      <Navigation />
+      <MainNavigation />
     </header>
   );
 }
-
-export default MainHeader;

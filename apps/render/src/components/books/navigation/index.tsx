@@ -1,7 +1,7 @@
-import Collections from "./collections";
-import DisplayMode from "./display-mode";
-import Genres from "./genres";
-import Status from "./status";
+import { Collections } from "./collections";
+import { DisplayMode } from "./display-mode";
+import { Genres } from "./genres";
+import { Status } from "./status";
 
 import styles from "./index.module.scss";
 
@@ -9,7 +9,7 @@ interface IProps {
   genres: IBookGenre[];
 }
 
-function BooksNavigation(props: IProps) {
+export function Navigation(props: IProps) {
   const { genres } = props;
 
   return (
@@ -23,5 +23,3 @@ function BooksNavigation(props: IProps) {
     </nav>
   );
 }
-
-export default BooksNavigation;

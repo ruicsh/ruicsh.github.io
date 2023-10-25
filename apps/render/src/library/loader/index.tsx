@@ -6,7 +6,7 @@ interface IProps {
   className?: string;
 }
 
-function Loader(props: IProps) {
+export function Loader(props: IProps) {
   const { className } = props;
   const cls = clsx(className, styles.root);
 
@@ -16,5 +16,3 @@ function Loader(props: IProps) {
     </div>
   );
 }
-
-export default Loader;

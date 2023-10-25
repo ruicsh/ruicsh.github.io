@@ -9,7 +9,7 @@ import "src/styles/reset.scss";
 import "src/styles/typography.scss";
 import "src/styles/variables.scss";
 
-import MainHeader from "src/components/main/header";
+import { MainHeader } from "src/components/main/header";
 
 import styles from "./layout.module.scss";
 

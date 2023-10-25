@@ -1,4 +1,4 @@
-import Books from "src/components/books";
+import { Books } from "src/components/books";
 import { getGenres } from "src/data/books";
 
 export const metadata = {

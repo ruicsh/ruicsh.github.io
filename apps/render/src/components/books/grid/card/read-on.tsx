@@ -1,4 +1,4 @@
-import StarRating from "src/library/star-rating";
+import { StarRating } from "src/library/star-rating";
 
 import styles from "./index.module.scss";
 
@@ -6,7 +6,7 @@ interface IProps {
   book: IBook;
 }
 
-function ReadOn(props: IProps) {
+export function ReadOn(props: IProps) {
   const { book } = props;
   const { readOnDate, rating } = book;
   if (!readOnDate) return null;
@@ -22,5 +22,3 @@ function ReadOn(props: IProps) {
     </>
   );
 }
-
-export default ReadOn;

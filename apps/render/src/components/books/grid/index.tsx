@@ -1,14 +1,14 @@
-import Loader from "src/library/loader";
+import { Loader } from "src/library/loader";
 import { useBooksStore } from "src/store/books";
 import { selectBooks } from "src/store/books/selectors";
 
-import EmptyList from "../empty";
-import Book from "./card";
-import Pagination from "./pagination";
+import { EmptyList } from "../empty";
+import { Book } from "./card";
+import { Pagination } from "./pagination";
 
 import styles from "./index.module.scss";
 
-function BooksGrid() {
+export function Grid() {
   const page = useBooksStore((state) => state.page);
   const { books, isBooksLoading, numberOfPages, totalItems } =
     useBooksStore(selectBooks);
@@ -38,5 +38,3 @@ function BooksGrid() {
     </>
   );
 }
-
-export default BooksGrid;

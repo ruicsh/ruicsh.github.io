@@ -4,7 +4,7 @@ interface IProps {
   book: IBook;
 }
 
-function WishedOn(props: IProps) {
+export function WishedOn(props: IProps) {
   const { book } = props;
   const { readOnDate, queuedOnDate, wishedOnDate } = book;
   if (readOnDate || queuedOnDate || !wishedOnDate) return null;
@@ -21,5 +21,3 @@ function WishedOn(props: IProps) {
     </>
   );
 }
-
-export default WishedOn;

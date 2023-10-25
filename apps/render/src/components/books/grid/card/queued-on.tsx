@@ -4,7 +4,7 @@ interface IProps {
   book: IBook;
 }
 
-function QueuedOn(props: IProps) {
+export function QueuedOn(props: IProps) {
   const { book } = props;
   const { readOnDate, queuedOnDate } = book;
   if (readOnDate || !queuedOnDate) return null;
@@ -21,5 +21,3 @@ function QueuedOn(props: IProps) {
     </>
   );
 }
-
-export default QueuedOn;

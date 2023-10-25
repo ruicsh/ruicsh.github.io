@@ -1,10 +1,10 @@
-import IconButton from "src/library/button/icon";
+import { IconButton } from "src/library/button/icon";
 import { IconType } from "src/library/icon";
 import { useDispatch } from "src/store/books";
 
 import styles from "./display-mode.module.scss";
 
-function DisplayMode() {
+export function DisplayMode() {
   const dispatch = useDispatch();
 
   const onChange = (newDisplayMode: IDisplayMode) => {
@@ -29,5 +29,3 @@ function DisplayMode() {
     </div>
   );
 }
-
-export default DisplayMode;

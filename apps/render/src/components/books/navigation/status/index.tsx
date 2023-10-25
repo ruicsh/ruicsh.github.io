@@ -1,6 +1,6 @@
 import { useBooksStore } from "src/store/books";
 
-import Genre from "./genre";
+import { Genre } from "./genre";
 
 import styles from "./index.module.scss";
 
@@ -8,7 +8,7 @@ interface IProps {
   genres: IBookGenre[];
 }
 
-function Status(props: IProps) {
+export function Status(props: IProps) {
   const { genres } = props;
   const activeGenres = useBooksStore((state) => state.genres);
 
@@ -27,5 +27,3 @@ function Status(props: IProps) {
     </div>
   );
 }
-
-export default Status;

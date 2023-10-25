@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Pillow from "src/library/pillow";
+import { Pillow } from "src/library/pillow";
 import { useBooksStore } from "src/store/books";
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
   genre: IBookGenre;
 }
 
-function StatusGenre(props: IProps) {
+export function Genre(props: IProps) {
   const { className, genre } = props;
   const dispatch = useBooksStore((state) => state.dispatch);
   const cls = clsx(className);
@@ -25,5 +25,3 @@ function StatusGenre(props: IProps) {
     />
   );
 }
-
-export default StatusGenre;

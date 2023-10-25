@@ -1,5 +1,5 @@
-import Button from "src/library/button";
-import Checkbox from "src/library/input/checkbox";
+import { Button } from "src/library/button";
+import { Checkbox } from "src/library/input/checkbox";
 import { useBooksStore, useDispatch } from "src/store/books";
 
 import styles from "./genre.module.scss";
@@ -8,7 +8,7 @@ interface IProps {
   genre: IBookGenre;
 }
 
-function CategoryOption(props: IProps) {
+export function Genre(props: IProps) {
   const { genre } = props;
   const { slug, label } = genre;
   const activeGenres = useBooksStore((state) => state.genres);
@@ -32,5 +32,3 @@ function CategoryOption(props: IProps) {
     </li>
   );
 }
-
-export default CategoryOption;

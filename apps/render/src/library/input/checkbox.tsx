@@ -7,7 +7,7 @@ interface IProps {
   onChange?: (isChecked: boolean) => void;
 }
 
-function Checkbox(props: IProps) {
+export function Checkbox(props: IProps) {
   const { checked, onChange } = props;
 
   const onLocalChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,5 +25,3 @@ function Checkbox(props: IProps) {
     />
   );
 }
-
-export default Checkbox;

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import styles from "./index.module.scss";
 
-function MainNavigation() {
+export function MainNavigation() {
   const pathname = usePathname();
 
   return (
@@ -32,5 +32,3 @@ function MainNavigation() {
     </nav>
   );
 }
-
-export default MainNavigation;

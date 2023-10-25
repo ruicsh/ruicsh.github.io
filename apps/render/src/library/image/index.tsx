@@ -17,7 +17,7 @@ interface IProps {
   blurDataUrl?: string;
 }
 
-function Image(props: IProps) {
+export function Image(props: IProps) {
   const { alt, className, src, style, blurDataUrl } = props;
   const rootRef = useRef<HTMLImageElement>(null);
   const [size, setSize] = useState<ISize>({ width: 0, height: 0 });
@@ -50,5 +50,3 @@ function Image(props: IProps) {
     />
   );
 }
-
-export default Image;

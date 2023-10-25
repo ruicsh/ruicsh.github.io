@@ -4,15 +4,15 @@ import { useEffect } from "react";
 
 import { useBooksStore, useDispatch } from "src/store/books";
 
-import Grid from "./grid";
-import Navigation from "./navigation";
-import Table from "./table";
+import { Grid } from "./grid";
+import { Navigation } from "./navigation";
+import { Table } from "./table";
 
 interface IProps {
   genres: IBookGenre[];
 }
 
-function Books(props: IProps) {
+export function Books(props: IProps) {
   const { genres } = props;
   const dispatch = useDispatch();
   const displayMode = useBooksStore((state) => state.displayMode || "grid");
@@ -42,5 +42,3 @@ function Books(props: IProps) {
     </>
   );
 }
-
-export default Books;

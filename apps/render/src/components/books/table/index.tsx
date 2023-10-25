@@ -10,7 +10,7 @@ import { components, defaultColDef, getColumnDefs } from "./config";
 
 import styles from "./index.module.scss";
 
-function BooksTable() {
+export function Table() {
   const cls = clsx(styles.root, "ag-theme-alpine");
   const collection = useBooksStore((state) => state.collection);
   const { books } = useBooksStore(selectBooks);
@@ -38,5 +38,3 @@ function BooksTable() {
     </div>
   );
 }
-
-export default BooksTable;

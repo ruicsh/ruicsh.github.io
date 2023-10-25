@@ -1,11 +1,11 @@
 import { useCallback, useEffect, type MutableRefObject } from "react";
 
-interface IUseClickOutsideArgs {
+interface IArgs {
   elementRef: MutableRefObject<HTMLElement | null>;
   onClickOutside: () => void;
 }
 
-function useClickOutside(args: IUseClickOutsideArgs) {
+export function useClickOutside(args: IArgs) {
   const { elementRef, onClickOutside } = args;
 
   const handleClick: EventListener = useCallback(
@@ -32,5 +32,3 @@ function useClickOutside(args: IUseClickOutsideArgs) {
 
   return { elementRef };
 }
-
-export default useClickOutside;

@@ -1,5 +1,5 @@
-import Items from "./items";
-import Pages from "./pages";
+import { Items } from "./items";
+import { Pages } from "./pages";
 
 import styles from "./index.module.scss";
 
@@ -9,7 +9,7 @@ interface IProps {
   totalItems: number;
 }
 
-function GridPagination(props: IProps) {
+export function Pagination(props: IProps) {
   const { numberOfPages, page, totalItems } = props;
 
   return (
@@ -19,5 +19,3 @@ function GridPagination(props: IProps) {
     </nav>
   );
 }
-
-export default GridPagination;

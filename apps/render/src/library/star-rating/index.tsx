@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Icon, { IconType } from "src/library/icon";
+import { Icon, IconType } from "src/library/icon";
 
 import styles from "./index.module.scss";
 
@@ -10,7 +10,7 @@ interface IProps {
   value?: number;
 }
 
-function StarRating(props: IProps) {
+export function StarRating(props: IProps) {
   const { className, id, value = 0 } = props;
   if (!value) {
     return null;
@@ -47,5 +47,3 @@ function StarRating(props: IProps) {
     </div>
   );
 }
-
-export default StarRating;

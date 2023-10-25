@@ -10,7 +10,7 @@ export interface IProps {
   onClick?: (event: MouseEvent) => void;
 }
 
-function Button(props: PropsWithChildren<IProps>) {
+export function Button(props: PropsWithChildren<IProps>) {
   const { children, className, isActive, onClick, ...restOfProps } = props;
   const cls = clsx(styles.root, className);
 
@@ -25,5 +25,3 @@ function Button(props: PropsWithChildren<IProps>) {
     </button>
   );
 }
-
-export default Button;

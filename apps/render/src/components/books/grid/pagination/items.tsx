@@ -3,7 +3,7 @@ interface IProps {
   totalItems: number;
 }
 
-function Items(props: IProps) {
+export function Items(props: IProps) {
   const { page, totalItems } = props;
   const start = (page - 1) * 18 + 1;
   const end = start + 18 > totalItems ? totalItems : start + 18 - 1;
@@ -15,5 +15,3 @@ function Items(props: IProps) {
     </span>
   );
 }
-
-export default Items;

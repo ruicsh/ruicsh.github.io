@@ -1,6 +1,6 @@
 import { IconType } from "src/library/icon";
 
-import NavButton from "./nav-button";
+import { NavButton } from "./nav-button";
 
 import styles from "./pages.module.scss";
 
@@ -9,7 +9,7 @@ interface IProps {
   page: number;
 }
 
-function Pages(props: IProps) {
+export function Pages(props: IProps) {
   const { numberOfPages, page } = props;
 
   const isFirstDisabled = page === 1;
@@ -49,5 +49,3 @@ function Pages(props: IProps) {
     </section>
   );
 }
-
-export default Pages;

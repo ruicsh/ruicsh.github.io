@@ -1,6 +1,6 @@
 import styles from "./empty.module.scss";
 
-function EmptyList() {
+export function EmptyList() {
   return (
     <div className={styles.root}>
       <h1>No Results Found</h1>
@@ -9,5 +9,3 @@ function EmptyList() {
     </div>
   );
 }
-
-export default EmptyList;
