@@ -6,7 +6,7 @@ export function reducer(state: IBooksState, action: IAction) {
   switch (type) {
     case "SET_COLLECTION": {
       const { collection } = action.payload;
-      return { ...state, collection };
+      return { ...state, collection, page: 1 };
     }
     case "SET_DISPLAY_MODE": {
       const { displayMode } = action.payload;

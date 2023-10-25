@@ -9,7 +9,7 @@ import { Pagination } from "./pagination";
 import styles from "./index.module.scss";
 
 export function Grid() {
-  const page = useBooksStore((state) => state.page);
+  const page = useBooksStore((state) => Number(state.page));
   const { books, isBooksLoading, numberOfPages, totalItems } =
     useBooksStore(selectBooks);
 

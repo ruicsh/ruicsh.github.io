@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useBooksStore } from "src/store/books";
 import { selectBooks } from "src/store/books/selectors";
 
-import EmptyList from "../empty";
+import { EmptyList } from "../empty";
 import { components, defaultColDef, getColumnDefs } from "./config";
 
 import styles from "./index.module.scss";
