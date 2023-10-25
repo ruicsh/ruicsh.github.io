@@ -18,7 +18,7 @@
   "dependencies": {
     "@paralleldrive/cuid2": "2.2.2",
     "@tuplo/fetch": "1.10.0",
-    "@tuplo/fletcher": "2.19.2",
+    "@tuplo/fletcher": "2.19.4",
     "ag-grid-community": "30.2.0",
     "ag-grid-react": "30.2.0",
     "cheerio": "1.0.0-rc.12",
@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@types/convict": "6.1.5",
-    "@types/node": "20.8.8",
-    "@types/react": "18.2.31",
+    "@types/node": "20.8.9",
+    "@types/react": "18.2.32",
     "@types/react-dom": "18.2.14",
     "@typescript-eslint/eslint-plugin": "6.9.0",
     "@typescript-eslint/parser": "6.9.0",
