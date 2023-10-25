@@ -91,11 +91,12 @@ export async function getBooks(args?: IGetBooksArgs) {
   const bookGenres = await getBookGenres();
   const books = [];
   for (const book of data) {
-    const { id, ...restOnBook } = book;
+    const { id, description, ...restOnBook } = book;
     if (!id) continue;
 
     const fresh = {
       ...restOnBook,
+      description: (description || "").split(" ").slice(0, 70).join(" "),
       collection: getCollection(book),
       genres: bookGenres[id] || [],
     };
