@@ -92,7 +92,7 @@ wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceU
              ,             ,"2023-08-28" ,   4.0 ,"Art"                 ,"https://www.amazon.co.uk/Horror-Very-Short-Introduction-Introductions/dp/0198755562/ref=sr_1_1?keywords=horror+a+very+short+introduction&qid=1693228041&sprefix=horror+short+in%2Caps%2C218&sr=8-1"
 "2023-09-02" ,             ,             ,       ,"History"             ,"https://www.amazon.co.uk/Sea-Civilization-Maritime-History-World/dp/1782393587/ref=sr_1_1?keywords=lincoln+paine+the+sea+and+civilisation&qid=1693670604&sprefix=lincoln+paine%2Caps%2C328&sr=8-1"
              ,"2022-07-13" ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/gp/product/0062699466/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1"
-             ,"2023-09-16" ,             ,       ,"History"             ,"https://www.amazon.co.uk/African-History-Short-Introduction-Introductions/dp/0192802488"
+             ,"2023-09-16" ,"2023-11-05" ,   2.0 ,"History"             ,"https://www.amazon.co.uk/African-History-Short-Introduction-Introductions/dp/0192802488"
              ,"2023-09-18" ,             ,       ,"Fiction"             ,"https://www.amazon.co.uk/Queens-Gambit-Walter-Tevis/dp/1474600840"
 "2023-09-28" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Shock-New-Art-Century-Change/dp/0500275823"
 "2023-10-11" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Comedy-Book-Conquered-Culture-Magic/dp/0374604711"
@@ -100,3 +100,4 @@ wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceU
 "2023-10-30" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Easy-Riders-Raging-Bulls-Sex-drugs/dp/0747544212"
 "2023-10-30" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Down-Dirty-Pictures-Peter-Biskind/dp/0747565716"
 "2023-10-30" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Pandoras-Box-Greed-Upended-Television/dp/0062991663"
+"2023-11-12" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/How-Escaped-My-Certain-Fate/dp/0571254810/ref=pd_bxgy_img_sccl_1/260-0465368-4275719"
