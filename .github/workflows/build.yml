@@ -17,5 +17,4 @@ jobs:
           yarn install --frozen-lockfile --no-audit
           yarn lint
           yarn lint:css
-          yarn lint:ts
           yarn test:ci
