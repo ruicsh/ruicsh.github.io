@@ -1,7 +1,8 @@
-import fs from "node:fs";
+import fs from "node:fs/promises";
 
 import { HttpResponse, HttpResponseInit } from "msw";
 
-export function replyWithFile(filename: string, init?: HttpResponseInit) {
-  return new HttpResponse(fs.readFileSync(filename), init);
+export async function replyWithFile(filename: string, init?: HttpResponseInit) {
+  const content = await fs.readFile(filename);
+  return new HttpResponse(content, init);
 }

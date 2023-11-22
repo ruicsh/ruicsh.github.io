@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
 
 import { cmsdb } from "@ruicsh/services";
@@ -7,8 +7,9 @@ import { pressStaticBooks } from "./books";
 
 async function main() {
   const staticDataDir = path.join(process.cwd(), "/public/static/data");
-  if (!fs.existsSync(staticDataDir)) {
-    fs.mkdirSync(staticDataDir, { recursive: true });
+  const stat = await fs.stat(staticDataDir).catch(() => null);
+  if (!stat) {
+    fs.mkdir(staticDataDir, { recursive: true });
   }
 
   await pressStaticBooks({ staticDataDir, cmsdb });
