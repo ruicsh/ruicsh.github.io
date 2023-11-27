@@ -1,8 +1,7 @@
 import path from "node:path";
 
+import { replyWithFile } from "@ruicsh/helpers";
 import { http } from "msw";
-
-import { replyWithFile } from "./helpers";
 
 export const handlers = [
   http.get(
