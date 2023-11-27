@@ -1,5 +1,6 @@
-import { reducer, initialState } from "./reducer";
 import { type IAction } from "./books.d";
+import { initialState } from "./initial-state";
+import { reducer } from "./reducer";
 
 describe("books reducer", () => {
   describe("genres", () => {

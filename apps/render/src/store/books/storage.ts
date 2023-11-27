@@ -5,7 +5,7 @@ import {
 } from "zustand/middleware";
 
 import { type IBooksState, type IPersistedBooksState } from "./books.d";
-import { initialState } from "./reducer";
+import { initialState } from "./initial-state";
 
 const storage: StateStorage = {
   getItem: () => {
