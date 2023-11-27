@@ -14,8 +14,8 @@ export function MainNavigation() {
         {[
           { href: "/", label: "Home" },
           // { href: "/til", label: "Today I Learned" },
-          // { href: "/bookmarks", label: "Bookmarks" },
           { href: "/books", label: "Books" },
+          { href: "/bookmarks", label: "Bookmarks" },
         ]
           .map((link) => ({
             ...link,

@@ -25,3 +25,12 @@ interface IBookGenre {
   label: string;
   slug: string;
 }
+
+interface IBookmark {
+  slug: string;
+  url: string;
+  title: string;
+  host: string;
+  excerpt?: string;
+  savedOnDate: string;
+}

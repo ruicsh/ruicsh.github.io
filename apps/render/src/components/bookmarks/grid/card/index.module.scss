@@ -1,0 +1,53 @@
+.root {
+  display: flex;
+  gap: 36px;
+}
+
+.left {
+  display: flex;
+  flex-basis: 260px;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.screenshot {
+  aspect-ratio: 1.5;
+  border: 1px solid rgba(0 0 0 / 10%);
+  border-radius: 8px;
+  flex-grow: 0;
+  height: 195px;
+  width: 260px;
+}
+
+.right {
+  display: flex;
+  flex-basis: calc(100% - 260px);
+  flex-direction: column;
+  font-size: 0.8rem;
+  gap: 6px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.host {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.excerpt {
+  color: var(--color-mid);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.savedOnDate {
+  align-self: flex-end;
+  color: var(--color-mid);
+  font-size: 0.7rem;
+  padding-top: 2px;
+}

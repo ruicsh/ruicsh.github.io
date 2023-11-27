@@ -3,14 +3,14 @@ import path from "node:path";
 
 import { type Knex } from "knex";
 
-import { getBooks } from "../data/books";
+import { getBooks } from "src/data/books";
 
-interface IPressStaticBooksArgs {
+interface IArgs {
   cmsdb: Knex;
   staticDataDir: string;
 }
 
-export async function pressStaticBooks(args: IPressStaticBooksArgs) {
+export async function pressStaticBooks(args: IArgs) {
   const { staticDataDir } = args;
   const books = await getBooks();
 

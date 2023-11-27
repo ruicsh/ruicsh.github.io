@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  min-height: 60vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    border-bottom: 1px solid rgba(0 0 0 / 20%);
+    padding: 24px 0;
+    width: 50vw;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+}
