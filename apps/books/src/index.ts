@@ -1,9 +1,9 @@
 import { cmsdbSchema } from "@ruicsh/cmsdb-schema";
 import { cmsdb, log } from "@ruicsh/services";
 
-import { getBookDetails } from "./core/get-book-details";
-import { getBooksFromInbox } from "./core/get-books-from-inbox";
-import { saveBook } from "./core/save-book";
+import { getBookDetails } from "./core/details";
+import { getBooksFromInbox } from "./core/inbox";
+import { saveBook } from "./core/save";
 
 async function main() {
   await cmsdbSchema.initialize();

@@ -2,7 +2,7 @@ import { cmsdbSchema } from "@ruicsh/cmsdb-schema";
 
 import { cmsdb, reset } from "src/services/cmsdb/db-test";
 
-import { saveBook } from "./save-book";
+import { saveBook } from "./save";
 
 const book = {
   title: "B1",

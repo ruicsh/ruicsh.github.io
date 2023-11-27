@@ -1,4 +1,4 @@
-import { getBooksFromInbox } from "./get-books-from-inbox";
+import { getBooksFromInbox } from "./inbox";
 
 describe("getBooksFromInbox", () => {
   it("downloads and parses from the remote inbox file", async () => {

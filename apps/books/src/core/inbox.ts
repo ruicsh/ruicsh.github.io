@@ -1,12 +1,13 @@
 import { Readable } from "node:stream";
+
 import { parse } from "csv-parse";
 
 export async function getBooksFromInbox() {
-  const url = new URL("https://raw.githubusercontent.com");
-  url.pathname = "/ruicsh/ruicsh.github.io/inbox/books.csv";
-  const response = await fetch(url.href);
+  const uri = new URL("https://raw.githubusercontent.com");
+  uri.pathname = "/ruicsh/ruicsh.github.io/inbox/books.csv";
+  const response = await fetch(uri.href);
   if (!response?.body) {
-    throw new Error(`Can't find ${url.href}`);
+    throw new Error(`Can't find ${uri.href}`);
   }
 
   // @ts-expect-error needs ReadableStream<any> instead of ReadableStream<Uint8Array>

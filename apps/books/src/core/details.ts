@@ -8,7 +8,7 @@ import slugify from "slugify";
 import GoogleBooksApi from "src/services/google-books-api";
 import BookScraper from "src/services/scrapers";
 
-import { getCoverColor } from "./get-cover-color";
+import { getCoverColor } from "./cover-color";
 import { resizeCover } from "./resize-cover";
 
 export async function getBookDetails(book: IBookOnInbox) {
@@ -57,7 +57,9 @@ export async function getBookDetails(book: IBookOnInbox) {
     title,
   };
 
-  if (!cover) return null;
+  if (!cover) {
+    return null;
+  }
 
   const remote = await get(cover);
   const src = remote.pipe(sharp());
