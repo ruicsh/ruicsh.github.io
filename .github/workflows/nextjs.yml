@@ -46,6 +46,10 @@ jobs:
         run: yarn install --frozen-lockfile --no-audit
       - name: Link shared dir
         run: yarn link-shared-dir
+      - name: Run apps/bookmarks
+        run: |
+          npx playwright install-deps chrome
+          yarn workspace @ruicsh/bookmarks start
       - name: Run apps/books
         run: yarn workspace @ruicsh/books start
         env:
