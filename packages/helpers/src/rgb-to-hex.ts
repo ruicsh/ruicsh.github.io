@@ -3,11 +3,11 @@ function colorToHex(color: number) {
   return hexadecimal.length === 1 ? `0${hexadecimal}` : hexadecimal;
 }
 
-interface IRgbColor {
+type IRgbColor = {
   r: number;
   g: number;
   b: number;
-}
+};
 
 export function rgbToHex(rgb: IRgbColor) {
   const { r, g, b } = rgb;

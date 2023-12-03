@@ -1,7 +1,7 @@
-interface IProps {
+type IProps = {
   page: number;
   totalItems: number;
-}
+};
 
 export function Items(props: IProps) {
   const { page, totalItems } = props;

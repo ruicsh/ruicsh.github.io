@@ -1,8 +1,8 @@
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   book: IBook;
-}
+};
 
 export function QueuedOn(props: IProps) {
   const { book } = props;

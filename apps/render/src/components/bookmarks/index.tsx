@@ -1,8 +1,8 @@
 import { BookmarksGrid } from "./grid";
 
-interface IProps {
+type IProps = {
   bookmarks: IBookmark[];
-}
+};
 
 export async function Bookmarks(props: IProps) {
   const { bookmarks = [] } = props;

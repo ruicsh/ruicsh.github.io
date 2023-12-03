@@ -17,7 +17,7 @@ export const metadata = {
   title: "Home | ruicsh",
 };
 
-interface IProps {}
+type IProps = undefined;
 
 function RootLayout(props: PropsWithChildren<IProps>) {
   const { children } = props;

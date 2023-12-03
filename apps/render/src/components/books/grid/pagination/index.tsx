@@ -3,11 +3,11 @@ import { Pages } from "./pages";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   numberOfPages: number;
   page: number;
   totalItems: number;
-}
+};
 
 export function Pagination(props: IProps) {
   const { numberOfPages, page, totalItems } = props;

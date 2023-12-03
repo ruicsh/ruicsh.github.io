@@ -1,9 +1,9 @@
-interface IBookmarksOnInbox {
+type IBookmarksOnInbox = {
   savedOnDate: string;
   url: string;
-}
+};
 
-interface IBookmark {
+type IBookmark = {
   id?: string;
   slug: string;
   url: string;
@@ -11,9 +11,9 @@ interface IBookmark {
   excerpt?: string;
   savedOnDate: string;
   createdAt?: string;
-}
+};
 
-interface IPageMetadata {
+type IPageMetadata = {
   title: string;
   description?: string;
-}
+};

@@ -13,10 +13,10 @@ export enum IconType {
   XMark,
 }
 
-interface IProps {
+type IProps = {
   className?: string;
   icon: IconType;
-}
+};
 
 export function Icon(props: IProps) {
   const { className, icon } = props;

@@ -4,11 +4,11 @@ import { Icon, IconType } from "src/library/icon";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   className?: string;
   id: string;
   value?: number;
-}
+};
 
 export function StarRating(props: IProps) {
   const { className, id, value = 0 } = props;

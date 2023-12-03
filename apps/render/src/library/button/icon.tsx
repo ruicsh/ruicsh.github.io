@@ -5,9 +5,9 @@ import { Icon, IconType } from "src/library/icon";
 
 import { Button, type IProps as IButtonProps } from "./index";
 
-interface IProps extends IButtonProps {
+type IProps = IButtonProps & {
   icon: IconType;
-}
+};
 
 export function IconButton(props: PropsWithChildren<IProps>) {
   const { children, className, icon, ...restOfProps } = props;

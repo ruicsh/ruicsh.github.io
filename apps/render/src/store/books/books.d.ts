@@ -5,7 +5,7 @@ export type IAction =
   | { type: "SET_PAGE"; payload: { page: number } }
   | { type: "TOGGLE_GENRE"; payload: { genre: string } };
 
-export interface IBooksState {
+export type IBooksState = {
   books: IBook[];
   collection?: IBooksCollection;
   dispatch: (action: IAction) => IAction;
@@ -13,9 +13,11 @@ export interface IBooksState {
   genres: string[];
   isBooksLoading: boolean;
   page: number;
-}
+};
 
-export interface IPersistedBooksState
-  extends Pick<IBooksState, "collection" | "displayMode" | "page"> {
+export type IPersistedBooksState = Pick<
+  IBooksState,
+  "collection" | "displayMode" | "page"
+> & {
   genres?: string[];
-}
+};

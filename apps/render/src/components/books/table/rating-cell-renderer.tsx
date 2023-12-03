@@ -4,9 +4,7 @@ import { StarRating } from "src/library/star-rating";
 
 import styles from "./rating-cell-renderer.module.scss";
 
-interface IProps extends ICellRendererParams {}
-
-export function RatingCellRenderer(props: IProps) {
+export function RatingCellRenderer(props: ICellRendererParams) {
   const { value } = props;
 
   return <StarRating className={styles.root} id="foobar" value={value} />;

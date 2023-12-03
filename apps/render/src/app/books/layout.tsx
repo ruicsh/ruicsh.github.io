@@ -2,7 +2,7 @@ import { type PropsWithChildren } from "react";
 
 import styles from "./layout.module.scss";
 
-interface IProps {}
+type IProps = undefined;
 
 function BooksLayout(props: PropsWithChildren<IProps>) {
   const { children } = props;

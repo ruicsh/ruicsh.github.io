@@ -5,9 +5,9 @@ import { Status } from "./status";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   genres: IBookGenre[];
-}
+};
 
 export function Navigation(props: IProps) {
   const { genres } = props;

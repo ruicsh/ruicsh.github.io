@@ -2,7 +2,7 @@ type IBooksCollection = "read" | "queue" | "wishlist";
 
 type IDisplayMode = "grid" | "table";
 
-interface IBook {
+type IBook = {
   authors: string;
   collection?: IBooksCollection;
   coverBlurDataUrl: string;
@@ -19,18 +19,18 @@ interface IBook {
   subtitle?: string;
   title: string;
   wishedOnDate?: string;
-}
+};
 
-interface IBookGenre {
+type IBookGenre = {
   label: string;
   slug: string;
-}
+};
 
-interface IBookmark {
+type IBookmark = {
   slug: string;
   url: string;
   title: string;
   host: string;
   excerpt?: string;
   savedOnDate: string;
-}
+};

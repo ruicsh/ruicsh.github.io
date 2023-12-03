@@ -2,9 +2,9 @@ import clsx from "clsx";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   className?: string;
-}
+};
 
 export function Loader(props: IProps) {
   const { className } = props;

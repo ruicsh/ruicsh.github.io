@@ -4,10 +4,10 @@ import { NavButton } from "./nav-button";
 
 import styles from "./pages.module.scss";
 
-interface IProps {
+type IProps = {
   numberOfPages: number;
   page: number;
-}
+};
 
 export function Pages(props: IProps) {
   const { numberOfPages, page } = props;

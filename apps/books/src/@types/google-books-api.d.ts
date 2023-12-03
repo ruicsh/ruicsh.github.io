@@ -1,4 +1,4 @@
-interface IGoogleBookApiVolumeInfo {
+type IGoogleBookApiVolumeInfo = {
   authors: string[];
   description: string;
   pageCount: number;
@@ -6,14 +6,14 @@ interface IGoogleBookApiVolumeInfo {
   publisher: string;
   subtitle: string;
   title: string;
-}
+};
 
-interface IGoogleBookApiVolume {
+type IGoogleBookApiVolume = {
   volumeInfo: IGoogleBookApiVolumeInfo;
-}
+};
 
-interface IGoogleBookApiVolumesResponse {
+type IGoogleBookApiVolumesResponse = {
   kind: string;
   totalItems: number;
   items: IGoogleBookApiVolume[];
-}
+};

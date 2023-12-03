@@ -4,11 +4,11 @@ import { Icon, IconType } from "src/library/icon";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   className?: string;
   label: string;
   onClick: () => void;
-}
+};
 
 export function Pillow(props: IProps) {
   const { className, label, onClick } = props;

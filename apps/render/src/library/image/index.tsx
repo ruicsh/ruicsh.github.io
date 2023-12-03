@@ -4,18 +4,18 @@ import clsx from "clsx";
 import NextImage from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-interface ISize {
+type ISize = {
   width: number;
   height: number;
-}
+};
 
-interface IProps {
+type IProps = {
   className?: string;
   src: string;
   alt: string;
   style?: CSSProperties;
   blurDataUrl?: string;
-}
+};
 
 export function Image(props: IProps) {
   const { alt, className, src, style, blurDataUrl } = props;

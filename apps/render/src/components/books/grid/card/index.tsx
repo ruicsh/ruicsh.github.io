@@ -7,10 +7,10 @@ import { WishedOn } from "./wished-on";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   book: IBook;
   order: number;
-}
+};
 
 export function Book(props: IProps) {
   const { book, order } = props;

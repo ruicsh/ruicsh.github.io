@@ -4,9 +4,9 @@ import HiveScraper from "./hive.co.uk";
 import PostscriptScraper from "./psbooks.co.uk";
 import AbebooksScraper from "./abebooks.co.uk";
 
-interface IFetchBookArgs {
+type IFetchBookArgs = {
   url: string;
-}
+};
 
 class BookScraper {
   $abebooks = new AbebooksScraper();

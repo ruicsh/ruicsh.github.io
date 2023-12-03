@@ -3,16 +3,16 @@ import vm from "node:vm";
 import fletch from "@tuplo/fletcher";
 import $, { type AnyNode, type Cheerio } from "cheerio";
 
-interface IPageMediaData {
+type IPageMediaData = {
   audibleData: undefined;
   data: {
     imageGalleryData: {
       mainUrl: string;
     }[];
   };
-}
+};
 
-interface IPageImageBlock {
+type IPageImageBlock = {
   data: {
     colorImages: {
       initial: [
@@ -23,11 +23,11 @@ interface IPageImageBlock {
       ];
     };
   };
-}
+};
 
-interface IFetchBookArgs {
+type IFetchBookArgs = {
   url: string;
-}
+};
 
 class AmazonScraper {
   async fetchBookPage(args: IFetchBookArgs) {

@@ -7,10 +7,10 @@ import sharp from "sharp";
 
 const bunny = new BunnyCdn();
 
-interface IArgs {
+type IArgs = {
   url: string;
   filename: string;
-}
+};
 
 export async function takeScreenshot(args: IArgs) {
   const { url, filename } = args;

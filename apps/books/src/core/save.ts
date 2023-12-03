@@ -3,11 +3,11 @@ import { cmsdb } from "@ruicsh/services";
 import { type Knex } from "knex";
 import slugify from "slugify";
 
-interface IRegisterBookGenreArgs {
+type IRegisterBookGenreArgs = {
   bookId: string;
   genre: string;
   db: Knex;
-}
+};
 
 async function registerBookGenre(args: IRegisterBookGenreArgs) {
   const { bookId, genre, db = cmsdb } = args;

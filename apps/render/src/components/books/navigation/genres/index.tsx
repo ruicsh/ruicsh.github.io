@@ -7,9 +7,9 @@ import { Genre } from "./genre";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   genres: IBookGenre[];
-}
+};
 
 export function Genres(props: IProps) {
   const { genres } = props;

@@ -2,9 +2,9 @@ import fetch from "@tuplo/fetch";
 
 import config from "src/config";
 
-interface IFindVolumeArgs {
+type IFindVolumeArgs = {
   isbn: string;
-}
+};
 
 class GoogleBooksApi {
   $baseUrl = "https://www.googleapis.com";

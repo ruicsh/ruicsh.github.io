@@ -2,10 +2,10 @@ import { type ChangeEvent } from "react";
 
 import styles from "./checkbox.module.scss";
 
-interface IProps {
+type IProps = {
   checked?: boolean;
   onChange?: (isChecked: boolean) => void;
-}
+};
 
 export function Checkbox(props: IProps) {
   const { checked, onChange } = props;

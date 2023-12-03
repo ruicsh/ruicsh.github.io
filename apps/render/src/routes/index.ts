@@ -1,7 +1,7 @@
-interface IGetRouteArgs {
+type IGetRouteArgs = {
   collection: IBooksCollection;
   page: number;
-}
+};
 
 export function getRoute(args: IGetRouteArgs) {
   const { collection, page } = args;

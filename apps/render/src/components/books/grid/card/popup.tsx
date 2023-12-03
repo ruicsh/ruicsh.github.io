@@ -2,10 +2,10 @@ import clsx from "clsx";
 
 import styles from "./popup.module.scss";
 
-interface IProps {
+type IProps = {
   book: IBook;
   order: number;
-}
+};
 
 export function Popup(props: IProps) {
   const { book, order } = props;

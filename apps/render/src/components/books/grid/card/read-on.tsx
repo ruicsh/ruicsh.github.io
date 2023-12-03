@@ -2,9 +2,9 @@ import { StarRating } from "src/library/star-rating";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   book: IBook;
-}
+};
 
 export function ReadOn(props: IProps) {
   const { book } = props;

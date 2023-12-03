@@ -3,10 +3,10 @@ import clsx from "clsx";
 import { Pillow } from "src/library/pillow";
 import { useBooksStore } from "src/store/books";
 
-interface IProps {
+type IProps = {
   className?: string;
   genre: IBookGenre;
-}
+};
 
 export function Genre(props: IProps) {
   const { className, genre } = props;

@@ -25,11 +25,11 @@ function getCollection(book: IBook): IBooksCollection {
   return "wishlist";
 }
 
-interface IGetBooksArgs {
+type IGetBooksArgs = {
   db?: Knex;
   collection: IBooksCollection;
   page?: number;
-}
+};
 
 export async function getBooks(args?: IGetBooksArgs) {
   const { collection, page, db = cmsdb } = args || ({} as IGetBooksArgs);
@@ -106,9 +106,9 @@ export async function getBooks(args?: IGetBooksArgs) {
   return books;
 }
 
-interface IGetCollectionMetaArgs {
+type IGetCollectionMetaArgs = {
   collection: IBooksCollection;
-}
+};
 
 export async function getCollectionMeta(args: IGetCollectionMetaArgs) {
   const { collection } = args;

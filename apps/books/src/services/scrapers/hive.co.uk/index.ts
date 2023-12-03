@@ -2,9 +2,9 @@ import fletch from "@tuplo/fletcher";
 import { type AnyNode, type Cheerio } from "cheerio";
 import * as df from "date-fns";
 
-interface IFetchBookArgs {
+type IFetchBookArgs = {
   url: string;
-}
+};
 
 class HiveScraper {
   async fetchBookPage(args: IFetchBookArgs) {

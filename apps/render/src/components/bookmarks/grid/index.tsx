@@ -2,9 +2,9 @@ import { Bookmark } from "./card";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   bookmarks: IBookmark[];
-}
+};
 
 export function BookmarksGrid(props: IProps) {
   const { bookmarks = [] } = props;

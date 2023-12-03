@@ -8,9 +8,9 @@ import { Grid } from "./grid";
 import { Navigation } from "./navigation";
 import { Table } from "./table";
 
-interface IProps {
+type IProps = {
   genres: IBookGenre[];
-}
+};
 
 export function Books(props: IProps) {
   const { genres } = props;

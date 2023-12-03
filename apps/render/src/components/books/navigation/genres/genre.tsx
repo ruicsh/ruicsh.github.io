@@ -4,9 +4,9 @@ import { useBooksStore, useDispatch } from "src/store/books";
 
 import styles from "./genre.module.scss";
 
-interface IProps {
+type IProps = {
   genre: IBookGenre;
-}
+};
 
 export function Genre(props: IProps) {
   const { genre } = props;

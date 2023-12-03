@@ -1,9 +1,9 @@
 import fletch from "@tuplo/fletcher";
 import { type AnyNode, type Cheerio } from "cheerio";
 
-interface IFetchBookArgs {
+type IFetchBookArgs = {
   url: string;
-}
+};
 
 class AbebooksScraper {
   async fetchBookPage(args: IFetchBookArgs) {

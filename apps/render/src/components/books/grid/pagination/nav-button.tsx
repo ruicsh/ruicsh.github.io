@@ -6,12 +6,12 @@ import { useDispatch } from "src/store/books";
 
 import styles from "./nav-button.module.scss";
 
-interface IProps {
+type IProps = {
   dataRole: "next" | "prev" | "first" | "last";
   icon: IconType;
   isDisabled: boolean;
   toPage: number;
-}
+};
 
 export function NavButton(props: IProps) {
   const { icon, isDisabled, dataRole, toPage } = props;

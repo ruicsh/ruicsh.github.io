@@ -1,9 +1,9 @@
 import { useCallback, useEffect, type MutableRefObject } from "react";
 
-interface IArgs {
+type IArgs = {
   elementRef: MutableRefObject<HTMLElement | null>;
   onClickOutside: () => void;
-}
+};
 
 export function useClickOutside(args: IArgs) {
   const { elementRef, onClickOutside } = args;

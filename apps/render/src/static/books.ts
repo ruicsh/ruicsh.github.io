@@ -5,10 +5,10 @@ import { type Knex } from "knex";
 
 import { getBooks } from "src/data/books";
 
-interface IArgs {
+type IArgs = {
   cmsdb: Knex;
   staticDataDir: string;
-}
+};
 
 export async function pressStaticBooks(args: IArgs) {
   const { staticDataDir } = args;

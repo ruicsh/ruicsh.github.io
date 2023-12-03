@@ -2,10 +2,10 @@ import { Image } from "src/library/image";
 
 import styles from "./index.module.scss";
 
-interface IProps {
+type IProps = {
   bookmark: IBookmark;
   order: number;
-}
+};
 
 export function Bookmark(props: IProps) {
   const { bookmark } = props;
