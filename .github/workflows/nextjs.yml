@@ -50,6 +50,7 @@ jobs:
         run: npm run link-shared-dir
       - name: Run apps/bookmarks
         run: |
+          npx playwright install
           npx playwright install-deps chrome
           npm --workspace @ruicsh/bookmarks run start
       - name: Run apps/books
