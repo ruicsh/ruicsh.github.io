@@ -43,7 +43,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        run: npm install --frozen-lockfile --no-audit --legacy-peer-deps
+        run: |
+          npm install --frozen-lockfile --no-audit --legacy-peer-deps
+          npm install --frozen-lockfile --no-audit --legacy-peer-deps --force --os=linux --cpu=x64 sharp
       - name: Link shared dir
         run: npm run link-shared-dir
       - name: Run apps/bookmarks
