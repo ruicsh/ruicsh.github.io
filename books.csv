@@ -1,6 +1,6 @@
 wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceUrl
              ,"2023-06-25" ,             ,       ,"History"             ,"https://www.amazon.co.uk/Making-Atomic-Bomb-Richard-Rhodes/dp/1471111237/ref=sr_1_1?crid=1NL10OHEZC9IA&keywords=the+making+of+the+atomic+bomb&qid=1691766139&sprefix=The+Making+of+the+Atomic+Bomb%2Caps%2C151&sr=8-1"
-             ,"2023-07-24" ,"2023-10-18" ,   2.0 ,"Biography"           ,"https://www.amazon.co.uk/Markham-Felix-Napoleon-Mentor/dp/0451624874"
+             ,"2023-07-24" ,"2023-10-18" ,   3.0 ,"Biography"           ,"https://www.amazon.co.uk/Markham-Felix-Napoleon-Mentor/dp/0451624874"
              ,"2023-07-14" ,             ,       ,"Non-fiction"         ,"https://www.hive.co.uk/Product/Bobby-Fischer/Bobby-Fischer-Teaches-Chess/14448921"
              ,"2022-12-13" ,"2023-08-15" ,   2.0 ,"Non-fiction"         ,"https://www.amazon.co.uk/Mastermind-hunt-Worlds-prolific-criminal/dp/0552173711/ref=sr_1_1?crid=TS5Q27NQX0BO&keywords=evan+ratliff&qid=1691877344&s=books&sprefix=Evan+Ratliff%2Cstripbooks%2C126&sr=1-1"
              ,"2022-12-10" ,"2023-08-26" ,   4.0 ,"Fiction"             ,"https://www.amazon.co.uk/White-Noise-Delillo-Picador-Collection/dp/1529077265/ref=sr_1_1?crid=2A1CV9EQ9QQHV&keywords=White+Noise&qid=1691877392&s=books&sprefix=white+noise%2Cstripbooks%2C57&sr=1-1"
@@ -93,7 +93,7 @@ wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceU
 "2023-09-02" ,             ,             ,       ,"History"             ,"https://www.amazon.co.uk/Sea-Civilization-Maritime-History-World/dp/1782393587/ref=sr_1_1?keywords=lincoln+paine+the+sea+and+civilisation&qid=1693670604&sprefix=lincoln+paine%2Caps%2C328&sr=8-1"
              ,"2022-07-13" ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/gp/product/0062699466/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1"
              ,"2023-09-16" ,"2023-11-05" ,   2.0 ,"History"             ,"https://www.amazon.co.uk/African-History-Short-Introduction-Introductions/dp/0192802488"
-             ,"2023-09-18" ,             ,       ,"Fiction"             ,"https://www.amazon.co.uk/Queens-Gambit-Walter-Tevis/dp/1474600840"
+             ,"2023-09-18" ,"2023-12-04" ,   1.0 ,"Fiction"             ,"https://www.amazon.co.uk/Queens-Gambit-Walter-Tevis/dp/1474600840"
 "2023-09-28" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Shock-New-Art-Century-Change/dp/0500275823"
 "2023-10-11" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Comedy-Book-Conquered-Culture-Magic/dp/0374604711"
 "2023-10-16" ,             ,             ,       ,"Art"                 ,"https://www.amazon.co.uk/Caped-Crusade-Batman-Rise-Culture/dp/1476756732"
