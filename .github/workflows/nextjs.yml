@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: "20"
-          cache: yarn
+          cache: npm
       - name: Setup Pages
         uses: actions/configure-pages@main
         with:
@@ -39,30 +39,28 @@ jobs:
         with:
           path: |
             .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile --no-audit
-          yarn install -W sharp --ignore-engines
+        run: npm install --frozen-lockfile --no-audit --legacy-peer-deps
       - name: Link shared dir
-        run: yarn link-shared-dir
+        run: npm run link-shared-dir
       - name: Run apps/bookmarks
         run: |
           npx playwright install-deps chrome
-          yarn workspace @ruicsh/bookmarks start
+          npm --workspace @ruicsh/bookmarks run start
       - name: Run apps/books
-        run: yarn workspace @ruicsh/books start
+        run: npm --workspace @ruicsh/books run start
         env:
           GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
           BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Build with Next.js
         run: |
-          yarn workspace @ruicsh/render normalize-db
-          yarn workspace @ruicsh/render static:data
-          yarn workspace @ruicsh/render build
+          npm --workspace @ruicsh/render run normalize-db
+          npm --workspace @ruicsh/render run static:data
+          npm --workspace @ruicsh/render run build
         env:
           NEXT_PUBLIC_BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Upload artifact
