@@ -16,8 +16,8 @@ export function Table() {
   const { books } = useBooksStore(selectBooks);
 
   const onFirstDataRendered = (event: FirstDataRenderedEvent) => {
-    const { columnApi } = event;
-    columnApi.autoSizeColumns(["title"]);
+    const { api } = event;
+    api.autoSizeColumns(["title"]);
   };
 
   if (books.length === 0) {

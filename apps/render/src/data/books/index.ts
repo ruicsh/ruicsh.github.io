@@ -51,6 +51,7 @@ export async function getBooks(args?: IGetBooksArgs) {
     "wishedOnDate",
     "queuedOnDate",
     "readOnDate",
+    "rating",
   ];
 
   let data: IBook[];
