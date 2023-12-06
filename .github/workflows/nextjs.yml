@@ -43,7 +43,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --no-audit
+        run: |
+          yarn install --frozen-lockfile --no-audit
+          yarn install -W sharp --ignore-engines
       - name: Link shared dir
         run: yarn link-shared-dir
       - name: Run apps/bookmarks
