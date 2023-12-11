@@ -1,44 +1,44 @@
 .root {
-  align-items: center;
-  border-bottom: 1px solid rgba(0 0 0 / 10%);
-  display: flex;
-  width: 100%;
+	align-items: center;
+	border-bottom: 1px solid rgba(0 0 0 / 10%);
+	display: flex;
+	width: 100%;
 
-  &:hover {
-    background-color: rgba(0 0 0 / 10%);
-    cursor: pointer;
-  }
+	&:hover {
+		background-color: rgba(0 0 0 / 10%);
+		cursor: pointer;
+	}
 
-  &:last-child {
-    border-bottom: 0;
-  }
+	&:last-child {
+		border-bottom: 0;
+	}
 
-  &:last-of-type {
-    border-right: 0;
-  }
+	&:last-of-type {
+		border-right: 0;
+	}
 
-  span {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-  }
+	span {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+	}
 }
 
 .button {
-  background-color: transparent;
-  border: 0;
-  border-radius: 0;
-  display: flex;
-  gap: 4px;
-  justify-content: flex-start;
-  line-height: 1.5rem;
-  width: 100%;
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	display: flex;
+	gap: 4px;
+	justify-content: flex-start;
+	line-height: 1.5rem;
+	width: 100%;
 
-  &:hover {
-    background-color: transparent;
-  }
+	&:hover {
+		background-color: transparent;
+	}
 
-  &[aria-selected="true"] {
-    background-color: rgba(0 0 0 / 5%);
-    font-weight: bold;
-  }
+	&[aria-selected="true"] {
+		background-color: rgba(0 0 0 / 5%);
+		font-weight: bold;
+	}
 }

@@ -3,19 +3,19 @@ import { Bookmark } from "./card";
 import styles from "./index.module.scss";
 
 type IProps = {
-  bookmarks: IBookmark[];
+	bookmarks: IBookmark[];
 };
 
 export function BookmarksGrid(props: IProps) {
-  const { bookmarks = [] } = props;
+	const { bookmarks = [] } = props;
 
-  return (
-    <ul className={styles.list}>
-      {bookmarks.map((bk, i) => (
-        <li key={bk.slug}>
-          <Bookmark bookmark={bk} order={i} />
-        </li>
-      ))}
-    </ul>
-  );
+	return (
+		<ul className={styles.list}>
+			{bookmarks.map((bk, i) => (
+				<li key={bk.slug}>
+					<Bookmark bookmark={bk} order={i} />
+				</li>
+			))}
+		</ul>
+	);
 }

@@ -6,15 +6,15 @@ import { cmsdb } from "@ruicsh/services";
 import { pressStaticBooks } from "./books";
 
 async function main() {
-  const staticDataDir = path.join(process.cwd(), "/public/static/data");
-  const stat = await fs.stat(staticDataDir).catch(() => null);
-  if (!stat) {
-    fs.mkdir(staticDataDir, { recursive: true });
-  }
+	const staticDataDir = path.join(process.cwd(), "/public/static/data");
+	const stat = await fs.stat(staticDataDir).catch(() => null);
+	if (!stat) {
+		fs.mkdir(staticDataDir, { recursive: true });
+	}
 
-  await pressStaticBooks({ staticDataDir, cmsdb });
+	await pressStaticBooks({ staticDataDir, cmsdb });
 
-  await cmsdb.destroy();
+	await cmsdb.destroy();
 }
 
 main();

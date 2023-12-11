@@ -9,32 +9,32 @@ import { Pagination } from "./pagination";
 import styles from "./index.module.scss";
 
 export function Grid() {
-  const page = useBooksStore((state) => Number(state.page));
-  const { books, isBooksLoading, numberOfPages, totalItems } =
-    useBooksStore(selectBooks);
+	const page = useBooksStore((state) => Number(state.page));
+	const { books, isBooksLoading, numberOfPages, totalItems } =
+		useBooksStore(selectBooks);
 
-  if (isBooksLoading) {
-    return <Loader className={styles.root} />;
-  }
+	if (isBooksLoading) {
+		return <Loader className={styles.root} />;
+	}
 
-  if (books.length === 0) {
-    return <EmptyList />;
-  }
+	if (books.length === 0) {
+		return <EmptyList />;
+	}
 
-  return (
-    <>
-      <ul className={styles.list}>
-        {books.map((book, i) => (
-          <li key={book.title}>
-            <Book book={book} order={i} />
-          </li>
-        ))}
-      </ul>
-      <Pagination
-        numberOfPages={numberOfPages}
-        page={page}
-        totalItems={totalItems}
-      />
-    </>
-  );
+	return (
+		<>
+			<ul className={styles.list}>
+				{books.map((book, i) => (
+					<li key={book.title}>
+						<Book book={book} order={i} />
+					</li>
+				))}
+			</ul>
+			<Pagination
+				numberOfPages={numberOfPages}
+				page={page}
+				totalItems={totalItems}
+			/>
+		</>
+	);
 }

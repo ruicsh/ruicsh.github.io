@@ -6,24 +6,24 @@ import { getBooksFromInbox } from "./core/inbox";
 import { saveBook } from "./core/save";
 
 async function main() {
-  await cmsdbSchema.initialize();
+	await cmsdbSchema.initialize();
 
-  const books = await getBooksFromInbox();
-  for await (const bookOnInbox of books) {
-    const bookDetails = await getBookDetails(bookOnInbox);
-    if (!bookDetails?.title) {
-      log.info("... failed.");
-      continue;
-    }
+	const books = await getBooksFromInbox();
+	for await (const bookOnInbox of books) {
+		const bookDetails = await getBookDetails(bookOnInbox);
+		if (!bookDetails?.title) {
+			log.info("... failed.");
+			continue;
+		}
 
-    await saveBook({ ...bookDetails, ...bookOnInbox });
-  }
+		await saveBook({ ...bookDetails, ...bookOnInbox });
+	}
 
-  await cmsdb.destroy();
+	await cmsdb.destroy();
 
-  log.info("Done.");
+	log.info("Done.");
 }
 
 main().then(() => {
-  process.exit(0);
+	process.exit(0);
 });

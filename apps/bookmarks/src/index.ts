@@ -6,22 +6,22 @@ import { getBookmarkDetails } from "./core/details";
 import { saveBookmark } from "./core/save";
 
 async function main() {
-  await cmsdbSchema.initialize();
+	await cmsdbSchema.initialize();
 
-  const bookmarks = await getBookmarksFromInbox();
-  for await (const bk of bookmarks) {
-    const details = await getBookmarkDetails(bk);
-    if (!details?.title) {
-      log.info("... failed.");
-      continue;
-    }
+	const bookmarks = await getBookmarksFromInbox();
+	for await (const bk of bookmarks) {
+		const details = await getBookmarkDetails(bk);
+		if (!details?.title) {
+			log.info("... failed.");
+			continue;
+		}
 
-    await saveBookmark({ ...details });
-  }
+		await saveBookmark({ ...details });
+	}
 
-  await cmsdb.destroy();
+	await cmsdb.destroy();
 
-  log.info("Done.");
+	log.info("Done.");
 }
 
 main();

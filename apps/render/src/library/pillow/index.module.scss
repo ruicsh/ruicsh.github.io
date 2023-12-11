@@ -1,18 +1,18 @@
 .root {
-  align-items: center;
-  appearance: none;
-  border: 0;
-  border: 1px solid rgba(0 0 0 / 10%);
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  gap: 2px;
-  padding: 2px 4px;
-  white-space: nowrap;
+	align-items: center;
+	appearance: none;
+	border: 0;
+	border: 1px solid rgba(0 0 0 / 10%);
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	gap: 2px;
+	padding: 2px 4px;
+	white-space: nowrap;
 
-  [role="img"] {
-    background-color: var(--color-dark);
-    height: 10px;
-    width: 10px;
-  }
+	[role="img"] {
+		background-color: var(--color-dark);
+		height: 10px;
+		width: 10px;
+	}
 }

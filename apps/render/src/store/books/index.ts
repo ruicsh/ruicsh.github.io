@@ -7,9 +7,9 @@ import { reducer } from "./reducer";
 import { storageOptions } from "./storage";
 
 export const useBooksStore = create<IBooksState>()(
-  persist(devtools(redux(reducer, initialState)), storageOptions)
+	persist(devtools(redux(reducer, initialState)), storageOptions),
 );
 
 export function useDispatch() {
-  return useBooksStore((state) => state.dispatch);
+	return useBooksStore((state) => state.dispatch);
 }

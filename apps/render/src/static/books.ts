@@ -6,15 +6,15 @@ import { type Knex } from "knex";
 import { getBooks } from "src/data/books";
 
 type IArgs = {
-  cmsdb: Knex;
-  staticDataDir: string;
+	cmsdb: Knex;
+	staticDataDir: string;
 };
 
 export async function pressStaticBooks(args: IArgs) {
-  const { staticDataDir } = args;
-  const books = await getBooks();
+	const { staticDataDir } = args;
+	const books = await getBooks();
 
-  const basename = "books.json";
-  const filePath = path.join(staticDataDir, basename);
-  await fs.writeFile(filePath, JSON.stringify(books));
+	const basename = "books.json";
+	const filePath = path.join(staticDataDir, basename);
+	await fs.writeFile(filePath, JSON.stringify(books));
 }

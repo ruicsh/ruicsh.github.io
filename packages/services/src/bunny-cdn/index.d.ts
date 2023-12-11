@@ -1,5 +1,5 @@
 export type IStorageZone = {
-  Name: string;
-  Password: string;
-  StorageHostname: string;
+	Name: string;
+	Password: string;
+	StorageHostname: string;
 };

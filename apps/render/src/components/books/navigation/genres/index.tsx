@@ -8,36 +8,36 @@ import { Genre } from "./genre";
 import styles from "./index.module.scss";
 
 type IProps = {
-  genres: IBookGenre[];
+	genres: IBookGenre[];
 };
 
 export function Genres(props: IProps) {
-  const { genres } = props;
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const popupRef = useRef<HTMLUListElement>(null);
+	const { genres } = props;
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
+	const popupRef = useRef<HTMLUListElement>(null);
 
-  const onTogglePopup = () => {
-    setIsPopupOpen((oldState) => !oldState);
-  };
+	const onTogglePopup = () => {
+		setIsPopupOpen((oldState) => !oldState);
+	};
 
-  useClickOutside({ elementRef: popupRef, onClickOutside: onTogglePopup });
+	useClickOutside({ elementRef: popupRef, onClickOutside: onTogglePopup });
 
-  return (
-    <div className={styles.root}>
-      <Button
-        className={styles.toggleButton}
-        onClick={onTogglePopup}
-        aria-selected={isPopupOpen}
-      >
-        Genres
-      </Button>
-      {isPopupOpen && (
-        <ul className={styles.list} ref={popupRef} onMouseLeave={onTogglePopup}>
-          {genres.map((genre) => (
-            <Genre key={`nav-genre-option-${genre.slug}`} genre={genre} />
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+	return (
+		<div className={styles.root}>
+			<Button
+				className={styles.toggleButton}
+				onClick={onTogglePopup}
+				aria-selected={isPopupOpen}
+			>
+				Genres
+			</Button>
+			{isPopupOpen && (
+				<ul className={styles.list} ref={popupRef} onMouseLeave={onTogglePopup}>
+					{genres.map((genre) => (
+						<Genre key={`nav-genre-option-${genre.slug}`} genre={genre} />
+					))}
+				</ul>
+			)}
+		</div>
+	);
 }

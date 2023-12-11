@@ -5,27 +5,27 @@ import { useDispatch } from "src/store/books";
 import styles from "./display-mode.module.scss";
 
 export function DisplayMode() {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const onChange = (newDisplayMode: IDisplayMode) => {
-    dispatch({
-      type: "SET_DISPLAY_MODE",
-      payload: { displayMode: newDisplayMode },
-    });
-  };
+	const onChange = (newDisplayMode: IDisplayMode) => {
+		dispatch({
+			type: "SET_DISPLAY_MODE",
+			payload: { displayMode: newDisplayMode },
+		});
+	};
 
-  return (
-    <div className={styles.root}>
-      <IconButton
-        className={styles.button}
-        icon={IconType.Grid}
-        onClick={() => onChange("grid")}
-      />
-      <IconButton
-        className={styles.button}
-        icon={IconType.List}
-        onClick={() => onChange("table")}
-      />
-    </div>
-  );
+	return (
+		<div className={styles.root}>
+			<IconButton
+				className={styles.button}
+				icon={IconType.Grid}
+				onClick={() => onChange("grid")}
+			/>
+			<IconButton
+				className={styles.button}
+				icon={IconType.List}
+				onClick={() => onChange("table")}
+			/>
+		</div>
+	);
 }

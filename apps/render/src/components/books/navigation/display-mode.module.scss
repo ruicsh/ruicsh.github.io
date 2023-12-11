@@ -1,15 +1,15 @@
 .root {
-  align-items: center;
-  display: flex;
+	align-items: center;
+	display: flex;
 }
 
 .button {
-  height: 48px;
-  width: 48px;
+	height: 48px;
+	width: 48px;
 
-  [role="img"] {
-    background-color: var(--color-mid);
-    height: 16px;
-    width: 16px;
-  }
+	[role="img"] {
+		background-color: var(--color-mid);
+		height: 16px;
+		width: 16px;
+	}
 }

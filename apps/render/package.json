@@ -1,22 +1,23 @@
 {
-  "name": "@ruicsh/render",
-  "version": "1.0.0",
-  "license": "UNLICENSED",
-  "scripts": {
-    "build": "npm run static:data; next build",
-    "dev": "npm run static:data; next dev",
-    "link-shared-dir": "ln -s ../../shared shared",
-    "lint:css": "stylelint 'src/**/*.scss'",
-    "lint:ts": "tsc --noEmit",
-    "lint": "eslint src",
-    "normalize-db": "tsx sh/normalize-db.ts",
-    "serve": "serve out",
-    "start": "next start",
-    "static:data": "tsx src/static/index.ts",
-    "test:ci": "vitest run",
-    "test": "vitest --watch"
-  },
-  "dependencies": {
-    "@ruicsh/services": "*"
-  }
+	"name": "@ruicsh/render",
+	"version": "1.0.0",
+	"license": "UNLICENSED",
+	"scripts": {
+		"build": "npm run static:data; next build",
+		"dev": "npm run static:data; next dev",
+		"format": "prettier --write sh src",
+		"link-shared-dir": "ln -s ../../shared shared",
+		"lint:css": "stylelint 'src/**/*.scss'",
+		"lint:ts": "tsc --noEmit",
+		"lint": "eslint src",
+		"normalize-db": "tsx sh/normalize-db.ts",
+		"serve": "serve out",
+		"start": "next start",
+		"static:data": "tsx src/static/index.ts",
+		"test:ci": "vitest run",
+		"test": "vitest --watch"
+	},
+	"dependencies": {
+		"@ruicsh/services": "*"
+	}
 }

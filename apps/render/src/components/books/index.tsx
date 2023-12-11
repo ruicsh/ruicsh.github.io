@@ -9,36 +9,36 @@ import { Navigation } from "./navigation";
 import { Table } from "./table";
 
 type IProps = {
-  genres: IBookGenre[];
+	genres: IBookGenre[];
 };
 
 export function Books(props: IProps) {
-  const { genres } = props;
-  const dispatch = useDispatch();
-  const displayMode = useBooksStore((state) => state.displayMode || "grid");
+	const { genres } = props;
+	const dispatch = useDispatch();
+	const displayMode = useBooksStore((state) => state.displayMode || "grid");
 
-  useEffect(() => {
-    fetch("/static/data/books.json")
-      .then((response) => response.json())
-      .then((books) => dispatch({ type: "SET_BOOKS", payload: { books } }));
-  }, []);
+	useEffect(() => {
+		fetch("/static/data/books.json")
+			.then((response) => response.json())
+			.then((books) => dispatch({ type: "SET_BOOKS", payload: { books } }));
+	}, []);
 
-  useEffect(() => {
-    useBooksStore.persist.rehydrate();
+	useEffect(() => {
+		useBooksStore.persist.rehydrate();
 
-    const onPopState = () => useBooksStore.persist.rehydrate();
-    window.addEventListener("popstate", onPopState);
+		const onPopState = () => useBooksStore.persist.rehydrate();
+		window.addEventListener("popstate", onPopState);
 
-    return () => {
-      window.removeEventListener("popstate", onPopState);
-    };
-  }, []);
+		return () => {
+			window.removeEventListener("popstate", onPopState);
+		};
+	}, []);
 
-  return (
-    <>
-      <Navigation genres={genres} />
-      {displayMode === "grid" && <Grid />}
-      {displayMode === "table" && <Table />}
-    </>
-  );
+	return (
+		<>
+			<Navigation genres={genres} />
+			{displayMode === "grid" && <Grid />}
+			{displayMode === "table" && <Table />}
+		</>
+	);
 }

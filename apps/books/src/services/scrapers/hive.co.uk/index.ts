@@ -3,73 +3,73 @@ import { type AnyNode, type Cheerio } from "cheerio";
 import * as df from "date-fns";
 
 type IFetchBookArgs = {
-  url: string;
+	url: string;
 };
 
 class HiveScraper {
-  async fetchBookPage(args: IFetchBookArgs) {
-    const { url } = args;
-    const $page = await fletch.html(url);
-    const details = this.#getBookDetails($page);
-    const cover = this.#getCover($page);
+	async fetchBookPage(args: IFetchBookArgs) {
+		const { url } = args;
+		const $page = await fletch.html(url);
+		const details = this.#getBookDetails($page);
+		const cover = this.#getCover($page);
 
-    return { ...details, cover };
-  }
+		return { ...details, cover };
+	}
 
-  #getBookDetails($page: Cheerio<AnyNode>) {
-    const $productInfo = $page.find(".productInfoWrapGrid .productInfo");
+	#getBookDetails($page: Cheerio<AnyNode>) {
+		const $productInfo = $page.find(".productInfoWrapGrid .productInfo");
 
-    const pageCount = this.#getPageCount($productInfo);
-    const publisher = this.#getPublisher($productInfo);
-    const publishedDate = this.#getPublishedDate($productInfo);
-    const isbn = this.#getIsbn($productInfo);
+		const pageCount = this.#getPageCount($productInfo);
+		const publisher = this.#getPublisher($productInfo);
+		const publishedDate = this.#getPublishedDate($productInfo);
+		const isbn = this.#getIsbn($productInfo);
 
-    return { pageCount: Number(pageCount), publisher, publishedDate, ...isbn };
-  }
+		return { pageCount: Number(pageCount), publisher, publishedDate, ...isbn };
+	}
 
-  #getPageCount($productInfo: Cheerio<AnyNode>) {
-    const txt = $productInfo.find("[itemProp=numberOfPages]").text();
-    const [, pageCount] = /(\d+) pages/.exec(txt) || [];
+	#getPageCount($productInfo: Cheerio<AnyNode>) {
+		const txt = $productInfo.find("[itemProp=numberOfPages]").text();
+		const [, pageCount] = /(\d+) pages/.exec(txt) || [];
 
-    return Number(pageCount);
-  }
+		return Number(pageCount);
+	}
 
-  #getPublisher($productInfo: Cheerio<AnyNode>) {
-    return $productInfo.find("[itemProp=publisher]").text().trim();
-  }
+	#getPublisher($productInfo: Cheerio<AnyNode>) {
+		return $productInfo.find("[itemProp=publisher]").text().trim();
+	}
 
-  #getPublishedDate($productInfo: Cheerio<AnyNode>) {
-    const txt = $productInfo.find("[itemProp=datePublished]").text();
-    const date = df.parse(txt, "dd/MM/yyyy", new Date());
+	#getPublishedDate($productInfo: Cheerio<AnyNode>) {
+		const txt = $productInfo.find("[itemProp=datePublished]").text();
+		const date = df.parse(txt, "dd/MM/yyyy", new Date());
 
-    return date.toISOString().slice(0, 10);
-  }
+		return date.toISOString().slice(0, 10);
+	}
 
-  #getIsbn($productInfo: Cheerio<AnyNode>) {
-    let isbn10;
-    let isbn13;
-    const txt = $productInfo.find("[itemProp=isbn]").text().trim();
-    if (txt.length === 13) {
-      isbn13 = txt;
-    }
-    if (txt.length === 10) {
-      isbn10 = txt;
-    }
+	#getIsbn($productInfo: Cheerio<AnyNode>) {
+		let isbn10;
+		let isbn13;
+		const txt = $productInfo.find("[itemProp=isbn]").text().trim();
+		if (txt.length === 13) {
+			isbn13 = txt;
+		}
+		if (txt.length === 10) {
+			isbn10 = txt;
+		}
 
-    return { isbn10, isbn13 };
-  }
+		return { isbn10, isbn13 };
+	}
 
-  #getCover($page: Cheerio<AnyNode>) {
-    const imageUrl = $page.find("[name=twitter:image]").attr("content");
-    if (!imageUrl) return undefined;
+	#getCover($page: Cheerio<AnyNode>) {
+		const imageUrl = $page.find("[name=twitter:image]").attr("content");
+		if (!imageUrl) return undefined;
 
-    const url = new URL(imageUrl);
-    const parts = url.pathname.split("/");
-    parts[2] = "640";
-    url.pathname = parts.join("/");
+		const url = new URL(imageUrl);
+		const parts = url.pathname.split("/");
+		parts[2] = "640";
+		url.pathname = parts.join("/");
 
-    return url.href;
-  }
+		return url.href;
+	}
 }
 
 export default HiveScraper;

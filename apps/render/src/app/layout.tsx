@@ -14,22 +14,22 @@ import { MainHeader } from "src/components/main/header";
 import styles from "./layout.module.scss";
 
 export const metadata = {
-  title: "Home | ruicsh",
+	title: "Home | ruicsh",
 };
 
 type IProps = undefined;
 
 function RootLayout(props: PropsWithChildren<IProps>) {
-  const { children } = props;
+	const { children } = props;
 
-  return (
-    <html lang="en" className={barlowCondensed.variable}>
-      <body className={styles.body}>
-        <MainHeader />
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className={barlowCondensed.variable}>
+			<body className={styles.body}>
+				<MainHeader />
+				{children}
+			</body>
+		</html>
+	);
 }
 
 export default RootLayout;

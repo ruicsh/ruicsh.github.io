@@ -6,20 +6,20 @@ import { Status } from "./status";
 import styles from "./index.module.scss";
 
 type IProps = {
-  genres: IBookGenre[];
+	genres: IBookGenre[];
 };
 
 export function Navigation(props: IProps) {
-  const { genres } = props;
+	const { genres } = props;
 
-  return (
-    <nav className={styles.root}>
-      <Collections />
-      <DisplayMode />
-      <div className={styles.footer}>
-        <Genres genres={genres} />
-        <Status genres={genres} />
-      </div>
-    </nav>
-  );
+	return (
+		<nav className={styles.root}>
+			<Collections />
+			<DisplayMode />
+			<div className={styles.footer}>
+				<Genres genres={genres} />
+				<Status genres={genres} />
+			</div>
+		</nav>
+	);
 }
