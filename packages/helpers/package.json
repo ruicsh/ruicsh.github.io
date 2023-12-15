@@ -5,7 +5,6 @@
 	"main": "src/index.ts",
 	"typings": "src/index.ts",
 	"scripts": {
-		"format": "prettier --write src",
 		"lint:ts": "tsc --noEmit",
 		"lint": "eslint src"
 	}

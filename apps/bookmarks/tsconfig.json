@@ -1,7 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "./",
-  },
-  "include": ["src/**/*.ts", "vitest.setup.ts"]
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./"
+	},
+	"include": ["src/**/*.ts", "vitest.setup.ts"]
 }

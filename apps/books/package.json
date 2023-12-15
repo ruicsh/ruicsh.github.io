@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"license": "UNLICENSED",
 	"scripts": {
-		"format": "prettier --write src",
 		"link-shared-dir": "ln -s ../../shared shared",
 		"lint:ts": "tsc --noEmit",
 		"lint": "eslint src",

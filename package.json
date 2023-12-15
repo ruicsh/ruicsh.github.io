@@ -9,7 +9,7 @@
 		"packages/*"
 	],
 	"scripts": {
-		"format": "turbo run format",
+		"format": "prettier --write .",
 		"link-shared-dir": "turbo run link-shared-dir",
 		"lint:css": "turbo run lint:css",
 		"lint:ts": "turbo run lint:ts",

@@ -5,7 +5,6 @@
 	"scripts": {
 		"build": "npm run static:data; next build",
 		"dev": "npm run static:data; next dev",
-		"format": "prettier --write sh src",
 		"link-shared-dir": "ln -s ../../shared shared",
 		"lint:css": "stylelint 'src/**/*.scss'",
 		"lint:ts": "tsc --noEmit",
