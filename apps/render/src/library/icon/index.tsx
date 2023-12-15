@@ -3,14 +3,14 @@ import clsx from "clsx";
 import styles from "./index.module.scss";
 
 export enum IconType {
-	Arrow,
-	Grid,
-	List,
-	StarEmpty,
-	StarFilled,
-	StarHalf,
-	Step,
-	XMark,
+	Arrow = 0,
+	Grid = 1,
+	List = 2,
+	StarEmpty = 3,
+	StarFilled = 4,
+	StarHalf = 5,
+	Step = 6,
+	XMark = 7,
 }
 
 type IProps = {

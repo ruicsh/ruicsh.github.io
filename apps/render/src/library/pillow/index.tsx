@@ -15,7 +15,7 @@ export function Pillow(props: IProps) {
 	const cls = clsx(styles.root, className);
 
 	return (
-		<button className={cls} onClick={onClick}>
+		<button className={cls} onClick={onClick} type="button">
 			<span>{label}</span>
 			<Icon icon={IconType.XMark} />
 		</button>

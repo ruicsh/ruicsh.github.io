@@ -16,7 +16,7 @@ export function Bookmark(props: IProps) {
 	});
 
 	return (
-		<a className={styles.root} href={url} target="_blank">
+		<a className={styles.root} href={url} target="_blank" rel="noreferrer">
 			<div className={styles.left}>
 				<Image
 					className={styles.screenshot}

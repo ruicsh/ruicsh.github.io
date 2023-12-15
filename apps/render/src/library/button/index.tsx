@@ -16,6 +16,7 @@ export function Button(props: PropsWithChildren<IProps>) {
 
 	return (
 		<button
+			type="button"
 			className={cls}
 			aria-pressed={isActive}
 			onClick={onClick}

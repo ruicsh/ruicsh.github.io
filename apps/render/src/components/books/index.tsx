@@ -21,7 +21,7 @@ export function Books(props: IProps) {
 		fetch("/static/data/books.json")
 			.then((response) => response.json())
 			.then((books) => dispatch({ type: "SET_BOOKS", payload: { books } }));
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		useBooksStore.persist.rehydrate();
