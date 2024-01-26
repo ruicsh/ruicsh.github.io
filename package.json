@@ -22,8 +22,8 @@
 		"@paralleldrive/cuid2": "2.2.2",
 		"@tuplo/fetch": "1.10.0",
 		"@tuplo/fletcher": "2.19.6",
-		"ag-grid-community": "31.0.2",
-		"ag-grid-react": "31.0.2",
+		"ag-grid-community": "31.0.3",
+		"ag-grid-react": "31.0.3",
 		"cheerio": "1.0.0-rc.12",
 		"clsx": "2.1.0",
 		"convict": "6.2.4",
@@ -46,7 +46,7 @@
 		"@tuplo/shell": "1.2.2",
 		"@types/convict": "6.1.6",
 		"@types/jsdom": "21.1.6",
-		"@types/node": "20.11.5",
+		"@types/node": "20.11.7",
 		"@types/react": "18.2.48",
 		"@types/react-dom": "18.2.18",
 		"@typescript-eslint/eslint-plugin": "6.19.1",
@@ -60,9 +60,9 @@
 		"eslint-plugin-jsx-a11y": "6.8.0",
 		"eslint-plugin-testing-library": "6.2.0",
 		"eslint-plugin-vitest": "0.3.20",
-		"loglevel": "1.8.1",
-		"msw": "2.1.4",
-		"npm-check-updates": "16.14.12",
+		"loglevel": "1.9.1",
+		"msw": "2.1.5",
+		"npm-check-updates": "16.14.14",
 		"postcss": "8.4.33",
 		"postcss-scss": "4.0.9",
 		"prettier": "3.2.4",
@@ -75,6 +75,6 @@
 		"turbo": "1.11.3",
 		"typescript": "5.3.3",
 		"vite": "5.0.12",
-		"vitest": "1.2.1"
+		"vitest": "1.2.2"
 	}
 }
