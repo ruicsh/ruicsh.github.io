@@ -48,11 +48,6 @@ jobs:
           npm install --frozen-lockfile --no-audit --legacy-peer-deps --force --os=linux --cpu=x64 sharp
       - name: Link shared dir
         run: npm run link-shared-dir
-      - name: Run apps/bookmarks
-        run: |
-          npx playwright install
-          npx playwright install-deps chrome
-          npm --workspace @ruicsh/bookmarks run start
       - name: Run apps/books
         run: npm --workspace @ruicsh/books run start
         env:

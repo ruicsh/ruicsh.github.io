@@ -1,5 +1,3 @@
-import fetch from "@tuplo/fetch";
-
 import config from "src/config";
 
 type IFindVolumeArgs = {
@@ -20,8 +18,8 @@ class GoogleBooksApi {
 		});
 		url.search = sp.toString();
 
-		const data = await fetch<IGoogleBookApiVolumesResponse>(url.href);
-		const json = await data.json();
+		const data = await fetch(url.href);
+		const json = (await data.json()) as IGoogleBookApiVolumesResponse;
 		if (json.totalItems === 0) {
 			return undefined;
 		}

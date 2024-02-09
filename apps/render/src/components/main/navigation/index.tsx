@@ -13,9 +13,7 @@ export function MainNavigation() {
 			<ul className={styles.list}>
 				{[
 					{ href: "/", label: "Home" },
-					// { href: "/til", label: "Today I Learned" },
 					{ href: "/books", label: "Books" },
-					{ href: "/bookmarks", label: "Bookmarks" },
 				]
 					.map((link) => ({
 						...link,

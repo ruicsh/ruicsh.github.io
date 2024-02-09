@@ -3,7 +3,7 @@
 		"noEmit": true,
 		"baseUrl": ".",
 		"esModuleInterop": true,
-		"moduleResolution": "node",
+		"moduleResolution": "Bundler",
 		"paths": {
 			"@ruicsh/*": ["./packages/*"]
 		},

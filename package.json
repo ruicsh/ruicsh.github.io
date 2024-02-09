@@ -20,7 +20,6 @@
 	"dependencies": {
 		"@mozilla/readability": "0.5.0",
 		"@paralleldrive/cuid2": "2.2.2",
-		"@tuplo/fetch": "1.10.0",
 		"@tuplo/fletcher": "2.19.7",
 		"ag-grid-community": "31.0.3",
 		"ag-grid-react": "31.0.3",
