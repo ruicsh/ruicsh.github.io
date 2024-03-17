@@ -1,0 +1,242 @@
+{
+	"basics": {
+		"firstName": "Rui",
+		"lastName": "Costa",
+		"label": "Full-stack Engineer",
+		"intro": "I have a strong background in React, TypeScript, and Node.js, which I have used to develop high-quality software for a variety of clients and industries. In addition to my technical skills, I have a deep interest in web design and user experience. I believe that software should not only be functional, but also easy to use and aesthetically pleasing.",
+		"profiles": [
+			{
+				"url": "http://ruicsh.github.io",
+				"label": "ruicsh.github.io"
+			},
+			{
+				"network": "GitHub",
+				"url": "http://github.com/ruicsh",
+				"label": "github.com/ruicsh"
+			},
+			{
+				"network": "LinkedIn",
+				"url": "www.linkedin.com/in/ruicsh",
+				"label": "linkedin.com/in/ruicsh"
+			}
+		]
+	},
+	"skills": [
+		{
+			"area": "Programming",
+			"skills": ["JavaScript, TypeScript, Node.js"]
+		},
+		{
+			"area": "Frontend",
+			"skills": [
+				"React, Next.js",
+				"Hooks, Redux, Zustand, RxJS",
+				"AG Grid, D3, ArcGIS"
+			]
+		},
+		{
+			"area": "Backend",
+			"skills": [
+				"Express, Koa, GraphQL",
+				"Knex, TypeORM, Prisma",
+				"DynamoDB, SQLite, OpenSearch",
+				"AWS SDK, Lambda, S3"
+			]
+		},
+		{
+			"area": "Styling",
+			"skills": [
+				"CSS, SASS, TailwindCSS",
+				"CSS Modules, styled-components",
+				"Chakra UI"
+			]
+		},
+		{
+			"area": "Testing",
+			"skills": [
+				"TDD",
+				"React Testing Library",
+				"Jest, Jasmine",
+				"Playwright, Cypress"
+			]
+		},
+		{
+			"area": "Build tools",
+			"skills": [
+				"esbuild, webpack",
+				"TurboRepo, Nx",
+				"GitHub Actions, TeamCity, Jenkins"
+			]
+		},
+		{
+			"area": "Infrastructure",
+			"skills": ["AWS", "Docker", "Ansible, Terraform"]
+		}
+	],
+	"work": [
+		{
+			"position": "Sole Frontend Engineer",
+			"contract": true,
+			"company": "Mercuria",
+			"website": "mercuria.com",
+			"startDate": "Mar 2024",
+			"endDate": "May 2024",
+			"duration": "3m",
+			"market": "Geographic Information Systems",
+			"summary": "I was brought in to rewrite their existing GIS web application using modern web technologies.",
+			"techStack": "React, Zustand, Chakra UI - ArcGIS - TypeScript",
+			"highlights": [
+				"Greenfield project rewriting an existing jQuery application",
+				"Deep integration with ArcGIS Maps SDK for JavaScript"
+			]
+		},
+		{
+			"company": "Citi",
+			"website": "citi.com",
+			"position": "Frontend engineer",
+			"contract": true,
+			"startDate": "Mar 2023",
+			"endDate": "Feb 2024",
+			"duration": "1y",
+			"market": "Commodities",
+			"summary": "I was part of the frontend development team developing their internal Commodities Risk Assessment tool.",
+			"techStack": "React, AG Grid, Recoil, RxJS - Jest, RTL - TypeScript",
+			"highlights": [
+				"Front-office role with direct interaction with traders and risk managers",
+				"Heavy use of AG Grid, including custom cell renderers and editors",
+				"Developed a greenfield project to replace a legacy WPF project."
+			]
+		},
+		{
+			"company": "BNP Paribas",
+			"website": "group.bnpparibas",
+			"position": "Frontend engineer",
+			"contract": true,
+			"startDate": "Sep 2022",
+			"endDate": "Feb 2023",
+			"duration": "6mos",
+			"market": "FX Trading",
+			"summary": "I was part of the frontend development team maintaining their market leading FX trading platform.",
+			"techStack": "AngularJS, RxJS - Jasmine - TypeScript",
+			"highlights": [
+				"Maintained a very large codebase as part of a large team",
+				"Handled support emails, QA defects and backlog tickets"
+			]
+		},
+		{
+			"company": "Credit Suisse",
+			"website": "credit-suisse.com",
+			"position": "Sole frontend engineer",
+			"contract": true,
+			"startDate": "Mar 2021",
+			"endDate": "Aug 2022",
+			"duration": "1yr 6mos",
+			"market": "FX Trading",
+			"summary": "I was part of a greenfield project to develop a FX trading platform using web technologies, replacing their existing trading desktop application.",
+			"techStack": "React, Redux - Jest, RTL, Cypress - TypeScript",
+			"highlights": [
+				"Lead the frontend development of the project",
+				"Introduced TypeScript, Redux Toolkit and React Testing Library",
+				"Stabilized and broaden the scope of E2E testing with Cypress"
+			]
+		},
+		{
+			"company": "Sainsbury's",
+			"website": "sainsburys.co.uk",
+			"position": "Lead frontend engineer",
+			"contract": true,
+			"startDate": "Mar 2020",
+			"endDate": "Feb 2021",
+			"duration": "1 yr",
+			"market": "AdTech",
+			"summary": "I was involved in a project to develop an ad trading platform for their Nectar brand. Brought in as a frontend developer, I ended up leading all frontend development and playing a major role in the overall project.",
+			"techStack": "React, D3 - GraphQL - Jest, RTL, Cypress - TypeScript",
+			"highlights": [
+				"Helped plan product development and timelines",
+				"Mentored junior developers",
+				"Defined E2E testing strategy: critical paths, browser automation, coverage targets, visual regression testing, browser compatibility"
+			]
+		},
+		{
+			"company": "Trainline",
+			"website": "thetrainline.com",
+			"position": "Frontend engineer",
+			"contract": true,
+			"startDate": "Jun 2019",
+			"endDate": "Dec 2019",
+			"duration": "7 mos",
+			"market": "eTicketing",
+			"summary": "I was involved in a task force to migrate their analytics stack to Google Analytics before their existing contract with Adobe ran out. A team the year before us had failed to meet the deadline, but our team was successful.",
+			"techStack": "React, Redux - Jest, Enzyme, WebDriverIO - TypeScript",
+			"highlights": [
+				"Delivered project on hard deadline of 6 months",
+				"Informally lead the project's development across all web platforms and devices",
+				"Developed techniques to dig out the data pipelines from inside the massive codebase."
+			]
+		},
+		{
+			"company": "The Labrador",
+			"website": "thelabrador.co.uk",
+			"position": "Full stack engineer",
+			"startDate": "Jan 2018",
+			"endDate": "Nov 2018",
+			"duration": "11 mos",
+			"market": "CRM",
+			"summary": "I was the most experienced frontend developer working on their website and client management bespoke software.",
+			"techStack": "React, Redux - AWS, Node.js, GraphQL - Jest",
+			"highlights": [
+				"Developed data replication services between AWS DynamoDB and ElasticSearch using AWS Lambda",
+				"Built APIs using Serverless Framework, GraphQL and Express",
+				"Built corporate website using GatsbyJS and styled-components"
+			]
+		},
+		{
+			"company": "The Sun",
+			"website": "thesun.co.uk",
+			"position": "Full stack engineer",
+			"contract": true,
+			"startDate": "Jun 2017",
+			"endDate": "Dec 2017",
+			"duration": "7 mos",
+			"techStack": "React - Hapi, Node.js",
+			"market": "Publishing",
+			"summary": "I worked at the tail end of their migration from WordPress to a bespoke SSR solution.",
+			"highlights": [
+				"Audited and outlined a frontend performance optimization plan",
+				"Involved in engagement optimization stories"
+			]
+		},
+		{
+			"company": "Elliptic",
+			"website": "elliptic.co",
+			"position": "Lead frontend engineer",
+			"startDate": "Jun 2016",
+			"endDate": "Jun 2017",
+			"duration": "1yr 1mo",
+			"techStack": "React, Redux, D3 - REST - Jest, Enzyme",
+			"market": "Bitcoin analytics",
+			"summary": "I was one of their first hires and oversaw the frontend development of the first versions of both their client facing softwares: Forensics and KYC. My implementation of their design agency's UI/UX merited many compliments from directors and stakeholders.",
+			"highlights": [
+				"Migrated the frontend codebase from CoffeeScript/Angular to ES6/React/Redux",
+				"Hired, mentored and lead a team of two other frontend engineers",
+				"Implemented complex interactive data visualizations"
+			]
+		},
+		{
+			"company": "Pugpig",
+			"website": "pugpig.com",
+			"position": "Sole Frontend engineer",
+			"startDate": "Jun 2014",
+			"endDate": "May 2016",
+			"duration": "1yr 8mos",
+			"summary": "While their main product are mobile apps, I re-wrote and oversaw the development of their web variant.",
+			"techStack": "Backbone, Marionette - Mocha, Chai, Sinon, WebDriver",
+			"market": "Publishing",
+			"highlights": [
+				"Architected, rewrote and managed the web frontend development.",
+				"Deployed hybrid solutions on iOS/Android.",
+				"Heavy browser compatibility testing across multiple platforms."
+			]
+		}
+	]
+}

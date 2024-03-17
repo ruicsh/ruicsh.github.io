@@ -9,6 +9,7 @@ export function MainNavigation() {
 	const links = [
 		{ href: "/", label: "Home" },
 		{ href: "/books", label: "Books" },
+		{ href: "/resume", label: "Resume" },
 	].map((link) => ({
 		...link,
 		isActive: link.href === pathname,

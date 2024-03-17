@@ -15,7 +15,7 @@ function RootLayout(props: PropsWithChildren) {
 
 	return (
 		<html lang="en" className={barlowCondensed.variable}>
-			<body className="container mx-auto">
+			<body className="container mx-auto print:max-w-full">
 				<MainHeader />
 				{children}
 			</body>
