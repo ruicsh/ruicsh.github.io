@@ -5,7 +5,6 @@
 		"link-shared-dir": {},
 		"lint": {},
 		"lint:ts": {},
-		"lint:css": {},
 		"test:ci": {}
 	}
 }

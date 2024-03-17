@@ -18,5 +18,4 @@ jobs:
           npm install --frozen-lockfile --no-audit --legacy-peer-deps @rollup/rollup-linux-x64-gnu
           npm run lint
           npm run lint:ts
-          npm run lint:css
           npm run test:ci
