@@ -7,8 +7,12 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"lint:ts": "tsc --noEmit",
 		"serve": "serve out",
 		"link-shared-dir": "ln -s ../../shared shared",
-		"static:data": "tsx src/static/index.ts"
+		"normalize-db": "tsx sh/normalize-db.ts",
+		"static:data": "tsx src/static/index.ts",
+		"test:ci": "vitest run",
+		"test": "vitest --watch"
 	}
 }

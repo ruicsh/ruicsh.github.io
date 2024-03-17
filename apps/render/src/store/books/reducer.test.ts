@@ -12,7 +12,7 @@ describe("books reducer", () => {
 			};
 			const actual = reducer(state, action);
 
-			const expected = { ...initialState, genres: ["foo"], page: 1 };
+			const expected = { ...initialState, genres: ["foo"] };
 			expect(actual).toStrictEqual(expected);
 		});
 
@@ -24,7 +24,7 @@ describe("books reducer", () => {
 			};
 			const actual = reducer(state, action);
 
-			const expected = { ...initialState, genres: ["foo", "bar"], page: 1 };
+			const expected = { ...initialState, genres: ["foo", "bar"] };
 			expect(actual).toStrictEqual(expected);
 		});
 
@@ -36,7 +36,7 @@ describe("books reducer", () => {
 			};
 			const actual = reducer(state, action);
 
-			const expected = { ...initialState, genres: ["foo"], page: 1 };
+			const expected = { ...initialState, genres: ["foo"] };
 			expect(actual).toStrictEqual(expected);
 		});
 
@@ -48,7 +48,7 @@ describe("books reducer", () => {
 			};
 			const actual = reducer(state, action);
 
-			const expected = { ...initialState, genres: [], page: 1 };
+			const expected = { ...initialState, genres: [] };
 			expect(actual).toStrictEqual(expected);
 		});
 	});
