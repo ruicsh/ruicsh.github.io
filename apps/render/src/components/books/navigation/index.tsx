@@ -1,9 +1,6 @@
 import { Collections } from "./collections";
-import { DisplayMode } from "./display-mode";
 import { Genres } from "./genres";
 import { Status } from "./status";
-
-import styles from "./index.module.scss";
 
 type IProps = {
 	genres: IBookGenre[];
@@ -13,10 +10,9 @@ export function Navigation(props: IProps) {
 	const { genres } = props;
 
 	return (
-		<nav className={styles.root}>
+		<nav className="w-full border-b-2 border-stone-600">
 			<Collections />
-			<DisplayMode />
-			<div className={styles.footer}>
+			<div className="flex border-t border-stone-200 py-2">
 				<Genres genres={genres} />
 				<Status genres={genres} />
 			</div>

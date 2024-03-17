@@ -1,5 +1,3 @@
-import styles from "./index.module.scss";
-
 type IProps = {
 	book: IBook;
 };
@@ -7,6 +5,7 @@ type IProps = {
 export function QueuedOn(props: IProps) {
 	const { book } = props;
 	const { readOnDate, queuedOnDate } = book;
+
 	if (readOnDate || !queuedOnDate) return null;
 
 	const df = new Intl.DateTimeFormat("en-GB", {
@@ -14,10 +13,8 @@ export function QueuedOn(props: IProps) {
 	});
 
 	return (
-		<>
-			<p className={styles.date}>
-				Queued on {df.format(new Date(queuedOnDate))}
-			</p>
-		</>
+		<p className="text-[.7rem] font-bold text-stone-600">
+			Queued on {df.format(new Date(queuedOnDate))}
+		</p>
 	);
 }

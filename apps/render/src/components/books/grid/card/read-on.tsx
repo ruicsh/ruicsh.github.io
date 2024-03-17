@@ -1,7 +1,5 @@
 import { StarRating } from "src/library/star-rating";
 
-import styles from "./index.module.scss";
-
 type IProps = {
 	book: IBook;
 };
@@ -19,12 +17,10 @@ export function ReadOn(props: IProps) {
 
 	return (
 		<>
-			<p className={styles.date}>Read on {df.format(new Date(readOnDate))}</p>
-			<StarRating
-				className={styles.starRating}
-				id="start-rating"
-				value={rating}
-			/>
+			<p className="text-[.7rem] font-bold text-stone-600">
+				Read on {df.format(new Date(readOnDate))}
+			</p>
+			<StarRating id="start-rating" value={rating} />
 		</>
 	);
 }

@@ -1,11 +1,8 @@
-import { useRef, useState } from "react";
+import { useState, type MouseEvent } from "react";
 
-import { useClickOutside } from "src/hooks/use-click-outside";
 import { Button } from "src/library/button";
 
-import { Genre } from "./genre";
-
-import styles from "./index.module.scss";
+import { GenresList } from "./list";
 
 type IProps = {
 	genres: IBookGenre[];
@@ -14,29 +11,24 @@ type IProps = {
 export function Genres(props: IProps) {
 	const { genres } = props;
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
-	const popupRef = useRef<HTMLUListElement>(null);
 
-	const onTogglePopup = () => {
+	const onTogglePopup = (event?: MouseEvent) => {
+		event?.preventDefault();
+
 		setIsPopupOpen((oldState) => !oldState);
 	};
 
-	useClickOutside({ elementRef: popupRef, onClickOutside: onTogglePopup });
-
 	return (
-		<div className={styles.root}>
+		<div className="relative flex">
 			<Button
-				className={styles.toggleButton}
 				onClick={onTogglePopup}
 				aria-selected={isPopupOpen}
+				className="px-2 py-1 text-[.7rem] uppercase hover:bg-neutral-100"
 			>
 				Genres
 			</Button>
 			{isPopupOpen && (
-				<ul className={styles.list} ref={popupRef} onMouseLeave={onTogglePopup}>
-					{genres.map((genre) => (
-						<Genre key={`nav-genre-option-${genre.slug}`} genre={genre} />
-					))}
-				</ul>
+				<GenresList genres={genres} onTogglePopup={onTogglePopup} />
 			)}
 		</div>
 	);

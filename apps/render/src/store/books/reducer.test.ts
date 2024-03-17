@@ -1,4 +1,4 @@
-import { type IAction } from "./books.d";
+import { type IAction } from "./types";
 import { initialState } from "./initial-state";
 import { reducer } from "./reducer";
 

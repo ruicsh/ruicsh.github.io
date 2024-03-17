@@ -4,7 +4,7 @@ import {
 	type StateStorage,
 } from "zustand/middleware";
 
-import { type IBooksState, type IPersistedBooksState } from "./books.d";
+import { type IBooksState, type IPersistedBooksState } from "./types.d";
 import { initialState } from "./initial-state";
 
 const storage: StateStorage = {

@@ -1,11 +1,8 @@
 import { Image } from "src/library/image";
 
-import { Popup } from "./popup";
 import { QueuedOn } from "./queued-on";
 import { ReadOn } from "./read-on";
 import { WishedOn } from "./wished-on";
-
-import styles from "./index.module.scss";
 
 type IProps = {
 	book: IBook;
@@ -13,36 +10,55 @@ type IProps = {
 };
 
 export function Book(props: IProps) {
-	const { book, order } = props;
-	const { slug, pageCount, publishedDate, title, authors, coverColor } = book;
+	const { book } = props;
+	const {
+		slug,
+		title,
+		coverColor,
+		subtitle,
+		authors,
+		publishedDate,
+		pageCount,
+		description,
+	} = book;
 
 	const df = new Intl.DateTimeFormat("en-GB", {
 		dateStyle: "medium",
 	});
 
 	return (
-		<article className={styles.root}>
-			<div className={styles.coverWrapper}>
-				<Image
-					src={`/books/covers/${slug}.jpg`}
-					style={{ backgroundColor: coverColor }}
-					alt={title}
-				/>
+		<article className="flex w-full gap-3 rounded border bg-stone-100 p-4">
+			<div
+				className="relative h-[285px] basis-5/12"
+				style={{ backgroundColor: coverColor }}
+			>
+				<Image src={`/books/covers/${slug}.jpg`} />
 			</div>
-			<div className={styles.metadata}>
-				<h1 className={styles.title}>{title}</h1>
-				<p className={styles.authors}>{authors}</p>
-				<p className={styles.meta}>
+			<div className="flex basis-7/12 flex-col gap-1">
+				<h1 className="font-heading text-2xl font-bold leading-none">
+					{title}
+				</h1>
+				{subtitle && (
+					<h2 className="font-heading text-md font-semibold leading-tight">
+						{subtitle}
+					</h2>
+				)}
+				<p className="text-sm">{authors}</p>
+				<p className="text-xs text-stone-600">
 					{[
 						publishedDate && df.format(new Date(publishedDate)),
 						pageCount && `${pageCount} pages`,
 					].join(", ")}
 				</p>
-				<ReadOn book={book} />
-				<QueuedOn book={book} />
-				<WishedOn book={book} />
+				{description && (
+					<p className="line-clamp-5 text-xs leading-relaxed">{description}</p>
+				)}
+				<div className="mt-auto flex flex-col gap-1 border-t border-t-stone-300 pt-1">
+					<ReadOn book={book} />
+					<QueuedOn book={book} />
+					<WishedOn book={book} />
+				</div>
 			</div>
-			<Popup book={book} order={order} />
 		</article>
 	);
 }

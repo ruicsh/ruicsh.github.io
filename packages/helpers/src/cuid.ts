@@ -1,5 +1,5 @@
-import { createId } from "@paralleldrive/cuid2";
+import { nanoid } from "nanoid";
 
 export function cuid() {
-	return createId();
+	return nanoid();
 }

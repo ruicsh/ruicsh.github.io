@@ -1,8 +1,13 @@
-import { useCallback, useEffect, type MutableRefObject } from "react";
+import {
+	useCallback,
+	useEffect,
+	type MutableRefObject,
+	type MouseEvent,
+} from "react";
 
 type IArgs = {
 	elementRef: MutableRefObject<HTMLElement | null>;
-	onClickOutside: () => void;
+	onClickOutside: (event?: MouseEvent) => void;
 };
 
 export function useClickOutside(args: IArgs) {

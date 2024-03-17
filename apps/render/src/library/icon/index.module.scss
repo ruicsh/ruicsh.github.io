@@ -1,15 +1,6 @@
 .root {
-	display: block;
-	height: 100%;
 	mask-position: center;
 	mask-repeat: no-repeat;
-	position: relative;
-	transition: background-color 0.2s ease-in-out;
-	width: 100%;
-
-	&:hover {
-		background-color: var(--color-primary);
-	}
 }
 
 .iconArrow {

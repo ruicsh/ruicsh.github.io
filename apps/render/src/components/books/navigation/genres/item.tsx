@@ -1,8 +1,4 @@
-import { Button } from "src/library/button";
-import { Checkbox } from "src/library/input/checkbox";
 import { useBooksStore, useDispatch } from "src/store/books";
-
-import styles from "./genre.module.scss";
 
 type IProps = {
 	genre: IBookGenre;
@@ -20,15 +16,12 @@ export function Genre(props: IProps) {
 	};
 
 	return (
-		<li className={styles.root}>
-			<Button
-				className={styles.button}
-				onClick={() => onToggleGenre(slug)}
-				isActive={isActive}
-			>
-				<Checkbox checked={isActive} />
-				<span>{label}</span>
-			</Button>
+		<li
+			className="flex gap-2 border-b px-1 leading-loose text-neutral-600 transition-colors duration-200 ease-in-out hover:cursor-pointer hover:bg-neutral-100 hover:text-neutral-900"
+			onClick={() => onToggleGenre(slug)}
+		>
+			<input type="checkbox" checked={isActive} />
+			<span className="text-[.7rem] uppercase">{label}</span>
 		</li>
 	);
 }

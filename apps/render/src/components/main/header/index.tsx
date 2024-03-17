@@ -1,10 +1,8 @@
 import { MainNavigation } from "../navigation";
 
-import styles from "./index.module.scss";
-
 export function MainHeader() {
 	return (
-		<header className={styles.root}>
+		<header className="border-b border-neutral-200 py-2">
 			<MainNavigation />
 		</header>
 	);

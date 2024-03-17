@@ -1,5 +1,3 @@
-import styles from "./index.module.scss";
-
 type IProps = {
 	book: IBook;
 };
@@ -14,10 +12,8 @@ export function WishedOn(props: IProps) {
 	});
 
 	return (
-		<>
-			<p className={styles.date}>
-				Wished on {df.format(new Date(wishedOnDate))}
-			</p>
-		</>
+		<p className="text-[.7rem] font-bold text-stone-600">
+			Wished on {df.format(new Date(wishedOnDate))}
+		</p>
 	);
 }

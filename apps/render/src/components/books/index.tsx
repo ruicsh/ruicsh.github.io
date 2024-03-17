@@ -6,7 +6,6 @@ import { useBooksStore, useDispatch } from "src/store/books";
 
 import { Grid } from "./grid";
 import { Navigation } from "./navigation";
-import { Table } from "./table";
 
 type IProps = {
 	genres: IBookGenre[];
@@ -15,7 +14,6 @@ type IProps = {
 export function Books(props: IProps) {
 	const { genres } = props;
 	const dispatch = useDispatch();
-	const displayMode = useBooksStore((state) => state.displayMode || "grid");
 
 	useEffect(() => {
 		fetch("/static/data/books.json")
@@ -35,10 +33,9 @@ export function Books(props: IProps) {
 	}, []);
 
 	return (
-		<>
+		<div className="flex w-full flex-col gap-8">
 			<Navigation genres={genres} />
-			{displayMode === "grid" && <Grid />}
-			{displayMode === "table" && <Table />}
-		</>
+			<Grid />
+		</div>
 	);
 }

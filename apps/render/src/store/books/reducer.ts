@@ -1,27 +1,22 @@
-import { type IAction, type IBooksState } from "./books.d";
+import { type IAction, type IBooksState } from "./types";
 
 export function reducer(state: IBooksState, action: IAction) {
-	const { type } = action;
+	const { type, payload } = action;
 
 	switch (type) {
 		case "SET_COLLECTION": {
-			const { collection } = action.payload;
+			const { collection } = payload;
 			return { ...state, collection, page: 1 };
 		}
-		case "SET_DISPLAY_MODE": {
-			const { displayMode } = action.payload;
-			return { ...state, displayMode };
-		}
+
 		case "SET_BOOKS": {
-			const { books } = action.payload;
+			const { books } = payload;
 			return { ...state, books, isBooksLoading: false };
 		}
-		case "SET_PAGE": {
-			const { page } = action.payload;
-			return { ...state, page };
-		}
+
 		case "TOGGLE_GENRE": {
-			const { genre } = action.payload;
+			const genre = payload.genre.toLowerCase();
+
 			const genres = Array.from(state.genres);
 			const index = genres.indexOf(genre);
 			if (index > -1) {
@@ -30,9 +25,11 @@ export function reducer(state: IBooksState, action: IAction) {
 				genres.push(genre);
 			}
 
-			return { ...state, genres, page: 1 };
+			return { ...state, genres };
 		}
-		default:
+
+		default: {
 			return state;
+		}
 	}
 }

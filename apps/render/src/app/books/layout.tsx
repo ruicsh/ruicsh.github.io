@@ -1,13 +1,9 @@
 import { type PropsWithChildren } from "react";
 
-import styles from "./layout.module.scss";
-
-type IProps = undefined;
-
-function BooksLayout(props: PropsWithChildren<IProps>) {
+function BooksLayout(props: PropsWithChildren) {
 	const { children } = props;
 
-	return <main className={styles.root}>{children}</main>;
+	return <main className="flex gap-4">{children}</main>;
 }
 
 export default BooksLayout;

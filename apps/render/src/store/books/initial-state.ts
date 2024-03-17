@@ -1,10 +1,8 @@
-import { type IBooksState } from "./books.d";
+import { type IBooksState } from "./types.d";
 
 // @ts-expect-error foobar
 export const initialState: IBooksState = {
 	collection: undefined,
-	displayMode: "grid",
-	page: 1,
 	isBooksLoading: true,
 	books: [],
 	genres: [],

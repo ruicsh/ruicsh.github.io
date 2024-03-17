@@ -1,8 +1,4 @@
-import clsx from "clsx";
-
 import { Icon, IconType } from "src/library/icon";
-
-import styles from "./index.module.scss";
 
 type IProps = {
 	className?: string;
@@ -11,7 +7,7 @@ type IProps = {
 };
 
 export function StarRating(props: IProps) {
-	const { className, id, value = 0 } = props;
+	const { id, value = 0 } = props;
 	if (!value) {
 		return null;
 	}
@@ -19,28 +15,28 @@ export function StarRating(props: IProps) {
 	const full = Math.trunc(value);
 	const half = value % 1 ? 1 : 0;
 	const empty = Math.trunc(5 - full - half);
-	const cls = clsx(styles.root, className);
 
 	return (
-		<div className={cls}>
-			{new Array(full).fill(null).map((_, i) => (
+		<div className="flex h-4 items-center gap-1">
+			{Array.from({ length: full }).map((_, i) => (
 				<Icon
 					key={`star-full-${id}-${i}`}
-					className={styles.star}
+					className="h-[10px] w-[10px] bg-stone-800"
 					icon={IconType.StarFilled}
 				/>
 			))}
-			{new Array(half).fill(null).map((_, i) => (
+
+			{Array.from({ length: half }).map((_, i) => (
 				<Icon
 					key={`star-half-${id}-${i}`}
-					className={styles.star}
+					className="h-[10px] w-[10px] bg-stone-800"
 					icon={IconType.StarHalf}
 				/>
 			))}
-			{new Array(empty).fill(null).map((_, i) => (
+			{Array.from({ length: empty }).map((_, i) => (
 				<Icon
 					key={`star-empty-${id}-${i}`}
-					className={styles.starEmpty}
+					className="h-[10px] w-[10px] bg-stone-800"
 					icon={IconType.StarEmpty}
 				/>
 			))}
