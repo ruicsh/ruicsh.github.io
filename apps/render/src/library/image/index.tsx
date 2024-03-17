@@ -3,6 +3,8 @@
 import NextImage from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
+import { cn } from "src/lib/cn";
+
 type ISize = {
 	width: number;
 	height: number;
@@ -13,10 +15,11 @@ type IProps = {
 	src: string;
 	style?: CSSProperties;
 	blurDataUrl?: string;
+	alt: string;
 };
 
 export function Image(props: IProps) {
-	const { src, style, blurDataUrl } = props;
+	const { className, src, style, blurDataUrl, alt } = props;
 	const rootRef = useRef<HTMLImageElement>(null);
 	const [size, setSize] = useState<ISize>({ width: 0, height: 0 });
 
@@ -32,12 +35,14 @@ export function Image(props: IProps) {
 		setSize({ width, height });
 	}, []);
 
+	const cls = cn("h-full w-full object-cover", className);
+
 	return (
 		<NextImage
-			alt=""
+			alt={alt}
 			style={style}
 			blurDataURL={blurDataUrl}
-			className="h-full w-full rounded-md object-cover"
+			className={cls}
 			height={size.height}
 			loading="lazy"
 			placeholder={blurDataUrl ? "blur" : "empty"}

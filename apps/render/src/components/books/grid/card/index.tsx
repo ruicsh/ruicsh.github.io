@@ -28,11 +28,13 @@ export function Book(props: IProps) {
 
 	return (
 		<article className="flex w-full gap-3 rounded border bg-stone-100 p-4">
-			<div
-				className="relative h-[285px] basis-5/12"
-				style={{ backgroundColor: coverColor }}
-			>
-				<Image src={`/books/covers/${slug}.jpg`} />
+			<div className="relative h-[285px] basis-5/12">
+				<Image
+					src={`/books/covers/${slug}.jpg`}
+					style={{ backgroundColor: coverColor }}
+					alt=""
+					className="shadow-xl"
+				/>
 			</div>
 			<div className="flex basis-7/12 flex-col gap-1">
 				<h1 className="font-heading text-2xl font-bold leading-none">
