@@ -23,7 +23,7 @@
 	},
 	"skills": [
 		{
-			"area": "Programming",
+			"area": "Languages",
 			"skills": ["JavaScript, TypeScript, Node.js"]
 		},
 		{
@@ -75,7 +75,7 @@
 	],
 	"work": [
 		{
-			"position": "Sole Frontend Engineer",
+			"position": "Solo Frontend Engineer",
 			"contract": true,
 			"company": "Mercuria",
 			"website": "mercuria.com",
@@ -91,7 +91,7 @@
 			]
 		},
 		{
-			"company": "Citi",
+			"company": "Citigroup",
 			"website": "citi.com",
 			"position": "Frontend engineer",
 			"contract": true,
@@ -126,7 +126,7 @@
 		{
 			"company": "Credit Suisse",
 			"website": "credit-suisse.com",
-			"position": "Sole frontend engineer",
+			"position": "Solo frontend engineer",
 			"contract": true,
 			"startDate": "Mar 2021",
 			"endDate": "Aug 2022",
@@ -225,7 +225,7 @@
 		{
 			"company": "Pugpig",
 			"website": "pugpig.com",
-			"position": "Sole Frontend engineer",
+			"position": "Solo Frontend engineer",
 			"startDate": "Jun 2014",
 			"endDate": "May 2016",
 			"duration": "1yr 8mos",
