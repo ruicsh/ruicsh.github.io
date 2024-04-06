@@ -4,17 +4,18 @@ import { type Knex } from "knex";
 export const ITEMS_PER_PAGE = 18;
 
 export async function getBookGenres() {
-	return cmsdb("book_genres")
+	const records = await cmsdb("book_genres")
 		.innerJoin("genre", { "book_genres.genreId": "genre.id" })
-		.select("book_genres.bookId", "genre.slug")
-		.then((rows) =>
-			rows.reduce((acc, row) => {
-				const { bookId, slug } = row;
-				acc[bookId] = acc[bookId] || [];
-				acc[bookId].push(slug);
-				return acc;
-			}),
-		);
+		.select("book_genres.bookId", "genre.slug");
+
+	const bookGenres = {} as { [key: string]: string[] };
+	for await (const record of records) {
+		const { bookId, slug } = record;
+		bookGenres[bookId] = bookGenres[bookId] || [];
+		bookGenres[bookId].push(slug);
+	}
+
+	return bookGenres;
 }
 
 function getCollection(book: IBook): IBooksCollection {
@@ -55,38 +56,47 @@ export async function getBooks(args?: IGetBooksArgs) {
 	];
 
 	let data: IBook[];
-	if (collection === "read") {
-		data = await db("book")
-			.select([...commonFields, "readOnDate", "rating"])
-			.whereNotNull("readOnDate")
-			.orderBy("readOnDate", "desc")
-			.limit(limit)
-			.offset(offset);
-	} else if (collection === "queue") {
-		data = await db("book")
-			.select([...commonFields, "queuedOnDate"])
-			.whereNotNull("queuedOnDate")
-			.whereNull("readOnDate")
-			.orderBy("queuedOnDate", "desc")
-			.limit(limit)
-			.offset(offset);
-	} else if (collection === "wishlist") {
-		data = await db("book")
-			.select([...commonFields, "wishedOnDate"])
-			.whereNotNull("wishedOnDate")
-			.whereNull("queuedOnDate")
-			.whereNull("readOnDate")
-			.orderBy("wishedOnDate", "desc")
-			.limit(limit)
-			.offset(offset);
-	} else {
-		data = await db("book")
-			.select(commonFields)
-			.orderBy("wishedOnDate", "desc")
-			.orderBy("queuedOnDate", "desc")
-			.orderBy("readOnDate", "desc")
-			.limit(limit)
-			.offset(offset);
+	switch (collection) {
+		case "read": {
+			data = await db("book")
+				.select([...commonFields, "readOnDate", "rating"])
+				.whereNotNull("readOnDate")
+				.orderBy("readOnDate", "desc")
+				.limit(limit)
+				.offset(offset);
+			break;
+		}
+		case "queue": {
+			data = await db("book")
+				.select([...commonFields, "queuedOnDate"])
+				.whereNotNull("queuedOnDate")
+				.whereNull("readOnDate")
+				.orderBy("queuedOnDate", "desc")
+				.limit(limit)
+				.offset(offset);
+			break;
+		}
+		case "wishlist": {
+			data = await db("book")
+				.select([...commonFields, "wishedOnDate"])
+				.whereNotNull("wishedOnDate")
+				.whereNull("queuedOnDate")
+				.whereNull("readOnDate")
+				.orderBy("wishedOnDate", "desc")
+				.limit(limit)
+				.offset(offset);
+			break;
+		}
+		default: {
+			data = await db("book")
+				.select(commonFields)
+				.orderBy("wishedOnDate", "desc")
+				.orderBy("queuedOnDate", "desc")
+				.orderBy("readOnDate", "desc")
+				.limit(limit)
+				.offset(offset);
+			break;
+		}
 	}
 
 	const bookGenres = await getBookGenres();

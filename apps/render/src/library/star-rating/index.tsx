@@ -9,7 +9,7 @@ type IProps = {
 export function StarRating(props: IProps) {
 	const { id, value = 0 } = props;
 	if (!value) {
-		return null;
+		return;
 	}
 
 	const full = Math.trunc(value);

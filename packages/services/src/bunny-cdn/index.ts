@@ -11,7 +11,9 @@ export class BunnyCdn {
 			await this.init();
 		}
 
-		if (!this.storageZone) return null;
+		if (!this.storageZone) {
+			return;
+		}
 
 		const {
 			Name: storageZoneName,
@@ -41,18 +43,27 @@ export class BunnyCdn {
 		}
 
 		const response = await this.fetchApi("/storagezone");
-		if (!response) return null;
+		if (!response) {
+			return;
+		}
 
 		const zones = response as BUNNY.IStorageZone[];
+		if (!Array.isArray(zones)) {
+			console.log("Failed to fetch storage zones.");
+			return;
+		}
+
 		const rg = new RegExp(name, "i");
 		this.storageZone = zones.find((sz) => rg.test(sz.Name));
 
-		return undefined;
+		return;
 	}
 
 	private async fetchApi<T>(pathname: string, options?: RequestInit) {
 		const AccessKey = config.get("bunnyCdn.apiKey");
-		if (!AccessKey) return null;
+		if (!AccessKey) {
+			return;
+		}
 
 		const url = new URL("https://api.bunny.net");
 		url.pathname = pathname;
@@ -67,7 +78,9 @@ export class BunnyCdn {
 		};
 
 		const response = await fetch(url, reqOptions);
-		if (!response) return null;
+		if (!response) {
+			return;
+		}
 
 		const text = await response.text();
 		if (!text) return {} as T;

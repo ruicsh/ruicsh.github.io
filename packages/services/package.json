@@ -6,6 +6,6 @@
 	"types": "src/index.ts",
 	"scripts": {
 		"lint:ts": "tsc --noEmit",
-		"lint": "eslint src"
+		"lint": "eslint ."
 	}
 }

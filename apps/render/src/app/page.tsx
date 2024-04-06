@@ -1,5 +1,5 @@
 function Home() {
-	return null;
+	return;
 }
 
 export default Home;

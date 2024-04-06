@@ -6,7 +6,7 @@
 		"dev": "tsx sh/dev.ts",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "eslint src/ sh/",
 		"lint:ts": "tsc --noEmit",
 		"serve": "serve out",
 		"link-shared-dir": "ln -s ../../shared shared",

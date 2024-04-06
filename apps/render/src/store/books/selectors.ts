@@ -4,12 +4,15 @@ import { type IBooksState } from "./types.d";
 
 function getSortByField(collection?: string) {
 	switch (collection) {
-		case "read":
+		case "read": {
 			return "readOnDate";
-		case "queue":
+		}
+		case "queue": {
 			return "queuedOnDate";
-		default:
+		}
+		default: {
 			return "wishedOnDate";
+		}
 	}
 }
 

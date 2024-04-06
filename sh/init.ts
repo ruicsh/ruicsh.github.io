@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 import shell from "@tuplo/shell";
 
 async function main() {

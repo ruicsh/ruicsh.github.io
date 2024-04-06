@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-null */
 import { type Knex } from "knex";
 
 export async function initialize(knex: Knex) {

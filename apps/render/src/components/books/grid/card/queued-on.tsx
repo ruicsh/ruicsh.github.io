@@ -6,7 +6,9 @@ export function QueuedOn(props: IProps) {
 	const { book } = props;
 	const { readOnDate, queuedOnDate } = book;
 
-	if (readOnDate || !queuedOnDate) return null;
+	if (readOnDate || !queuedOnDate) {
+		return;
+	}
 
 	const df = new Intl.DateTimeFormat("en-GB", {
 		dateStyle: "medium",

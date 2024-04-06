@@ -17,7 +17,7 @@ export function reducer(state: IBooksState, action: IAction) {
 		case "TOGGLE_GENRE": {
 			const genre = payload.genre.toLowerCase();
 
-			const genres = Array.from(state.genres);
+			const genres = [...state.genres];
 			const index = genres.indexOf(genre);
 			if (index > -1) {
 				genres.splice(index, 1);

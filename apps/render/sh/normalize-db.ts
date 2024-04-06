@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-null */
+/* eslint-disable unicorn/prefer-top-level-await */
 import { cmsdb } from "@ruicsh/services";
 
 async function normalizeBooksTable() {

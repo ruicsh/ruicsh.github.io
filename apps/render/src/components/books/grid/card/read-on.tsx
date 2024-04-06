@@ -8,7 +8,7 @@ export function ReadOn(props: IProps) {
 	const { book } = props;
 	const { readOnDate, rating } = book;
 	if (!readOnDate) {
-		return null;
+		return;
 	}
 
 	const df = new Intl.DateTimeFormat("en-GB", {

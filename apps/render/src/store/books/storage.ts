@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-null */
 import {
 	createJSONStorage,
 	type PersistOptions,
@@ -41,14 +42,15 @@ export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
 				return { ...initialState, collection: "queue", dispatch };
 			}
 
-			return { ...currentState, ...(persistedState || {}) };
+			return Object.assign({}, currentState, persistedState);
 		},
 		partialize: (state) => {
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const { books, isBooksLoading, genres, ...restOfState } = state;
 
 			return {
 				...restOfState,
-				genres: genres.length ? genres : undefined,
+				genres: genres.length > 0 ? genres : undefined,
 			};
 		},
 		skipHydration: true,

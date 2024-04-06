@@ -2,7 +2,7 @@ import { type Knex } from "knex";
 
 import { cmsdb } from "../services/db";
 import * as book from "./book";
-import * as bookGenres from "./book_genres";
+import * as bookGenres from "./book-genres";
 import * as genre from "./genre";
 
 export async function initialize(knex: Knex = cmsdb) {

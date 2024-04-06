@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import log, { type LogLevelNumbers } from "loglevel";
 
 import config from "../config";
@@ -16,4 +15,5 @@ const logLevel = config.get("logLevel");
 
 log.setLevel(logLevels[logLevel]);
 
+// eslint-disable-next-line unicorn/prefer-export-from
 export { log };
