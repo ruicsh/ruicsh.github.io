@@ -45,7 +45,9 @@ class AbebooksScraper {
 
 	#getCover($page: Cheerio<AnyNode>) {
 		const imageUrl = $page.find("[itemprop=image]").attr("content");
-		if (!imageUrl) return undefined;
+		if (!imageUrl) {
+			return;
+		}
 
 		return imageUrl;
 	}

@@ -37,7 +37,7 @@ export async function getBookDetails(book: IBookOnInbox) {
 		isbn: (scrapedBook.isbn13 || scrapedBook.isbn10) as string,
 	});
 	if (!googleBook) {
-		return undefined;
+		return;
 	}
 
 	const { isbn10, isbn13, cover, publisher, publishedDate } = scrapedBook;
@@ -58,7 +58,7 @@ export async function getBookDetails(book: IBookOnInbox) {
 	};
 
 	if (!cover) {
-		return null;
+		return;
 	}
 
 	const remote = await get(cover);

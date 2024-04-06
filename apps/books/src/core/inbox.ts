@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import { Readable } from "node:stream";
 
 import { parse } from "csv-parse";

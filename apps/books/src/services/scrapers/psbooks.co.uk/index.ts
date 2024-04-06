@@ -28,7 +28,9 @@ class PostscriptScraper {
 
 	#getPageCount($productInfo: Cheerio<AnyNode>) {
 		const txt = this.#getValueForLabel($productInfo, "Pages");
-		if (!txt) return undefined;
+		if (!txt) {
+			return;
+		}
 
 		const [, pageCount] = /(\d+)pp/.exec(txt) || [];
 
@@ -37,7 +39,9 @@ class PostscriptScraper {
 
 	#getIsbn($productInfo: Cheerio<AnyNode>) {
 		const txt = this.#getValueForLabel($productInfo, "ISBN");
-		if (!txt) return undefined;
+		if (!txt) {
+			return;
+		}
 
 		let isbn10;
 		let isbn13;
@@ -61,7 +65,9 @@ class PostscriptScraper {
 				const labelTxt = $li.find(".label").text().trim();
 				return rg.test(labelTxt);
 			});
-		if (!value) return undefined;
+		if (!value) {
+			return;
+		}
 
 		const $value = $(value);
 
@@ -70,7 +76,9 @@ class PostscriptScraper {
 
 	#getCover($page: Cheerio<AnyNode>) {
 		const imageUrl = $page.find("[property=og:image]").attr("content");
-		if (!imageUrl) return undefined;
+		if (!imageUrl) {
+			return;
+		}
 
 		const url = new URL(imageUrl);
 		const sp = new URLSearchParams({

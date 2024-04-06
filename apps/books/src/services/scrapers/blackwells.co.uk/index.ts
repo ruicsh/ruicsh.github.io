@@ -29,14 +29,18 @@ class BlackwellsScraper {
 
 	#getPageCount($productInfo: Cheerio<AnyNode>) {
 		const txt = $productInfo.find("[itemprop=numberOfPages]").text().trim();
-		if (!txt) return undefined;
+		if (!txt) {
+			return;
+		}
 
 		return Number(txt);
 	}
 
 	#getPublisher($productInfo: Cheerio<AnyNode>) {
 		const txt = $productInfo.find("[itemprop=publisher]").text().trim();
-		if (!txt) return undefined;
+		if (!txt) {
+			return;
+		}
 
 		return txt;
 	}

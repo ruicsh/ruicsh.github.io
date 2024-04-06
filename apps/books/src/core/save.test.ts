@@ -258,6 +258,7 @@ describe("save book", () => {
 				.select(["book.title", "genre.slug", "genre.label"])
 				.orderBy("genre.slug");
 
+			// eslint-disable-next-line unicorn/no-null
 			const expected = [{ title: "B1", slug: null, label: null }];
 			expect(actual).toStrictEqual(expected);
 		});

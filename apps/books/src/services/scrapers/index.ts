@@ -1,8 +1,8 @@
+import AbebooksScraper from "./abebooks.co.uk";
 import AmazonScraper from "./amazon.co.uk";
 import BlackwellsScraper from "./blackwells.co.uk";
 import HiveScraper from "./hive.co.uk";
 import PostscriptScraper from "./psbooks.co.uk";
-import AbebooksScraper from "./abebooks.co.uk";
 
 type IFetchBookArgs = {
 	url: string;
@@ -17,7 +17,7 @@ class BookScraper {
 
 	async fetchBookPage(
 		args: IFetchBookArgs,
-	): Promise<Partial<IScrapedBookDetails> | null> {
+	): Promise<Partial<IScrapedBookDetails> | undefined> {
 		const { url } = args;
 		const parsed = new URL(url);
 
@@ -36,34 +36,26 @@ class BookScraper {
 		if (/abebooks/.test(parsed.hostname)) {
 			return this.$abebooks.fetchBookPage({ url });
 		}
-
-		return null;
 	}
 
 	getSlugFromUrl(url: string) {
 		const parsed = new URL(url);
 
 		if (/amazon/.test(parsed.hostname)) {
-			const [, slug] = parsed.pathname.split("/");
-			return slug;
+			return parsed.pathname.split("/")[1];
 		}
 		if (/hive/.test(parsed.hostname)) {
-			const [, , , slug] = parsed.pathname.split("/");
-			return slug;
+			parsed.pathname.split("/")[3];
 		}
 		if (/psbooks/.test(parsed.hostname)) {
-			const [, slug] = parsed.pathname.split("/");
-			return slug;
+			return parsed.pathname.split("/")[1];
 		}
 		if (/blackwells/.test(parsed.hostname)) {
-			const [, , slug] = parsed.pathname.split("/");
-			return slug;
+			return parsed.pathname.split("/")[2];
 		}
 		if (/abebooks/.test(parsed.hostname)) {
-			const [, , slug] = parsed.pathname.split("/");
-			return slug;
+			return parsed.pathname.split("/")[2];
 		}
-		return null;
 	}
 }
 

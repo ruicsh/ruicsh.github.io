@@ -10,7 +10,9 @@ export async function resizeCover(
 	src: Sharp,
 ) {
 	const { cover, slug } = bookDetails;
-	if (!cover || !slug) return null;
+	if (!cover || !slug) {
+		return;
+	}
 
 	const basename = `${slug}.jpg`;
 	const remoteFilePath = path.join("books/covers", basename);

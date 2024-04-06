@@ -61,7 +61,9 @@ class HiveScraper {
 
 	#getCover($page: Cheerio<AnyNode>) {
 		const imageUrl = $page.find("[name=twitter:image]").attr("content");
-		if (!imageUrl) return undefined;
+		if (!imageUrl) {
+			return;
+		}
 
 		const url = new URL(imageUrl);
 		const parts = url.pathname.split("/");

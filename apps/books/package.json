@@ -5,7 +5,7 @@
 	"scripts": {
 		"link-shared-dir": "ln -s ../../shared shared",
 		"lint:ts": "tsc --noEmit",
-		"lint": "eslint src",
+		"lint": "eslint .",
 		"start": "tsx src/index.ts",
 		"test:ci": "vitest run",
 		"test": "vitest --watch",

@@ -52,7 +52,7 @@ class AmazonScraper {
 		const lines = script?.split("\n") ?? [];
 		const startIndex = lines.findIndex((line) => /var data/i.test(line));
 		const endIndex = lines.findIndex((line) =>
-			/dp60InLastPositionUnrolledImageBlock/i.test(line),
+			/dp60InLastPositionUnrolledImageBlock/.test(line),
 		);
 
 		const src = lines.slice(startIndex, endIndex).join("\n");
@@ -67,8 +67,8 @@ class AmazonScraper {
 			const main = colorImages.initial.find((i) => i.variant === "MAIN");
 
 			return main?.hiRes;
-		} catch (error) {
-			return undefined;
+		} catch {
+			return;
 		}
 	}
 
@@ -89,44 +89,46 @@ class AmazonScraper {
 			const [imageGalleryData] = data?.imageGalleryData || [];
 
 			return imageGalleryData?.mainUrl;
-		} catch (error) {
-			return undefined;
+		} catch {
+			return;
 		}
 	}
 
 	#getBookDetails($page: Cheerio<AnyNode>) {
-		return $page
+		const info = $page
 			.find("#rich_product_information [role='listitem']")
-			.toArray()
-			.reduce((acc, item) => {
-				const $item = $(item);
-				const label = $item.find(".rpi-attribute-label span").text().trim();
-				const value = $item.find(".rpi-attribute-value span").text().trim();
+			.toArray();
 
-				if (/Publisher/i.test(label)) {
-					acc.publisher = value;
-				}
+		const details = {} as IScrapedBookDetails;
+		for (const item of info) {
+			const $item = $(item);
+			const label = $item.find(".rpi-attribute-label span").text().trim();
+			const value = $item.find(".rpi-attribute-value span").text().trim();
 
-				if (/Print length/i.test(label)) {
-					const [, pageCount] = /(\d+)/.exec(value) ?? [];
-					acc.pageCount = Number(pageCount);
-				}
+			if (/Publisher/.test(label)) {
+				details.publisher = value;
+			}
 
-				if (/Publication date/i.test(label)) {
-					const publishedDate = new Date(value);
-					acc.publishedDate = publishedDate.toISOString().slice(0, 10);
-				}
+			if (/Print length/.test(label)) {
+				const [, pageCount] = /(\d+)/.exec(value) ?? [];
+				details.pageCount = Number(pageCount);
+			}
 
-				if (/ISBN-10/i.test(label)) {
-					acc.isbn10 = value;
-				}
+			if (/Publication date/.test(label)) {
+				const publishedDate = new Date(value);
+				details.publishedDate = publishedDate.toISOString().slice(0, 10);
+			}
 
-				if (/ISBN-13/i.test(label)) {
-					acc.isbn13 = value.replace(/[^\d]/g, "");
-				}
+			if (/ISBN-10/.test(label)) {
+				details.isbn10 = value;
+			}
 
-				return acc;
-			}, {} as IScrapedBookDetails);
+			if (/ISBN-13/.test(label)) {
+				details.isbn13 = value.replaceAll(/\D/g, "");
+			}
+		}
+
+		return details;
 	}
 }
 
