@@ -109,4 +109,5 @@ wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceU
 "2024-02-08" ,             ,             ,       ,"History"             ,"https://www.amazon.co.uk/Rise-Fall-Dinosaurs-Untold-Story/dp/150983009X"
 "2024-02-09" ,             ,             ,       ,"History"             ,"https://www.amazon.co.uk/Cosa-Nostra-History-Sicilian-Mafia/dp/034093526X"
              ,             ,"2024-02-26" ,   2.0 ,"Children"            ,"https://www.amazon.co.uk/Curious-Incident-Dog-Night-time/dp/0099450259"
-             , , "2024-03-19", 2.5, "Fiction", "https://www.amazon.co.uk/Picture-Dorian-Gray-Penguin-Classics/dp/0141439572"
+             ,             ,"2024-03-19" ,   2.5 ,"Fiction"             ,"https://www.amazon.co.uk/Picture-Dorian-Gray-Penguin-Classics/dp/0141439572"
+             ,"2024-03-15" ,             ,       ,"Fiction"             ,"https://www.amazon.co.uk/Illuminatus-Trilogy-Robert-Shea/dp/0440539811"
