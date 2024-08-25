@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { replyWithFile } from "@ruicsh/helpers";
+import { replyWithFile } from "@ruicsh/local-dev";
 import { http } from "msw";
 
 export const handlers = [
@@ -38,6 +38,12 @@ export const handlers = [
 	http.get(/abebooks\.co\.uk/, () =>
 		replyWithFile(
 			path.join(import.meta.dirname, "__data__/abebooks-book.html"),
+		),
+	),
+
+	http.get(/openlibrary\.org/, () =>
+		replyWithFile(
+			path.join(import.meta.dirname, "__data__/openlibrary-book.json"),
 		),
 	),
 ];

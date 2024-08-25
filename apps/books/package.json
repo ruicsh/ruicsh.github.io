@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@ruicsh/helpers": "*",
+		"@ruicsh/local-dev": "*",
 		"@ruicsh/services": "*"
 	}
 }
