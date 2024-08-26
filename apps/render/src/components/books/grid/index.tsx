@@ -12,7 +12,7 @@ export function Grid() {
 	}
 
 	return (
-		<ul className="mb-8 grid grid-cols-3 gap-8">
+		<ul className="mb-8 grid grid-cols-6 gap-8">
 			{books.map((book, i) => (
 				<li key={book.title}>
 					<Book book={book} order={i} />
