@@ -45,7 +45,7 @@ class BookScraper {
 			return parsed.pathname.split("/")[1];
 		}
 		if (/hive/.test(parsed.hostname)) {
-			parsed.pathname.split("/")[3];
+			return parsed.pathname.split("/")[3];
 		}
 		if (/psbooks/.test(parsed.hostname)) {
 			return parsed.pathname.split("/")[1];

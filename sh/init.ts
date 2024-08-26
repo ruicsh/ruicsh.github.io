@@ -5,6 +5,7 @@ async function main() {
 	const $ = shell.$({ verbose: true });
 
 	await $`ln -s ../ruicsh-data shared`;
+	await $`rm apps/*/shared`;
 	await $`npm run link-shared-dir -- --force`;
 }
 
