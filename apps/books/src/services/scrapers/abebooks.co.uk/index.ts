@@ -1,5 +1,5 @@
-import fletch from "@tuplo/fletcher";
-import { type AnyNode, type Cheerio } from "cheerio";
+import { fetch } from "@ruicsh/helpers";
+import type { CheerioAPI } from "cheerio";
 
 type IFetchBookArgs = {
 	url: string;
@@ -8,43 +8,41 @@ type IFetchBookArgs = {
 class AbebooksScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
-		const $page = await fletch.html(url);
-		const details = this.#getBookDetails($page);
-		const cover = this.#getCover($page);
+		const $ = await fetch.html(url);
+		const details = this.#getBookDetails($);
+		const cover = this.#getCover($);
 
 		return { ...details, cover };
 	}
 
-	#getBookDetails($page: Cheerio<AnyNode>) {
-		const isbn = this.#getIsbn($page);
-		const publisher = this.#getPublisher($page);
+	#getBookDetails($: CheerioAPI) {
+		const isbn = this.#getIsbn($);
+		const publisher = this.#getPublisher($);
 
 		return { ...isbn, publisher };
 	}
 
-	#getIsbn($page: Cheerio<AnyNode>) {
-		const isbn10 = $page
-			.find('[data-csa-c-navigate-identifier^="ISBN10"]')
+	#getIsbn($: CheerioAPI) {
+		const isbn10 = $('[data-csa-c-navigate-identifier^="ISBN10"]')
 			.text()
 			.trim();
 
-		const isbn13 = $page
-			.find("[data-csa-c-navigate-identifier^='ISBN13']")
+		const isbn13 = $("[data-csa-c-navigate-identifier^='ISBN13']")
 			.text()
 			.trim();
 
 		return { isbn10, isbn13 };
 	}
 
-	#getPublisher($page: Cheerio<AnyNode>) {
-		const publisherTxt = $page.find("#book-publisher").text().trim();
+	#getPublisher($: CheerioAPI) {
+		const publisherTxt = $("#book-publisher").text().trim();
 		const [publisher] = publisherTxt.split(",");
 
 		return publisher.trim();
 	}
 
-	#getCover($page: Cheerio<AnyNode>) {
-		const imageUrl = $page.find("[itemprop=image]").attr("content");
+	#getCover($: CheerioAPI) {
+		const imageUrl = $("[itemprop=image]").attr("content");
 		if (!imageUrl) {
 			return;
 		}

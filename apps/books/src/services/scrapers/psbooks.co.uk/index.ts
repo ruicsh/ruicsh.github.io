@@ -1,5 +1,6 @@
-import fletch from "@tuplo/fletcher";
-import $, { type AnyNode, type Cheerio } from "cheerio";
+import { fetch } from "@ruicsh/helpers";
+import type { Cheerio, CheerioAPI } from "cheerio";
+import type { Element } from "domhandler";
 
 type IFetchBookArgs = {
 	url: string;
@@ -8,26 +9,26 @@ type IFetchBookArgs = {
 class PostscriptScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
-		const $page = await fletch.html(url);
-		const details = this.#getBookDetails($page);
-		const cover = this.#getCover($page);
+		const $ = await fetch.html(url);
+		const details = this.#getBookDetails($);
+		const cover = this.#getCover($);
 
 		return { ...details, cover };
 	}
 
-	#getBookDetails($page: Cheerio<AnyNode>) {
-		const $productInfo = $page.find(".product-information__details");
+	#getBookDetails($: CheerioAPI) {
+		const $productInfo = $(".product-information__details");
 
-		const isbn = this.#getIsbn($productInfo);
+		const isbn = this.#getIsbn($, $productInfo);
 
-		const pageCount = this.#getPageCount($productInfo);
-		const publisher = this.#getValueForLabel($productInfo, "Publisher");
+		const pageCount = this.#getPageCount($, $productInfo);
+		const publisher = this.#getValueForLabel($, $productInfo, "Publisher");
 
 		return { ...isbn, publisher, pageCount };
 	}
 
-	#getPageCount($productInfo: Cheerio<AnyNode>) {
-		const txt = this.#getValueForLabel($productInfo, "Pages");
+	#getPageCount($: CheerioAPI, $productInfo: Cheerio<Element>) {
+		const txt = this.#getValueForLabel($, $productInfo, "Pages");
 		if (!txt) {
 			return;
 		}
@@ -37,8 +38,8 @@ class PostscriptScraper {
 		return Number(pageCount);
 	}
 
-	#getIsbn($productInfo: Cheerio<AnyNode>) {
-		const txt = this.#getValueForLabel($productInfo, "ISBN");
+	#getIsbn($: CheerioAPI, $productInfo: Cheerio<Element>) {
+		const txt = this.#getValueForLabel($, $productInfo, "ISBN");
 		if (!txt) {
 			return;
 		}
@@ -55,7 +56,11 @@ class PostscriptScraper {
 		return { isbn10, isbn13 };
 	}
 
-	#getValueForLabel($productInfo: Cheerio<AnyNode>, label: string) {
+	#getValueForLabel(
+		$: CheerioAPI,
+		$productInfo: Cheerio<Element>,
+		label: string,
+	) {
 		const rg = new RegExp(label, "i");
 		const value = $productInfo
 			.find("li")
@@ -74,8 +79,8 @@ class PostscriptScraper {
 		return $value.find(".value").text().trim();
 	}
 
-	#getCover($page: Cheerio<AnyNode>) {
-		const imageUrl = $page.find("[property=og:image]").attr("content");
+	#getCover($: CheerioAPI) {
+		const imageUrl = $("[property=og:image]").attr("content");
 		if (!imageUrl) {
 			return;
 		}

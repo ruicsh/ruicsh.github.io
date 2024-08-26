@@ -1,6 +1,7 @@
-import fletch from "@tuplo/fletcher";
-import { type AnyNode, type Cheerio } from "cheerio";
+import { fetch } from "@ruicsh/helpers";
+import type { Cheerio, CheerioAPI } from "cheerio";
 import * as df from "date-fns";
+import type { Element } from "domhandler";
 
 type IFetchBookArgs = {
 	url: string;
@@ -9,15 +10,15 @@ type IFetchBookArgs = {
 class BlackwellsScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
-		const $page = await fletch.html(url);
-		const details = this.#getBookDetails($page);
+		const $ = await fetch.html(url);
+		const details = this.#getBookDetails($);
 		const cover = this.#getCover(details.isbn13 || details.isbn10 || "");
 
 		return { ...details, cover };
 	}
 
-	#getBookDetails($page: Cheerio<AnyNode>) {
-		const $productInfo = $page.find(".product-detail");
+	#getBookDetails($: CheerioAPI) {
+		const $productInfo = $(".product-detail");
 
 		const isbn = this.#getIsbn($productInfo);
 		const pageCount = this.#getPageCount($productInfo);
@@ -27,7 +28,7 @@ class BlackwellsScraper {
 		return { ...isbn, pageCount, publisher, publishedDate };
 	}
 
-	#getPageCount($productInfo: Cheerio<AnyNode>) {
+	#getPageCount($productInfo: Cheerio<Element>) {
 		const txt = $productInfo.find("[itemprop=numberOfPages]").text().trim();
 		if (!txt) {
 			return;
@@ -36,7 +37,7 @@ class BlackwellsScraper {
 		return Number(txt);
 	}
 
-	#getPublisher($productInfo: Cheerio<AnyNode>) {
+	#getPublisher($productInfo: Cheerio<Element>) {
 		const txt = $productInfo.find("[itemprop=publisher]").text().trim();
 		if (!txt) {
 			return;
@@ -45,14 +46,14 @@ class BlackwellsScraper {
 		return txt;
 	}
 
-	#getPublishedDate($productInfo: Cheerio<AnyNode>) {
+	#getPublishedDate($productInfo: Cheerio<Element>) {
 		const txt = $productInfo.find("[itemProp=datePublished]").text();
 		const date = df.parse(txt, "dd MMM yyyy", new Date());
 
 		return date.toISOString().slice(0, 10);
 	}
 
-	#getIsbn($productInfo: Cheerio<AnyNode>) {
+	#getIsbn($productInfo: Cheerio<Element>) {
 		let isbn10;
 		let isbn13;
 		const txt = $productInfo.find("[itemprop=isbn]").text().trim();

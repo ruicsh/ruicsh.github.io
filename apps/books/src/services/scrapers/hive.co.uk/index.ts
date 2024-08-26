@@ -1,6 +1,7 @@
-import fletch from "@tuplo/fletcher";
-import { type AnyNode, type Cheerio } from "cheerio";
+import { fetch } from "@ruicsh/helpers";
+import type { Cheerio, CheerioAPI } from "cheerio";
 import * as df from "date-fns";
+import type { Element } from "domhandler";
 
 type IFetchBookArgs = {
 	url: string;
@@ -9,15 +10,15 @@ type IFetchBookArgs = {
 class HiveScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
-		const $page = await fletch.html(url);
-		const details = this.#getBookDetails($page);
-		const cover = this.#getCover($page);
+		const $ = await fetch.html(url);
+		const details = this.#getBookDetails($);
+		const cover = this.#getCover($);
 
 		return { ...details, cover };
 	}
 
-	#getBookDetails($page: Cheerio<AnyNode>) {
-		const $productInfo = $page.find(".productInfoWrapGrid .productInfo");
+	#getBookDetails($: CheerioAPI) {
+		const $productInfo = $(".productInfoWrapGrid .productInfo");
 
 		const pageCount = this.#getPageCount($productInfo);
 		const publisher = this.#getPublisher($productInfo);
@@ -27,25 +28,25 @@ class HiveScraper {
 		return { pageCount: Number(pageCount), publisher, publishedDate, ...isbn };
 	}
 
-	#getPageCount($productInfo: Cheerio<AnyNode>) {
+	#getPageCount($productInfo: Cheerio<Element>) {
 		const txt = $productInfo.find("[itemProp=numberOfPages]").text();
 		const [, pageCount] = /(\d+) pages/.exec(txt) || [];
 
 		return Number(pageCount);
 	}
 
-	#getPublisher($productInfo: Cheerio<AnyNode>) {
+	#getPublisher($productInfo: Cheerio<Element>) {
 		return $productInfo.find("[itemProp=publisher]").text().trim();
 	}
 
-	#getPublishedDate($productInfo: Cheerio<AnyNode>) {
+	#getPublishedDate($productInfo: Cheerio<Element>) {
 		const txt = $productInfo.find("[itemProp=datePublished]").text();
 		const date = df.parse(txt, "dd/MM/yyyy", new Date());
 
 		return date.toISOString().slice(0, 10);
 	}
 
-	#getIsbn($productInfo: Cheerio<AnyNode>) {
+	#getIsbn($productInfo: Cheerio<Element>) {
 		let isbn10;
 		let isbn13;
 		const txt = $productInfo.find("[itemProp=isbn]").text().trim();
@@ -59,8 +60,8 @@ class HiveScraper {
 		return { isbn10, isbn13 };
 	}
 
-	#getCover($page: Cheerio<AnyNode>) {
-		const imageUrl = $page.find("[name=twitter:image]").attr("content");
+	#getCover($: CheerioAPI) {
+		const imageUrl = $("[name=twitter:image]").attr("content");
 		if (!imageUrl) {
 			return;
 		}

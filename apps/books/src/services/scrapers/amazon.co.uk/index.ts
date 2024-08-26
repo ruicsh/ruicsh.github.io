@@ -1,7 +1,7 @@
 import vm from "node:vm";
 
-import fletch from "@tuplo/fletcher";
-import $, { type AnyNode, type Cheerio } from "cheerio";
+import { fetch } from "@ruicsh/helpers";
+import type { CheerioAPI } from "cheerio";
 
 type IPageMediaData = {
 	audibleData: undefined;
@@ -32,22 +32,22 @@ type IFetchBookArgs = {
 class AmazonScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
-		const $page = await fletch.html(url);
-		const details = this.#getBookDetails($page);
-		const cover = this.#getCover($page);
+		const $ = await fetch.html(url);
+		const details = this.#getBookDetails($);
+		const cover = this.#getCover($);
 
 		return { ...details, cover };
 	}
 
-	#getCover($page: Cheerio<AnyNode>) {
-		const fromImageBlock = this.#getCoverFromImageBlock($page);
-		const fromImageGallery = this.#getCoverFromImageGalleryData($page);
+	#getCover($: CheerioAPI) {
+		const fromImageBlock = this.#getCoverFromImageBlock($);
+		const fromImageGallery = this.#getCoverFromImageGalleryData($);
 
 		return fromImageBlock || fromImageGallery;
 	}
 
-	#getCoverFromImageBlock($page: Cheerio<AnyNode>) {
-		const script = $page.find("script:contains('ImageBlockATF')").html();
+	#getCoverFromImageBlock($: CheerioAPI) {
+		const script = $("script:contains('ImageBlockATF')").html();
 
 		const lines = script?.split("\n") ?? [];
 		const startIndex = lines.findIndex((line) => /var data/i.test(line));
@@ -72,8 +72,8 @@ class AmazonScraper {
 		}
 	}
 
-	#getCoverFromImageGalleryData($page: Cheerio<AnyNode>) {
-		const script = $page.find("script:contains('imageGalleryData')").html();
+	#getCoverFromImageGalleryData($: CheerioAPI) {
+		const script = $("script:contains('imageGalleryData')").html();
 
 		const lines = script?.split("\n") ?? [];
 		const startIndex = lines.findIndex((line) => /var data/i.test(line));
@@ -94,10 +94,8 @@ class AmazonScraper {
 		}
 	}
 
-	#getBookDetails($page: Cheerio<AnyNode>) {
-		const info = $page
-			.find("#rich_product_information [role='listitem']")
-			.toArray();
+	#getBookDetails($: CheerioAPI) {
+		const info = $("#rich_product_information [role='listitem']").toArray();
 
 		const details = {} as IScrapedBookDetails;
 		for (const item of info) {
