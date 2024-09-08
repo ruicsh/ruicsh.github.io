@@ -1,0 +1,26 @@
+{
+	"works": [{ "key": "/works/OL2745971W" }],
+	"title": "The Terminal Beach",
+	"publishers": ["Penguin Books"],
+	"publish_date": "1974",
+	"key": "/books/OL49646674M",
+	"type": { "key": "/type/edition" },
+	"identifiers": {},
+	"covers": [14429611],
+	"isbn_10": ["0140024999"],
+	"classifications": {},
+	"contributors": [{ "name": "David Pelham", "role": "Cover Art" }],
+	"physical_format": "Paperback",
+	"languages": [{ "key": "/languages/eng" }],
+	"publish_places": ["London"],
+	"latest_revision": 3,
+	"revision": 3,
+	"created": {
+		"type": "/type/datetime",
+		"value": "2023-09-29T06:23:23.295958"
+	},
+	"last_modified": {
+		"type": "/type/datetime",
+		"value": "2023-09-29T06:24:04.053723"
+	}
+}

@@ -2,6 +2,7 @@ import AbebooksScraper from "./abebooks.co.uk";
 import AmazonScraper from "./amazon.co.uk";
 import BlackwellsScraper from "./blackwells.co.uk";
 import HiveScraper from "./hive.co.uk";
+import OpenLibraryScraper from "./openlibrary.org";
 import PostscriptScraper from "./psbooks.co.uk";
 
 type IFetchBookArgs = {
@@ -14,6 +15,7 @@ class BookScraper {
 	$hive = new HiveScraper();
 	$psbooks = new PostscriptScraper();
 	$blackwells = new BlackwellsScraper();
+	$openlibrary = new OpenLibraryScraper();
 
 	async fetchBookPage(
 		args: IFetchBookArgs,
@@ -36,6 +38,9 @@ class BookScraper {
 		if (/abebooks/.test(parsed.hostname)) {
 			return this.$abebooks.fetchBookPage({ url });
 		}
+		if (/openlibrary/.test(parsed.hostname)) {
+			return this.$openlibrary.fetchBookPage({ url });
+		}
 	}
 
 	getSlugFromUrl(url: string) {
@@ -54,6 +59,9 @@ class BookScraper {
 			return parsed.pathname.split("/")[2];
 		}
 		if (/abebooks/.test(parsed.hostname)) {
+			return parsed.pathname.split("/")[2];
+		}
+		if (/openlibrary/.test(parsed.hostname)) {
 			return parsed.pathname.split("/")[2];
 		}
 	}
