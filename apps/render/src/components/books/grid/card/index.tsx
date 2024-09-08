@@ -27,12 +27,14 @@ export function Book(props: IProps) {
 
 	return (
 		<article className="flex w-full flex-col gap-2">
-			<Image
-				src={`/books/covers/${slug}.jpg`}
-				style={{ backgroundColor: coverColor }}
-				alt=""
-				className="border"
-			/>
+			<div className="aspect-[0.65] overflow-hidden">
+				<Image
+					src={`/books/covers/${slug}.jpg`}
+					style={{ backgroundColor: coverColor }}
+					alt=""
+					className="border"
+				/>
+			</div>
 			<aside className="flex flex-col gap-[1px]">
 				<h1 className="font-heading text-lg font-bold leading-none">{title}</h1>
 				{subtitle && (

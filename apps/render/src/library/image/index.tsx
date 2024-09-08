@@ -39,7 +39,6 @@ export function Image(props: IProps) {
 	return (
 		<NextImage
 			alt={alt}
-			style={style}
 			blurDataURL={blurDataUrl}
 			className={cls}
 			height={size.height}
@@ -47,6 +46,7 @@ export function Image(props: IProps) {
 			placeholder={blurDataUrl ? "blur" : "empty"}
 			ref={rootRef}
 			src={srcUrl.href}
+			style={style}
 			width={size.width}
 		/>
 	);
