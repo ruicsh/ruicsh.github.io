@@ -1,6 +1,6 @@
 import { setTimeout } from "node:timers/promises";
 
-import { get, rgbToHex } from "@ruicsh/helpers";
+import { fetch, rgbToHex } from "@ruicsh/helpers";
 import { cmsdb, log } from "@ruicsh/services";
 import sharp from "sharp";
 
@@ -16,7 +16,7 @@ export async function getCoverColor() {
 		const { id, cover, slug } = book;
 		log.info(slug);
 
-		const remote = await get(cover);
+		const remote = await fetch.stream(cover);
 		const { dominant } = await remote.pipe(sharp()).stats();
 		const coverColor = rgbToHex(dominant);
 

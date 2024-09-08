@@ -11,4 +11,7 @@ export const fetch = {
 		const response = await got(url, { responseType: "json" });
 		return response.body;
 	},
+	stream: async (url: string) => {
+		return got.stream({ url });
+	},
 };

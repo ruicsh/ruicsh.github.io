@@ -1,7 +1,7 @@
 import path from "node:path";
 import { setTimeout } from "node:timers/promises";
 
-import { get } from "@ruicsh/helpers";
+import { fetch } from "@ruicsh/helpers";
 import { BunnyCdn, cmsdb, log } from "@ruicsh/services";
 import sharp from "sharp";
 
@@ -21,7 +21,7 @@ export async function resizeCovers() {
 		const basename = `${slug}.jpg`;
 		const remoteFilePath = path.join("books/covers", basename);
 
-		const remote = await get(cover);
+		const remote = await fetch.stream(cover);
 		const src = remote.pipe(sharp());
 		const buffer = await src
 			.resize({ width: 320 })

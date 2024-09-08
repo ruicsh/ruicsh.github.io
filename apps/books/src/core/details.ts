@@ -1,6 +1,6 @@
 import { setTimeout } from "node:timers/promises";
 
-import { get } from "@ruicsh/helpers";
+import { fetch } from "@ruicsh/helpers";
 import { cmsdb, log } from "@ruicsh/services";
 import sharp from "sharp";
 import slugify from "slugify";
@@ -61,7 +61,7 @@ export async function getBookDetails(book: IBookOnInbox) {
 		return;
 	}
 
-	const remote = await get(cover);
+	const remote = await fetch.stream(cover);
 	const src = remote.pipe(sharp());
 
 	await resizeCover(bookDetails, src);

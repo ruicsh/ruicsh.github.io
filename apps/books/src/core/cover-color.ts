@@ -1,6 +1,6 @@
 import sharp from "sharp";
 
-import { get, rgbToHex } from "@ruicsh/helpers";
+import { fetch, rgbToHex } from "@ruicsh/helpers";
 
 export async function getCoverColor(bookDetails: Partial<IBookDetails>) {
 	const { cover } = bookDetails;
@@ -8,7 +8,7 @@ export async function getCoverColor(bookDetails: Partial<IBookDetails>) {
 		return;
 	}
 
-	const remote = await get(cover);
+	const remote = await fetch.stream(cover);
 	const { dominant } = await remote.pipe(sharp()).stats();
 
 	return rgbToHex(dominant);
