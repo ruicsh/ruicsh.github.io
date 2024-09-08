@@ -17,7 +17,7 @@ export function Genre(props: IProps) {
 
 	return (
 		<li
-			className="flex gap-2 border-b px-1 leading-loose text-neutral-600 transition-colors duration-200 ease-in-out hover:cursor-pointer hover:bg-neutral-100 hover:text-neutral-900"
+			className="flex gap-2 border-b px-1 leading-loose text-stone-600 transition-colors duration-200 ease-in-out hover:cursor-pointer hover:bg-stone-200 hover:text-stone-900"
 			onClick={() => onToggleGenre(slug)}
 		>
 			<input type="checkbox" checked={isActive} />

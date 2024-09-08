@@ -17,7 +17,7 @@ export function GenresList(props: IProps) {
 
 	return (
 		<ul
-			className="absolute top-full z-10 w-[180px] border border-neutral-200 bg-white shadow-lg"
+			className="absolute top-full z-10 w-[180px] border border-stone-300 bg-stone-100 shadow-lg"
 			ref={popupRef}
 			onMouseLeave={onTogglePopup}
 		>

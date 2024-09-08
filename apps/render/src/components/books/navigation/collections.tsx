@@ -13,12 +13,12 @@ export function Collections() {
 		<ul className="flex justify-center gap-3">
 			{[
 				{ value: "read", label: "Read" },
-				{ value: "queue", label: "Queue" },
 				{ value: "wishlist", label: "Wishlist" },
+				{ value: "queue", label: "Queue" },
 			].map(({ value, label }) => (
 				<li key={`books-nav-${value}`} className="py-2">
 					<Button
-						className="font-heading px-2 py-2 text-2xl font-bold uppercase leading-6 text-neutral-400 transition-colors hover:bg-stone-200 hover:text-black aria-pressed:text-black aria-selected:text-black"
+						className="font-heading px-2 py-2 text-2xl font-bold uppercase leading-6 text-stone-400 transition-colors hover:bg-stone-200 hover:text-black aria-pressed:text-black aria-selected:text-black"
 						onClick={onClickOption(value as IBooksCollection)}
 						isActive={value === activeCollection}
 					>

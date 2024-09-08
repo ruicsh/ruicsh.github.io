@@ -17,7 +17,7 @@ export function Genre(props: IProps) {
 
 	return (
 		<button
-			className="inline-flex items-center gap-1 rounded-md border border-stone-200 bg-stone-100 px-1 hover:bg-stone-200"
+			className="inline-flex items-center gap-1 rounded-md border border-stone-200 px-1 hover:bg-stone-100"
 			onClick={toggleActiveGenre}
 			type="button"
 		>

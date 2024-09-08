@@ -21,7 +21,7 @@ export function MainNavigation() {
 				{links.map(({ href, label, isActive }) => (
 					<li key={href}>
 						<Link
-							className="font-heading px-2 font-bold uppercase text-neutral-400 transition-colors aria-selected:text-black"
+							className="font-heading px-2 font-bold uppercase text-stone-400 transition-colors aria-selected:text-black"
 							aria-selected={isActive}
 							href={href}
 						>

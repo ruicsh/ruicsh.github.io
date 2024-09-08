@@ -8,7 +8,7 @@ export function Header(props: IProps) {
 	const { firstName, lastName, label, profiles } = basics;
 
 	return (
-		<header className="grid grid-cols-1 items-center gap-y-8 bg-neutral-100 py-8 pt-10 md:grid-cols-12">
+		<header className="grid grid-cols-1 items-center gap-y-8 bg-stone-100 py-8 pt-10 md:grid-cols-12">
 			<div className="flex flex-col gap-4 md:col-start-2 md:col-end-5">
 				<div>
 					<h1 className="font-heading text-5xl uppercase">

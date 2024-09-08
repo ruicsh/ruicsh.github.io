@@ -11,22 +11,10 @@ type IProps = {
 
 export function Book(props: IProps) {
 	const { book } = props;
-	const {
-		slug,
-		title,
-		coverColor,
-		subtitle,
-		authors,
-		publishedDate,
-		pageCount,
-	} = book;
-
-	const df = new Intl.DateTimeFormat("en-GB", {
-		dateStyle: "medium",
-	});
+	const { slug, title, coverColor, authors } = book;
 
 	return (
-		<article className="flex w-full flex-col gap-2">
+		<article className="flex w-full flex-col gap-1">
 			<div className="aspect-[0.65] overflow-hidden">
 				<Image
 					src={`/books/covers/${slug}.jpg`}
@@ -37,16 +25,7 @@ export function Book(props: IProps) {
 			</div>
 			<aside className="flex flex-col gap-[1px]">
 				<h1 className="font-heading text-lg font-bold leading-none">{title}</h1>
-				{subtitle && (
-					<h2 className="font-heading text-md leading-tight">{subtitle}</h2>
-				)}
 				<p className="text-sm">{authors}</p>
-				<p className="text-xs text-stone-600">
-					{[
-						publishedDate && df.format(new Date(publishedDate)),
-						pageCount && `${pageCount} pages`,
-					].join(", ")}
-				</p>
 			</aside>
 			<div className="mt-auto flex flex-col gap-1 border-t border-t-stone-300 pt-1">
 				<ReadOn book={book} />

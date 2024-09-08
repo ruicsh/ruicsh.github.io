@@ -23,7 +23,7 @@ export function Genres(props: IProps) {
 			<Button
 				onClick={onTogglePopup}
 				aria-selected={isPopupOpen}
-				className="px-2 py-1 text-[.7rem] uppercase hover:bg-neutral-100"
+				className="px-2 py-1 text-[.7rem] uppercase hover:bg-stone-100"
 			>
 				Genres
 			</Button>
