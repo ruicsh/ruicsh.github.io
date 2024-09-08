@@ -39,7 +39,7 @@ export const storageOptions: PersistOptions<IBooksState, IPersistedBooksState> =
 			const { dispatch } = currentState;
 
 			if (Object.keys(persistedState || {}).length === 0) {
-				return { ...initialState, collection: "queue", dispatch };
+				return { ...initialState, collection: "read", dispatch };
 			}
 
 			return Object.assign({}, currentState, persistedState);

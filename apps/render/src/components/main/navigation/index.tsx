@@ -17,11 +17,11 @@ export function MainNavigation() {
 
 	return (
 		<nav aria-label="primary">
-			<ul className="flex gap-2">
+			<ul className="flex justify-center gap-2">
 				{links.map(({ href, label, isActive }) => (
 					<li key={href}>
 						<Link
-							className="font-heading px-2 font-bold uppercase text-neutral-400 transition-colors  aria-selected:text-black"
+							className="font-heading px-2 font-bold uppercase text-neutral-400 transition-colors aria-selected:text-black"
 							aria-selected={isActive}
 							href={href}
 						>

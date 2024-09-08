@@ -32,7 +32,7 @@ export function Book(props: IProps) {
 					src={`/books/covers/${slug}.jpg`}
 					style={{ backgroundColor: coverColor }}
 					alt=""
-					className="border"
+					className="rounded"
 				/>
 			</div>
 			<aside className="flex flex-col gap-[1px]">

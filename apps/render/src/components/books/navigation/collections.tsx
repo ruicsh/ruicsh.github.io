@@ -10,10 +10,10 @@ export function Collections() {
 	};
 
 	return (
-		<ul className="flex gap-3">
+		<ul className="flex justify-center gap-3">
 			{[
-				{ value: "queue", label: "Queue" },
 				{ value: "read", label: "Read" },
+				{ value: "queue", label: "Queue" },
 				{ value: "wishlist", label: "Wishlist" },
 			].map(({ value, label }) => (
 				<li key={`books-nav-${value}`} className="py-2">

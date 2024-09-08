@@ -9,7 +9,7 @@ export function Skills(props: IProps) {
 	const { skills } = resume;
 
 	return (
-		<div className="break col-start-2 col-end-6 flex flex-col gap-4">
+		<div className="break flex flex-col gap-4 md:col-start-2 md:col-end-6">
 			{skills.map((area, i) => (
 				<SkillsArea key={`area-${i}`} area={area} />
 			))}

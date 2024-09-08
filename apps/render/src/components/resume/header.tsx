@@ -8,8 +8,8 @@ export function Header(props: IProps) {
 	const { firstName, lastName, label, profiles } = basics;
 
 	return (
-		<header className="grid grid-cols-12 items-center gap-y-8 bg-neutral-100 py-8 pt-10">
-			<div className="col-start-2 col-end-5 flex flex-col gap-4">
+		<header className="grid grid-cols-1 items-center gap-y-8 bg-neutral-100 py-8 pt-10 md:grid-cols-12">
+			<div className="flex flex-col gap-4 md:col-start-2 md:col-end-5">
 				<div>
 					<h1 className="font-heading text-5xl uppercase">
 						<span className="font-bold">{firstName}</span> {lastName}
@@ -24,7 +24,7 @@ export function Header(props: IProps) {
 					))}
 				</div>
 			</div>
-			<p className="col-start-6 col-end-12 text-xs leading-normal">
+			<p className="text-xs leading-normal md:col-start-6 md:col-end-12">
 				I have a strong background in{" "}
 				<span className="font-bold">React, TypeScript,</span> and{" "}
 				<span className="font-bold">Node.js</span> and a deep interest in{" "}
