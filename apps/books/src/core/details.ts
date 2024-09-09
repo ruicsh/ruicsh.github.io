@@ -9,9 +9,9 @@ import GoogleBooksApi from "src/services/google-books-api";
 import BookScraper from "src/services/scrapers";
 
 import { getCoverColor } from "./cover-color";
-import { resizeCover } from "./resize-cover";
+import { resizeCover } from "./cover";
 
-export async function getBookDetails(book: IBookOnInbox) {
+export async function getBookDetails(book: IBookInInbox) {
 	const { sourceUrl } = book;
 	const existing = await cmsdb("book").where({ sourceUrl }).first();
 	if (existing) {

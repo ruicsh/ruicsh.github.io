@@ -12,8 +12,12 @@ type IRegisterBookGenreArgs = {
 async function registerBookGenre(args: IRegisterBookGenreArgs) {
 	const { bookId, genre, db = cmsdb } = args;
 	const slug = slugify(genre.trim(), { lower: true });
-	let { id: genreId } =
-		(await db("genre").where({ slug }).select("id").first()) || {};
+
+	const record = await db("genre")
+		.where({ slug, type: "books" })
+		.select("id")
+		.first();
+	let { id: genreId } = record || {};
 
 	if (!genreId) {
 		genreId = cuid();

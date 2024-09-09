@@ -3,9 +3,9 @@ import { Readable } from "node:stream";
 
 import { parse } from "csv-parse";
 
-export async function getBooksFromInbox() {
+export async function getFilmsFromInbox() {
 	const uri = new URL("https://raw.githubusercontent.com");
-	uri.pathname = "/ruicsh/ruicsh.github.io/inbox/books.csv";
+	uri.pathname = "/ruicsh/ruicsh.github.io/inbox/films.csv";
 	const response = await fetch(uri.href);
 	if (!response?.body) {
 		throw new Error(`Can't find ${uri.href}`);
@@ -16,16 +16,13 @@ export async function getBooksFromInbox() {
 		parse({ columns: true, delimiter: ",", trim: true }),
 	);
 
-	const books = [];
-	for await (const book of parser) {
-		books.push({
-			...book,
-			queuedOnDate: book.queuedOnDate ? book.queuedOnDate : undefined,
-			wishedOnDate: book.wishedOnDate ? book.wishedOnDate : undefined,
-			readOnDate: book.readOnDate ? book.readOnDate : undefined,
-			rating: book.rating ? Number(book.rating) : undefined,
+	const films = [];
+	for await (const film of parser) {
+		films.push({
+			...film,
+			rating: film.rating ? Number(film.rating) : undefined,
 		});
 	}
 
-	return books as IBookInInbox[];
+	return films as IFilmInInbox[];
 }

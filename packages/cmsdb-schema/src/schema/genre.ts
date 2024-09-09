@@ -9,10 +9,12 @@ export async function initialize(knex: Knex) {
 	await knex.schema.createTable("genre", async (t) => {
 		t.string("id").primary();
 
-		t.string("slug").notNullable().unique();
+		t.string("slug").notNullable();
 		t.string("label").notNullable();
-		t.enum("type", ["books"]).notNullable();
+		t.enum("type", ["books", "films"]).notNullable();
 
 		t.timestamp("createdAt").defaultTo(knex.fn.now());
+
+		t.unique(["slug", "type"]);
 	});
 }

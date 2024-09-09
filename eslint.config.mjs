@@ -35,12 +35,7 @@ export default [
 		rules: {
 			"react/react-in-jsx-scope": "off",
 			"unicorn/prevent-abbreviations": "off",
-			"unicorn/numeric-separators-style": [
-				"error",
-				{
-					number: { minimumDigits: 0 },
-				},
-			],
+			"unicorn/numeric-separators-style": "off",
 		},
 	},
 ];

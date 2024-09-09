@@ -25,6 +25,15 @@ const config = convict({
 			env: "BUNNY_API_KEY",
 		},
 	},
+	tmdb: {
+		apiKey: {
+			default: undefined,
+			doc: "The TMDB API key",
+			env: "TMDB_API_KEY",
+			format: String,
+			sensitive: true,
+		},
+	},
 });
 
 config.validate({ allowed: "strict" });

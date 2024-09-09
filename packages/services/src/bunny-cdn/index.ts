@@ -20,10 +20,10 @@ export class BunnyCdn {
 			StorageHostname: host,
 			Password: AccessKey,
 		} = this.storageZone;
-		const url = new URL(`https://${host}`);
-		url.pathname = path.join(storageZoneName, pathname);
+		const uri = new URL(`https://${host}`);
+		uri.pathname = path.join(storageZoneName, pathname);
 
-		return fetch(url.href, {
+		return fetch(uri.href, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/octet-stream",

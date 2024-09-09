@@ -25,7 +25,7 @@ type IBookDetails = {
 	title: string;
 };
 
-type IBookOnInbox = {
+type IBookInInbox = {
 	genres: string;
 	wishedOnDate?: string;
 	queuedOnDate?: string;
@@ -34,6 +34,6 @@ type IBookOnInbox = {
 	sourceUrl: string;
 };
 
-type IBookToSave = IBookOnInbox & IBookDetails;
+type IBookToSave = IBookInInbox & IBookDetails;
 
 type IBookCollection = "read" | "queue" | "wishlist";
