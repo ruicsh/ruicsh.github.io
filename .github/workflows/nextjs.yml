@@ -54,6 +54,12 @@ jobs:
           GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
           BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
+      - name: Run apps/films
+        run: npm --workspace @ruicsh/films run start
+        env:
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+          BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
+          BUNNY_PULL_ZONE: ${{ secrets.BUNNY_PULL_ZONE }}
       - name: Build with Next.js
         run: |
           npm --workspace @ruicsh/render run normalize-db
