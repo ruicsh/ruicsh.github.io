@@ -1,7 +1,7 @@
 import { server } from "src/mocks/server";
 
 process.env.LOG_LEVEL = "silent";
-process.env.TMDB_API_KEY = "test-api-key";
+process.env.TMDB_ACCESS_TOKEN = "test-access-token";
 
 beforeAll(() => server.listen());
 

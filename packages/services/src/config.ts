@@ -26,10 +26,10 @@ const config = convict({
 		},
 	},
 	tmdb: {
-		apiKey: {
+		accessToken: {
 			default: undefined,
-			doc: "The TMDB API key",
-			env: "TMDB_API_KEY",
+			doc: "The TMDB Access Token",
+			env: "TMDB_ACCESS_TOKEN",
 			format: String,
 			sensitive: true,
 		},

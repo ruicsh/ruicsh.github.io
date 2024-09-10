@@ -19,22 +19,23 @@ export class TMDB {
 	}
 
 	private async _req(command: string, options?: IReqOptions) {
-		const apiKey = config.get("tmdb.apiKey");
-		if (!apiKey) {
-			throw new Error("TMDB API key not set");
+		const accessToken = config.get("tmdb.accessToken");
+		if (!accessToken) {
+			throw new Error("TMDB Access Token not set");
 		}
 
 		const { searchParams = {} } = options || {};
 		const uri = new URL(path.join(this.#baseHref, command));
-		const sp = new URLSearchParams({
-			...searchParams,
-			api_key: apiKey,
-		});
+		const sp = new URLSearchParams(searchParams);
 		uri.search = sp.toString();
 
 		await setTimeout(process.env.VITEST_WORKER_ID ? 0 : 1_000);
 
-		const response = await fetch(uri.href);
+		const response = await fetch(uri.href, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 		if (!response.ok) {
 			throw new Error(`Failed to fetch ${uri.href}`);
 		}
