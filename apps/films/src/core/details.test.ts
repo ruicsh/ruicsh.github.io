@@ -5,6 +5,8 @@ import { reset } from "src/services/cmsdb/reset";
 
 import { getFilmDetails } from "./details";
 
+vi.mock("sharp", () => ({}));
+
 describe("getFilmDetails", () => {
 	beforeAll(async () => {
 		await cmsdbSchema.initialize(cmsdb);
