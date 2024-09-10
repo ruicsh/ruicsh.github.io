@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import { devtools, persist, redux } from "zustand/middleware";
 
-import { type IBooksState } from "./types.d";
 import { initialState } from "./initial-state";
 import { reducer } from "./reducer";
 import { storageOptions } from "./storage";
+import type { IFilmsState } from "./types.d";
 
-export const useBooksStore = create<IBooksState>()(
+export const useFilmsStore = create<IFilmsState>()(
 	persist(devtools(redux(reducer, initialState)), storageOptions),
 );
 
 export function useDispatch() {
-	return useBooksStore((state) => state.dispatch);
+	return useFilmsStore((state) => state.dispatch);
 }
 
 export type { IAction } from "./types.d";

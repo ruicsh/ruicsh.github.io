@@ -15,7 +15,7 @@ export function QueuedOn(props: IProps) {
 	});
 
 	return (
-		<p className="text-[.7rem] font-bold text-stone-600">
+		<p className="text-[.7rem] text-stone-600">
 			Queued on {df.format(new Date(queuedOnDate))}
 		</p>
 	);

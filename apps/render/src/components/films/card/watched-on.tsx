@@ -1,13 +1,13 @@
 import { StarRating } from "src/library/star-rating";
 
 type IProps = {
-	book: IBook;
+	film: IFilm;
 };
 
-export function ReadOn(props: IProps) {
-	const { book } = props;
-	const { readOnDate, rating } = book;
-	if (!readOnDate) {
+export function WatchedOn(props: IProps) {
+	const { film } = props;
+	const { watchedOnDate, rating } = film;
+	if (!watchedOnDate) {
 		return;
 	}
 
@@ -18,7 +18,7 @@ export function ReadOn(props: IProps) {
 	return (
 		<>
 			<p className="text-[.7rem] text-stone-600">
-				Read on {df.format(new Date(readOnDate))}
+				Watched on {df.format(new Date(watchedOnDate))}
 			</p>
 			<StarRating id="start-rating" value={rating} />
 		</>

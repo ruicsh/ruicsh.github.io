@@ -1,11 +1,11 @@
 type IProps = {
-	book: IBook;
+	film: IFilm;
 };
 
 export function WishedOn(props: IProps) {
-	const { book } = props;
-	const { readOnDate, queuedOnDate, wishedOnDate } = book;
-	if (readOnDate || queuedOnDate || !wishedOnDate) {
+	const { film } = props;
+	const { watchedOnDate, wishedOnDate } = film;
+	if (watchedOnDate || !wishedOnDate) {
 		return;
 	}
 
@@ -14,7 +14,7 @@ export function WishedOn(props: IProps) {
 	});
 
 	return (
-		<p className="text-[.7rem] text-stone-600">
+		<p className="text-[.7rem] font-bold text-stone-600">
 			Wished on {df.format(new Date(wishedOnDate))}
 		</p>
 	);

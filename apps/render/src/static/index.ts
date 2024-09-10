@@ -5,15 +5,17 @@ import path from "node:path";
 import { cmsdb } from "@ruicsh/services";
 
 import { pressStaticBooks } from "./books";
+import { pressStaticFilms } from "./films";
 
 async function main() {
-	const staticDataDir = path.join(process.cwd(), "/public/static/data");
+	const staticDataDir = path.resolve("public/static/data");
 	const stat = await fs.stat(staticDataDir).catch(() => {});
 	if (!stat) {
 		fs.mkdir(staticDataDir, { recursive: true });
 	}
 
 	await pressStaticBooks({ staticDataDir, cmsdb });
+	await pressStaticFilms({ staticDataDir, cmsdb });
 
 	await cmsdb.destroy();
 }

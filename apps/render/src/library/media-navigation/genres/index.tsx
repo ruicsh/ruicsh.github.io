@@ -1,15 +1,20 @@
+"use client";
+
 import { useState, type MouseEvent } from "react";
 
 import { Button } from "src/library/button";
+import type { IGenre } from "src/library/media-navigation/types.d";
 
 import { GenresList } from "./list";
 
 type IProps = {
-	genres: IBookGenre[];
+	activeGenres: string[];
+	genres: IGenre[];
+	onToggleGenre: (activeGenre: string) => void;
 };
 
 export function Genres(props: IProps) {
-	const { genres } = props;
+	const { activeGenres, genres, onToggleGenre } = props;
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
 
 	const onTogglePopup = (event?: MouseEvent) => {
@@ -28,7 +33,12 @@ export function Genres(props: IProps) {
 				Genres
 			</Button>
 			{isPopupOpen && (
-				<GenresList genres={genres} onTogglePopup={onTogglePopup} />
+				<GenresList
+					activeGenres={activeGenres}
+					genres={genres}
+					onTogglePopup={onTogglePopup}
+					onToggleGenre={onToggleGenre}
+				/>
 			)}
 		</div>
 	);

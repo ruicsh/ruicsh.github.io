@@ -1,16 +1,16 @@
 export type IAction =
 	| { type: "SET_COLLECTION"; payload: { collection: string } }
-	| { type: "SET_BOOKS"; payload: { books: IBook[] } }
+	| { type: "SET_FILMS"; payload: { films: IFilm[] } }
 	| { type: "TOGGLE_GENRE"; payload: { genre: string } };
 
-export type IBooksState = {
-	books: IBook[];
+export type IFilmsState = {
+	films: IFilm[];
 	collection?: string;
 	dispatch: (action: IAction) => IAction;
 	genres: string[];
-	isBooksLoading: boolean;
+	isFilmsLoading: boolean;
 };
 
-export type IPersistedBooksState = Pick<IBooksState, "collection"> & {
+export type IPersistedFilmsState = Pick<IFilmsState, "collection"> & {
 	genres?: string[];
 };

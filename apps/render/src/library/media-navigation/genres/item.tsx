@@ -1,19 +1,16 @@
-import { useBooksStore, useDispatch } from "src/store/books";
+import type { IGenre } from "../types.d";
 
 type IProps = {
-	genre: IBookGenre;
+	activeGenres: string[];
+	genre: IGenre;
+	onToggleGenre: (activeGenre: string) => void;
 };
 
 export function Genre(props: IProps) {
-	const { genre } = props;
+	const { activeGenres = [], genre, onToggleGenre } = props;
 	const { slug, label } = genre;
-	const activeGenres = useBooksStore((state) => state.genres);
-	const isActive = activeGenres.includes(slug);
-	const dispatch = useDispatch();
 
-	const onToggleGenre = (activeGenre: string) => {
-		dispatch({ type: "TOGGLE_GENRE", payload: { genre: activeGenre } });
-	};
+	const isActive = activeGenres.includes(slug);
 
 	return (
 		<li

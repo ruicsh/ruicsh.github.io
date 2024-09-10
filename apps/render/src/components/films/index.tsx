@@ -5,38 +5,37 @@ import { useEffect } from "react";
 import { List } from "src/library/list";
 import { MediaNavigation } from "src/library/media-navigation";
 import type { IGenre } from "src/library/media-navigation/types.d";
-import { useBooksStore, useDispatch } from "src/store/books";
-import { selectBooks } from "src/store/books/selectors";
+import { useDispatch, useFilmsStore } from "src/store/films";
+import { selectFilms } from "src/store/films/selectors";
 
-import { Book } from "./card";
+import { Film } from "./card";
 
 const collections = [
-	{ value: "read", label: "Read" },
+	{ value: "watched", label: "Watched" },
 	{ value: "wishlist", label: "Wishlist" },
-	{ value: "queue", label: "Queue" },
 ];
 
 type IProps = {
 	genres: IGenre[];
 };
 
-export function Books(props: IProps) {
+export function Films(props: IProps) {
 	const { genres } = props;
 	const dispatch = useDispatch();
-	const { books } = useBooksStore(selectBooks);
+	const { films } = useFilmsStore(selectFilms);
 
-	const activeCollection = useBooksStore((state) => state.collection);
+	const activeCollection = useFilmsStore((state) => state.collection);
 
 	useEffect(() => {
-		fetch("/static/data/books.json")
+		fetch("/static/data/films.json")
 			.then((response) => response.json())
-			.then((books) => dispatch({ type: "SET_BOOKS", payload: { books } }));
+			.then((films) => dispatch({ type: "SET_FILMS", payload: { films } }));
 	}, [dispatch]);
 
 	useEffect(() => {
-		useBooksStore.persist.rehydrate();
+		useFilmsStore.persist.rehydrate();
 
-		const onPopState = () => useBooksStore.persist.rehydrate();
+		const onPopState = () => useFilmsStore.persist.rehydrate();
 		window.addEventListener("popstate", onPopState);
 
 		return () => {
@@ -44,13 +43,14 @@ export function Books(props: IProps) {
 		};
 	}, []);
 
-	const activeGenres = useBooksStore((state) => state.genres);
+	const activeGenres = useFilmsStore((state) => state.genres);
 
 	const onChangeCollection = (collection: string) => {
 		dispatch({ type: "SET_COLLECTION", payload: { collection } });
 	};
 
 	const onToggleGenre = (activeGenre: string) => {
+		console.log("ruic:onToggleGenre", activeGenre);
 		dispatch({ type: "TOGGLE_GENRE", payload: { genre: activeGenre } });
 	};
 
@@ -64,9 +64,9 @@ export function Books(props: IProps) {
 				onChangeCollection={onChangeCollection}
 				onToggleGenre={onToggleGenre}
 			/>
-			<List<IBook>
-				itemRenderer={(book, i) => <Book book={book} order={i} />}
-				items={books}
+			<List<IFilm>
+				itemRenderer={(film, i) => <Film film={film} order={i} />}
+				items={films}
 				keyFactory={(book) => book.title}
 			/>
 		</div>

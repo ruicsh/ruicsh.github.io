@@ -1,5 +1,5 @@
 import { cmsdb } from "@ruicsh/services";
-import { type Knex } from "knex";
+import type { Knex } from "knex";
 
 export const ITEMS_PER_PAGE = 18;
 
@@ -18,7 +18,7 @@ export async function getBookGenres() {
 	return bookGenres;
 }
 
-function getCollection(book: IBook): IBooksCollection {
+function getCollection(book: IBook) {
 	const { readOnDate, queuedOnDate } = book;
 	if (readOnDate) return "read";
 	if (queuedOnDate) return "queue";
@@ -28,7 +28,7 @@ function getCollection(book: IBook): IBooksCollection {
 
 type IGetBooksArgs = {
 	db?: Knex;
-	collection: IBooksCollection;
+	collection: string;
 	page?: number;
 };
 
@@ -39,20 +39,20 @@ export async function getBooks(args?: IGetBooksArgs) {
 	const limit = page ? ITEMS_PER_PAGE : -1;
 
 	const commonFields = [
-		"id",
 		"authors",
+		"coverColor",
 		"description",
+		"id",
 		"pageCount",
 		"publishedDate",
 		"publisher",
+		"queuedOnDate",
+		"rating",
+		"readOnDate",
 		"slug",
 		"subtitle",
 		"title",
-		"coverColor",
 		"wishedOnDate",
-		"queuedOnDate",
-		"readOnDate",
-		"rating",
 	];
 
 	let data: IBook[];
@@ -118,7 +118,7 @@ export async function getBooks(args?: IGetBooksArgs) {
 }
 
 type IGetCollectionMetaArgs = {
-	collection: IBooksCollection;
+	collection: string;
 };
 
 export async function getCollectionMeta(args: IGetCollectionMetaArgs) {
@@ -132,5 +132,8 @@ export async function getCollectionMeta(args: IGetCollectionMetaArgs) {
 }
 
 export async function getGenres() {
-	return cmsdb("genre").select("label", "slug").orderBy("label");
+	return cmsdb("genre")
+		.where({ type: "books" })
+		.select("label", "slug")
+		.orderBy("label");
 }

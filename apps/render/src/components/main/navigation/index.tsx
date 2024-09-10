@@ -8,6 +8,7 @@ export function MainNavigation() {
 
 	const links = [
 		{ href: "/", label: "Home" },
+		{ href: "/films", label: "Films" },
 		{ href: "/books", label: "Books" },
 		{ href: "/resume", label: "Resume" },
 	].map((link) => ({
