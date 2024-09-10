@@ -7,7 +7,7 @@ export function WorkItem(props: IProps) {
 	const { item } = props;
 	const { position, contract } = item;
 	const { company, market } = item;
-	const { startDate, endDate, duration } = item;
+	const { startDate, endDate = "now", duration } = item;
 	const { techStack } = item;
 	const { summary, highlights } = item;
 

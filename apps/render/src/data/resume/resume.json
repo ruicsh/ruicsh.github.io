@@ -2,7 +2,7 @@
 	"basics": {
 		"firstName": "Rui",
 		"lastName": "Costa",
-		"label": "Full-stack Engineer",
+		"label": "Frontend Engineer",
 		"intro": "I have a strong background in React, TypeScript, and Node.js, which I have used to develop high-quality software for a variety of clients and industries. In addition to my technical skills, I have a deep interest in web design and user experience. I believe that software should not only be functional, but also easy to use and aesthetically pleasing.",
 		"profiles": [
 			{
@@ -29,13 +29,13 @@
 		{
 			"area": "Frontend",
 			"skills": [
-				"React, Next.js",
+				"React, Next.js, Angular, Electron",
 				"Hooks, Redux, Zustand, RxJS",
 				"AG Grid, D3, ArcGIS"
 			]
 		},
 		{
-			"area": "Backend",
+			"area": "Server",
 			"skills": [
 				"Express, Koa, GraphQL",
 				"Knex, TypeORM, Prisma",
@@ -75,19 +75,35 @@
 	],
 	"work": [
 		{
-			"position": "Solo Frontend Engineer",
+			"position": "Frontend Engineer",
+			"contract": true,
+			"company": "Rokos Capital Management",
+			"website": "rokoscapital.com",
+			"startDate": "Jun 2024",
+			"market": "Hedge Fund",
+			"summary": "Development of the company's Order Management System.",
+			"techStack": "Angular, AG Grid - TypeScript",
+			"highlights": [
+				"Multiple enhancements to the existing application",
+				"Implementation of UX design directives and recommendations",
+				"Development of new modules as per business requirements"
+			]
+		},
+		{
+			"position": "Frontend Engineer",
 			"contract": true,
 			"company": "Mercuria",
 			"website": "mercuria.com",
 			"startDate": "Mar 2024",
 			"endDate": "May 2024",
 			"duration": "3m",
-			"market": "Geographic Information Systems",
+			"market": "Energy Trading",
 			"summary": "I was brought in to rewrite their existing GIS web application using modern web technologies.",
 			"techStack": "React, Zustand, Chakra UI - ArcGIS - TypeScript",
 			"highlights": [
 				"Greenfield project rewriting an existing jQuery application",
-				"Deep integration with ArcGIS Maps SDK for JavaScript"
+				"Deep integration with ArcGIS Maps SDK for JavaScript",
+				"Delivered the complete project in 3 months"
 			]
 		},
 		{
@@ -99,7 +115,7 @@
 			"endDate": "Feb 2024",
 			"duration": "1y",
 			"market": "Commodities",
-			"summary": "I was part of the frontend development team developing their internal Commodities Risk Assessment tool.",
+			"summary": "I was part of the frontend development team building the internal Commodities Risk Assessment tool.",
 			"techStack": "React, AG Grid, Recoil, RxJS - Jest, RTL - TypeScript",
 			"highlights": [
 				"Front-office role with direct interaction with traders and risk managers",
@@ -126,7 +142,7 @@
 		{
 			"company": "Credit Suisse",
 			"website": "credit-suisse.com",
-			"position": "Solo frontend engineer",
+			"position": "Frontend engineer",
 			"contract": true,
 			"startDate": "Mar 2021",
 			"endDate": "Aug 2022",
@@ -143,7 +159,7 @@
 		{
 			"company": "Sainsbury's",
 			"website": "sainsburys.co.uk",
-			"position": "Lead frontend engineer",
+			"position": "Frontend engineer",
 			"contract": true,
 			"startDate": "Mar 2020",
 			"endDate": "Feb 2021",
@@ -174,22 +190,7 @@
 				"Developed techniques to dig out the data pipelines from inside the massive codebase."
 			]
 		},
-		{
-			"company": "The Labrador",
-			"website": "thelabrador.co.uk",
-			"position": "Full stack engineer",
-			"startDate": "Jan 2018",
-			"endDate": "Nov 2018",
-			"duration": "11 mos",
-			"market": "CRM",
-			"summary": "I was the most experienced frontend developer working on their website and client management bespoke software.",
-			"techStack": "React, Redux - AWS, Node.js, GraphQL - Jest",
-			"highlights": [
-				"Developed data replication services between AWS DynamoDB and ElasticSearch using AWS Lambda",
-				"Built APIs using Serverless Framework, GraphQL and Express",
-				"Built corporate website using GatsbyJS and styled-components"
-			]
-		},
+
 		{
 			"company": "The Sun",
 			"website": "thesun.co.uk",
@@ -209,7 +210,7 @@
 		{
 			"company": "Elliptic",
 			"website": "elliptic.co",
-			"position": "Lead frontend engineer",
+			"position": "Frontend engineer",
 			"startDate": "Jun 2016",
 			"endDate": "Jun 2017",
 			"duration": "1yr 1mo",
@@ -225,7 +226,7 @@
 		{
 			"company": "Pugpig",
 			"website": "pugpig.com",
-			"position": "Solo Frontend engineer",
+			"position": "Frontend engineer",
 			"startDate": "Jun 2014",
 			"endDate": "May 2016",
 			"duration": "1yr 8mos",

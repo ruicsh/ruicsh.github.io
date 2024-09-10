@@ -15,7 +15,7 @@ function RootLayout(props: PropsWithChildren) {
 
 	return (
 		<html lang="en" className={barlowCondensed.variable}>
-			<body className="container mx-auto bg-stone-200 px-2 print:max-w-full">
+			<body className="container mx-auto bg-stone-200 px-2 print:max-w-full print:bg-white">
 				<MainHeader />
 				{children}
 			</body>
