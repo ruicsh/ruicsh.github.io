@@ -1,4 +1,6 @@
 wishedOnDate ,watchedOnDate ,rating ,genres            ,sourceUrl
              ,"2024-09-08"  ,   4.0 ,"Science fiction" ,"https://www.themoviedb.org/movie/286217-the-martian"
 "2024-09-10" ,              ,       ,"Documentary"     ,"https://www.themoviedb.org/movie/1315535-eno"
-             ,"2024-09-12"  ,   4.0 ,"Crime"           ,"https://www.themoviedb.org/movie/59-a-history-of-violence"
+             ,"2024-09-12"  ,   3.5 ,"Crime"           ,"https://www.themoviedb.org/movie/59-a-history-of-violence"
+"2024-09-14" ,              ,       ,"Thriller"        ,"https://www.themoviedb.org/movie/840705-blink-twice"
+"2024-09-14" ,              ,       ,"Horror"          ,"https://www.themoviedb.org/movie/1114513-speak-no-evil"
