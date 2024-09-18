@@ -1,4 +1,4 @@
-wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceUrl
+wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceUrl                                                                                                                                                                                                                                                                                                                                                                 ,isbn
              ,"2023-06-25" ,             ,       ,"History"             ,"https://www.amazon.co.uk/Making-Atomic-Bomb-Richard-Rhodes/dp/1471111237/ref=sr_1_1?crid=1NL10OHEZC9IA&keywords=the+making+of+the+atomic+bomb&qid=1691766139&sprefix=The+Making+of+the+Atomic+Bomb%2Caps%2C151&sr=8-1"
              ,"2023-07-24" ,"2023-10-18" ,   3.0 ,"Biography"           ,"https://www.amazon.co.uk/Markham-Felix-Napoleon-Mentor/dp/0451624874"
              ,"2023-07-14" ,             ,       ,"Non-fiction"         ,"https://www.hive.co.uk/Product/Bobby-Fischer/Bobby-Fischer-Teaches-Chess/14448921"
@@ -116,4 +116,4 @@ wishedOnDate ,queuedOnDate ,readOnDate   ,rating ,genres                ,sourceU
              ,"2017-11-28" ,             ,       ,"Fiction"             ,"https://www.amazon.co.uk/Penguin-Complete-Sherlock-Holmes/dp/0141040289"
 "2024-06-01" ,             ,             ,       ,"Fiction"             ,"https://www.amazon.co.uk/Essential-Kafka-Metamorphosis-Wordsworth-Classics/dp/1840227265"
              ,             ,"2024-08-03" ,   3.0 ,"Science fiction"     ,"https://openlibrary.org/books/OL49646674M/The_Terminal_Beach"
-             ,"2024-09-18" ,             ,       ,"Fiction"             ,"https://www.abebooks.co.uk/servlet/BookDetailsPL?bi=30388056345"
+             ,"2024-09-18" ,             ,       ,"Fiction"             ,"https://www.abebooks.co.uk/servlet/BookDetailsPL?bi=30388056345"                                                                                                                                                                                                                                                                                                         ,"9780141185040"
