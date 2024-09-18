@@ -8,7 +8,7 @@
 		"start": "next start",
 		"lint": "eslint src/ sh/",
 		"lint:ts": "tsc --noEmit",
-		"serve": "serve out",
+		"serve": "http-server out",
 		"link-shared-dir": "ln -s ../../shared shared",
 		"normalize-db": "tsx sh/normalize-db.ts",
 		"static:data": "tsx src/static/index.ts",
