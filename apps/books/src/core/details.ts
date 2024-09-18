@@ -28,14 +28,15 @@ export async function getBookDetails(book: IBookInInbox) {
 		throw new Error(`Scraper not implemented: ${sourceUrl}`);
 	}
 
-	if (!scrapedBook.isbn13 && !scrapedBook.isbn10) {
+	if (!scrapedBook.isbn13 && !scrapedBook.isbn10 && !book.isbn) {
 		throw new Error(`ISBN not found: ${sourceUrl}`);
 	}
 
 	const googleBooksApi = new GoogleBooksApi();
-	const googleBook = await googleBooksApi.findVolumeInfo({
-		isbn: (scrapedBook.isbn13 || scrapedBook.isbn10) as string,
-	});
+	const isbn = (book.isbn ||
+		scrapedBook.isbn13 ||
+		scrapedBook.isbn10) as string;
+	const googleBook = await googleBooksApi.findVolumeInfo({ isbn });
 	if (!googleBook) {
 		return;
 	}

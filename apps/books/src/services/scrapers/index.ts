@@ -59,7 +59,7 @@ class BookScraper {
 			return parsed.pathname.split("/")[2];
 		}
 		if (/abebooks/.test(parsed.hostname)) {
-			return parsed.pathname.split("/")[2];
+			return parsed.searchParams.get("bi");
 		}
 		if (/openlibrary/.test(parsed.hostname)) {
 			return parsed.pathname.split("/")[2];

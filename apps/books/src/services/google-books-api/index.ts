@@ -18,8 +18,8 @@ class GoogleBooksApi {
 		});
 		url.search = sp.toString();
 
-		const data = await fetch(url.href);
-		const json = (await data.json()) as IGoogleBookApiVolumesResponse;
+		const response = await fetch(url.href);
+		const json = (await response.json()) as IGoogleBookApiVolumesResponse;
 		if (json.totalItems === 0) {
 			return;
 		}

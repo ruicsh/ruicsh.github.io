@@ -33,7 +33,8 @@ async function registerBookGenre(args: IRegisterBookGenreArgs) {
 }
 
 export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
-	const { genres, ...restOfBook } = book;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { genres, isbn, ...restOfBook } = book;
 	const bookToSave = { ...restOfBook, id: book.id || cuid() };
 
 	const [{ id: bookId }] = await db("book")

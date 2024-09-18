@@ -32,6 +32,7 @@ type IBookInInbox = {
 	readOnDate?: string;
 	rating?: number;
 	sourceUrl: string;
+	isbn?: string;
 };
 
 type IBookToSave = IBookInInbox & IBookDetails;

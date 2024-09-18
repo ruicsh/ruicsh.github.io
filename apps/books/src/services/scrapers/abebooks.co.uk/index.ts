@@ -9,20 +9,20 @@ class AbebooksScraper {
 	async fetchBookPage(args: IFetchBookArgs) {
 		const { url } = args;
 		const $ = await fetch.html(url);
-		const details = this.#getBookDetails($);
-		const cover = this.#getCover($);
+		const details = this.getBookDetails($);
+		const cover = this.getCover($);
 
 		return { ...details, cover };
 	}
 
-	#getBookDetails($: CheerioAPI) {
-		const isbn = this.#getIsbn($);
-		const publisher = this.#getPublisher($);
+	private getBookDetails($: CheerioAPI) {
+		const isbn = this.getIsbn($);
+		const publisher = this.getPublisher($);
 
 		return { ...isbn, publisher };
 	}
 
-	#getIsbn($: CheerioAPI) {
+	private getIsbn($: CheerioAPI) {
 		const isbn10 = $('[data-csa-c-navigate-identifier^="ISBN10"]')
 			.text()
 			.trim();
@@ -34,14 +34,14 @@ class AbebooksScraper {
 		return { isbn10, isbn13 };
 	}
 
-	#getPublisher($: CheerioAPI) {
+	private getPublisher($: CheerioAPI) {
 		const publisherTxt = $("#book-publisher").text().trim();
 		const [publisher] = publisherTxt.split(",");
 
 		return publisher.trim();
 	}
 
-	#getCover($: CheerioAPI) {
+	private getCover($: CheerioAPI) {
 		const imageUrl = $("[itemprop=image]").attr("content");
 		if (!imageUrl) {
 			return;
