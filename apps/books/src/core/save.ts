@@ -1,16 +1,14 @@
 import { cuid } from "@ruicsh/helpers";
-import { cmsdb } from "@ruicsh/services";
-import { type Knex } from "knex";
+import { cmsdb as db } from "@ruicsh/services";
 import slugify from "slugify";
 
 type IRegisterBookGenreArgs = {
 	bookId: string;
 	genre: string;
-	db: Knex;
 };
 
 async function registerBookGenre(args: IRegisterBookGenreArgs) {
-	const { bookId, genre, db = cmsdb } = args;
+	const { bookId, genre } = args;
 	const slug = slugify(genre.trim(), { lower: true });
 
 	const record = await db("genre")
@@ -32,7 +30,7 @@ async function registerBookGenre(args: IRegisterBookGenreArgs) {
 	await db("book_genres").insert({ bookId, genreId });
 }
 
-export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
+export async function saveBook(book: IBookToSave) {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { genres, isbn, ...restOfBook } = book;
 	const bookToSave = { ...restOfBook, id: book.id || cuid() };
@@ -46,8 +44,10 @@ export async function saveBook(book: IBookToSave, db: Knex = cmsdb) {
 	await db("book_genres").where({ bookId }).del();
 
 	for await (const genre of genres?.split(";") || []) {
-		if (genre.trim().length === 0) continue;
+		if (genre.trim().length === 0) {
+			continue;
+		}
 
-		await registerBookGenre({ bookId, genre, db });
+		await registerBookGenre({ bookId, genre });
 	}
 }

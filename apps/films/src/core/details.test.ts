@@ -1,7 +1,5 @@
 import { cmsdbSchema } from "@ruicsh/cmsdb-schema";
-
-import { cmsdb } from "src/services/cmsdb/test-db";
-import { reset } from "src/services/cmsdb/reset";
+import { cmsdb, resetDb } from "@ruicsh/services";
 
 import { getFilmDetails } from "./details";
 
@@ -13,7 +11,7 @@ describe("getFilmDetails", () => {
 	});
 
 	afterEach(async () => {
-		await reset(cmsdb);
+		await resetDb(cmsdb);
 	});
 
 	afterAll(async () => {
@@ -26,7 +24,7 @@ describe("getFilmDetails", () => {
 			sourceUrl: "https://www.themoviedb.org/movie/286217",
 			watchedOnDate: "2024-09-08",
 		};
-		const actual = await getFilmDetails({ film, db: cmsdb });
+		const actual = await getFilmDetails({ film });
 
 		const expected = {
 			director: "Ridley Scott",

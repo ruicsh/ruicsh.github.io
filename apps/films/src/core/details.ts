@@ -1,7 +1,6 @@
 import { setTimeout } from "node:timers/promises";
 
 import { cmsdb, log, TMDB } from "@ruicsh/services";
-import type { Knex } from "knex";
 import slugify from "slugify";
 
 import { getPoster } from "./poster";
@@ -38,14 +37,13 @@ function getDetails(movie: ITmdbMovieDetails) {
 
 type IArgs = {
 	film: IFilmInInbox;
-	db?: Knex;
 };
 
 export async function getFilmDetails(args: IArgs) {
-	const { film, db = cmsdb } = args;
+	const { film } = args;
 
 	const { sourceUrl } = film;
-	const existing = await db("film").where({ sourceUrl }).first();
+	const existing = await cmsdb("film").where({ sourceUrl }).first();
 	if (existing) {
 		return existing;
 	}

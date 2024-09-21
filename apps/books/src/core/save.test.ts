@@ -1,6 +1,5 @@
 import { cmsdbSchema } from "@ruicsh/cmsdb-schema";
-
-import { cmsdb, reset } from "src/services/cmsdb/db-test";
+import { cmsdb, resetDb } from "@ruicsh/services";
 
 import { saveBook } from "./save";
 
@@ -16,7 +15,7 @@ describe("save book", () => {
 	});
 
 	afterEach(async () => {
-		await reset(cmsdb);
+		await resetDb(cmsdb);
 	});
 
 	afterAll(async () => {
@@ -27,7 +26,7 @@ describe("save book", () => {
 		const wishedBook = { ...book, wishedOnDate: "2023-08-09" };
 
 		it("inserts a new book", async () => {
-			await saveBook(wishedBook, cmsdb);
+			await saveBook(wishedBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -40,11 +39,12 @@ describe("save book", () => {
 		});
 
 		it("inserts a second book", async () => {
-			await saveBook(wishedBook, cmsdb);
-			await saveBook(
-				{ ...wishedBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
-				cmsdb,
-			);
+			await saveBook(wishedBook);
+			await saveBook({
+				...wishedBook,
+				title: "B2",
+				sourceUrl: "https://foo.dev/book-2",
+			});
 			const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
 			const expected = [
@@ -56,8 +56,8 @@ describe("save book", () => {
 		});
 
 		it("updates an existing book", async () => {
-			await saveBook(wishedBook, cmsdb);
-			await saveBook({ ...wishedBook, title: "B2" }, cmsdb);
+			await saveBook(wishedBook);
+			await saveBook({ ...wishedBook, title: "B2" });
 			const actual = await cmsdb("book").select();
 
 			const expected = { ...book, title: "B2", id: expect.anything() };
@@ -66,9 +66,9 @@ describe("save book", () => {
 		});
 
 		it("enqueue a wished book", async () => {
-			await saveBook(wishedBook, cmsdb);
+			await saveBook(wishedBook);
 			const enqueuedBook = { ...wishedBook, queuedOnDate: "2023-08-10" };
-			await saveBook(enqueuedBook, cmsdb);
+			await saveBook(enqueuedBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -82,9 +82,9 @@ describe("save book", () => {
 		});
 
 		it("reads a wished book", async () => {
-			await saveBook(wishedBook, cmsdb);
+			await saveBook(wishedBook);
 			const readBook = { ...wishedBook, readOnDate: "2023-08-10" };
-			await saveBook(readBook, cmsdb);
+			await saveBook(readBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -102,7 +102,7 @@ describe("save book", () => {
 		const enqueuedBook = { ...book, queuedOnDate: "2023-08-09" };
 
 		it("inserts a new book", async () => {
-			await saveBook(enqueuedBook, cmsdb);
+			await saveBook(enqueuedBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -115,11 +115,12 @@ describe("save book", () => {
 		});
 
 		it("inserts a second book", async () => {
-			await saveBook(enqueuedBook, cmsdb);
-			await saveBook(
-				{ ...enqueuedBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
-				cmsdb,
-			);
+			await saveBook(enqueuedBook);
+			await saveBook({
+				...enqueuedBook,
+				title: "B2",
+				sourceUrl: "https://foo.dev/book-2",
+			});
 			const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
 			const expected = [
@@ -131,8 +132,8 @@ describe("save book", () => {
 		});
 
 		it("updates an existing book", async () => {
-			await saveBook(enqueuedBook, cmsdb);
-			await saveBook({ ...enqueuedBook, title: "B2" }, cmsdb);
+			await saveBook(enqueuedBook);
+			await saveBook({ ...enqueuedBook, title: "B2" });
 			const actual = await cmsdb("book").select();
 
 			const expected = { ...book, title: "B2", id: expect.anything() };
@@ -141,9 +142,9 @@ describe("save book", () => {
 		});
 
 		it("reads an enqueued book", async () => {
-			await saveBook(enqueuedBook, cmsdb);
+			await saveBook(enqueuedBook);
 			const readBook = { ...enqueuedBook, readOnDate: "2023-08-10", rating: 4 };
-			await saveBook(readBook, cmsdb);
+			await saveBook(readBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -162,7 +163,7 @@ describe("save book", () => {
 		const readBook = { ...book, readOnDate: "2023-08-09" };
 
 		it("inserts a new book", async () => {
-			await saveBook(readBook, cmsdb);
+			await saveBook(readBook);
 			const actual = await cmsdb("book").select([
 				"authors",
 				"title",
@@ -175,11 +176,12 @@ describe("save book", () => {
 		});
 
 		it("inserts a second book", async () => {
-			await saveBook(readBook, cmsdb);
-			await saveBook(
-				{ ...readBook, title: "B2", sourceUrl: "https://foo.dev/book-2" },
-				cmsdb,
-			);
+			await saveBook(readBook);
+			await saveBook({
+				...readBook,
+				title: "B2",
+				sourceUrl: "https://foo.dev/book-2",
+			});
 			const actual = await cmsdb("book").select(["title", "sourceUrl"]);
 
 			const expected = [
@@ -191,8 +193,8 @@ describe("save book", () => {
 		});
 
 		it("updates an existing book", async () => {
-			await saveBook(readBook, cmsdb);
-			await saveBook({ ...readBook, title: "B2" }, cmsdb);
+			await saveBook(readBook);
+			await saveBook({ ...readBook, title: "B2" });
 			const actual = await cmsdb("book").select();
 
 			const expected = { ...book, title: "B2", id: expect.anything() };
@@ -205,7 +207,7 @@ describe("save book", () => {
 		const bookWithGenres = { ...book, genres: "C1;C2" };
 
 		it("inserts new genres", async () => {
-			await saveBook(bookWithGenres, cmsdb);
+			await saveBook(bookWithGenres);
 
 			const actual = await cmsdb("book")
 				.join("book_genres", { "book.id": "book_genres.bookId" })
@@ -229,8 +231,8 @@ describe("save book", () => {
 				sourceUrl: "https://foo.dev/book-2",
 				genres: "C1;C2; C3",
 			};
-			await saveBook(book1, cmsdb);
-			await saveBook(book2, cmsdb);
+			await saveBook(book1);
+			await saveBook(book2);
 
 			const actual = await cmsdb("book")
 				.join("book_genres", { "book.id": "book_genres.bookId" })
@@ -250,7 +252,7 @@ describe("save book", () => {
 
 		it("handles no genres", async () => {
 			const book1 = { ...book };
-			await saveBook(book1, cmsdb);
+			await saveBook(book1);
 
 			const actual = await cmsdb("book")
 				.leftJoin("book_genres", { "book.id": "book_genres.bookId" })
@@ -266,8 +268,8 @@ describe("save book", () => {
 		it("changes genres", async () => {
 			const book1 = { ...book, genres: "C1;C2;C3" };
 			const book2 = { ...book, genres: "C1;C4;C5" };
-			await saveBook(book1, cmsdb);
-			await saveBook(book2, cmsdb);
+			await saveBook(book1);
+			await saveBook(book2);
 
 			const actual = await cmsdb("book")
 				.leftJoin("book_genres", { "book.id": "book_genres.bookId" })

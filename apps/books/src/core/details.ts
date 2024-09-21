@@ -1,19 +1,19 @@
 import { setTimeout } from "node:timers/promises";
 
 import { fetch } from "@ruicsh/helpers";
-import { cmsdb, log } from "@ruicsh/services";
+import { cmsdb as db, log } from "@ruicsh/services";
 import sharp from "sharp";
 import slugify from "slugify";
 
 import GoogleBooksApi from "src/services/google-books-api";
 import BookScraper from "src/services/scrapers";
 
-import { getCoverColor } from "./cover-color";
 import { resizeCover } from "./cover";
+import { getCoverColor } from "./cover-color";
 
 export async function getBookDetails(book: IBookInInbox) {
 	const { sourceUrl } = book;
-	const existing = await cmsdb("book").where({ sourceUrl }).first();
+	const existing = await db("book").where({ sourceUrl }).first();
 	if (existing) {
 		return existing;
 	}
