@@ -10,7 +10,7 @@ import { initialState } from "./initial-state";
 
 const storage: StateStorage = {
 	getItem: () => {
-		const sp = new URLSearchParams(window.location.search);
+		const sp = new URLSearchParams(globalThis.location.search);
 		const state = Object.fromEntries(sp.entries());
 		const genres = state.genres?.trim()?.split(",");
 		const freshState = { state: { ...state, genres }, version: 0 };
@@ -20,15 +20,15 @@ const storage: StateStorage = {
 	setItem: (_, newValue: string) => {
 		const { state } = JSON.parse(newValue);
 		const sp = new URLSearchParams(state);
-		if (sp.toString() !== window.location.search.slice(1)) {
-			window.history.pushState(null, "", `?${sp.toString()}`);
+		if (sp.toString() !== globalThis.location.search.slice(1)) {
+			globalThis.history.pushState(null, "", `?${sp.toString()}`);
 		}
 	},
 	removeItem: (key: string) => {
-		const sp = new URLSearchParams(window.location.search);
+		const sp = new URLSearchParams(globalThis.location.search);
 		sp.delete(key);
 		const qs = sp.toString();
-		window.location.search = qs;
+		globalThis.location.search = qs;
 	},
 };
 

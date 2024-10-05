@@ -36,10 +36,10 @@ export function Films(props: IProps) {
 		useFilmsStore.persist.rehydrate();
 
 		const onPopState = () => useFilmsStore.persist.rehydrate();
-		window.addEventListener("popstate", onPopState);
+		globalThis.addEventListener("popstate", onPopState);
 
 		return () => {
-			window.removeEventListener("popstate", onPopState);
+			globalThis.removeEventListener("popstate", onPopState);
 		};
 	}, []);
 

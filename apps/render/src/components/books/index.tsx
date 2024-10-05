@@ -37,10 +37,10 @@ export function Books(props: IProps) {
 		useBooksStore.persist.rehydrate();
 
 		const onPopState = () => useBooksStore.persist.rehydrate();
-		window.addEventListener("popstate", onPopState);
+		globalThis.addEventListener("popstate", onPopState);
 
 		return () => {
-			window.removeEventListener("popstate", onPopState);
+			globalThis.removeEventListener("popstate", onPopState);
 		};
 	}, []);
 

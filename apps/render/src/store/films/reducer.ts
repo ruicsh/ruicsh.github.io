@@ -19,10 +19,10 @@ export function reducer(state: IFilmsState, action: IAction) {
 
 			const genres = [...state.genres];
 			const index = genres.indexOf(genre);
-			if (index > -1) {
-				genres.splice(index, 1);
-			} else {
+			if (index === -1) {
 				genres.push(genre);
+			} else {
+				genres.splice(index, 1);
 			}
 
 			return { ...state, genres };
