@@ -5,3 +5,4 @@ wishedOnDate ,watchedOnDate ,rating ,genres            ,sourceUrl
 "2024-09-14" ,              ,       ,"Thriller"        ,"https://www.themoviedb.org/movie/840705-blink-twice"
 "2024-09-14" ,              ,       ,"Horror"          ,"https://www.themoviedb.org/movie/1114513-speak-no-evil"
              ,"2024-09-15"  ,   4.0 ,"War"             ,"https://www.themoviedb.org/movie/929590-civil-war"
+             ,"2024-10-13"  ,   2.0 ,"Comedy"          ,"https://www.themoviedb.org/movie/877817-wolfs"
