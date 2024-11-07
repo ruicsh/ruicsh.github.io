@@ -6,3 +6,6 @@ wishedOnDate ,watchedOnDate ,rating ,genres            ,sourceUrl
 "2024-09-14" ,              ,       ,"Horror"          ,"https://www.themoviedb.org/movie/1114513-speak-no-evil"
              ,"2024-09-15"  ,   4.0 ,"War"             ,"https://www.themoviedb.org/movie/929590-civil-war"
              ,"2024-10-13"  ,   2.0 ,"Comedy"          ,"https://www.themoviedb.org/movie/877817-wolfs"
+             ,"2024-10-16"  ,   3.0 ,"Action"          ,"https://www.themoviedb.org/movie/533535-deadpool-wolverine"
+             ,"2024-10-26"  ,   2.0 ,"Drama"           ,"https://www.themoviedb.org/movie/249688-the-end-of-the-tour"
+             ,"2024-10-26"  ,   3.5 ,"Crime"           ,"https://www.themoviedb.org/movie/308266-war-dogs"
