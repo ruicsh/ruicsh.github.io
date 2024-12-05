@@ -23,15 +23,19 @@
 	},
 	"skills": [
 		{
-			"area": "Languages",
-			"skills": ["JavaScript, TypeScript, Node.js"]
-		},
-		{
 			"area": "Frontend",
 			"skills": [
 				"React, Next.js, Angular, Electron",
 				"Hooks, Redux, Zustand, RxJS",
 				"AG Grid, D3, ArcGIS"
+			]
+		},
+		{
+			"area": "Styling",
+			"skills": [
+				"CSS, Sass, TailwindCSS",
+				"CSS Modules, styled-components",
+				"Chakra UI"
 			]
 		},
 		{
@@ -41,14 +45,6 @@
 				"Knex, TypeORM, Prisma",
 				"DynamoDB, SQLite, OpenSearch",
 				"AWS SDK, Lambda, S3"
-			]
-		},
-		{
-			"area": "Styling",
-			"skills": [
-				"CSS, SASS, TailwindCSS",
-				"CSS Modules, styled-components",
-				"Chakra UI"
 			]
 		},
 		{
@@ -70,7 +66,11 @@
 		},
 		{
 			"area": "Infrastructure",
-			"skills": ["AWS", "Docker", "Ansible, Terraform"]
+			"skills": ["AWS", "Ansible, Terraform"]
+		},
+		{
+			"area": "Toolkit",
+			"skills": ["nvim, docker, git, bash"]
 		}
 	],
 	"work": [
@@ -82,10 +82,10 @@
 			"startDate": "Jun 2024",
 			"market": "Hedge Fund",
 			"summary": "Development of the company's Order Management System.",
-			"techStack": "Angular, AG Grid - TypeScript",
+			"techStack": "Angular, AG Grid - RxJs - TypeScript",
 			"highlights": [
 				"Multiple enhancements to the existing application",
-				"Implementation of UX design directives and recommendations",
+				"Implementation of UX design specs and recommendations",
 				"Development of new modules as per business requirements"
 			]
 		},
