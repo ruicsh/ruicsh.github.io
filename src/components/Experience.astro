@@ -1,0 +1,74 @@
+---
+const jobs = [
+  {
+    company: "Commerzbank",
+    duration: "2025 - Present",
+    tools: [
+      "React, AG Grid, AG Charts",
+      "Material UI",
+      "Redux Toolkit",
+      "Vitest, React Testing Library, Playwright",
+    ],
+    description:
+      "I have been a Senior Frontend Engineer at Commerzbank, building a modern internal FX pricing platform for the trading desk to replace a legacy third-party tool. Working with React, Redux, and heavily customized AG Grid, I focus on delivering a high-performance, maintainable application backed by extensive unit test coverage, rigorous code reviews, and end-to-end testing with Playwright.",
+  },
+  {
+    company: "Rokos Capital Management",
+    duration: "2024 - 2025",
+    tools: ["Angular, AG Grid", "CSS Modules, Sass", "RxJS", "Rust"],
+    description:
+      "At Rokos Capital Management, I maintained and extended a high-demand Order Management System, quickly becoming a top performer within the frontend team. I delivered end-to-end features by contributing across both frontend and backend development, including Rust services. I also helped build a custom investment workflow management platform with complex role-based entitlements, supporting the full lifecycle from trade ideas through approvals, execution, and historical tracking.",
+  },
+  {
+    company: "Citigroup",
+    duration: "2023- 2024",
+    tools: ["React, AG Grid", "CSS Modules, Sass", "Recoil, SignalR WebSocket"],
+    description:
+      "At Citigroup, I worked on an internal Commodities Risk Assessment platform, leading the delivery of complex UI features as the team’s primary experienced frontend engineer. I helped professionalize a rapidly built POC codebase, driving stronger frontend architecture and technical decisions. I also contributed to developing a custom state management solution to replace Recoil as the application scaled beyond its limitations.",
+  },
+  {
+    company: "BNP Paribas",
+    duration: "2022- 2023",
+    tools: ["Angular, AG Grid", "CSS Modules, Sass", "RxJS", "Jasmine"],
+    description:
+      "At BNP Paribas, I was part of a large frontend engineering team maintaining Cortex, the bank’s market-leading FX trading platform. I supported a wide range of complex FX instruments, including FX Options, and contributed to ongoing enhancements and new product development. As part of a direct customer support rotation, I handled time-critical investigations, gathered evidence for bug fixes, and produced high-quality tickets to ensure rapid resolution and continued platform stability.",
+  },
+  {
+    company: "Credit Suisse",
+    duration: "2021- 2022",
+    tools: [
+      "React",
+      "CSS Modules, Sass",
+      "Redux Toolkit, Diffusion WebSocket",
+      "Jest, React Testing Library, Cypress",
+    ],
+    description:
+      "At Credit Suisse, I led the frontend development of a new internal FX trading platform to replace a legacy trader-facing system, working within a small team of senior engineers. I delivered key functionality for SPOT and Futures instruments and drove major performance improvements around high-frequency websocket data streams, managing dozens of active subscriptions, reconnection handling, and real-time processing at scale.",
+  },
+];
+---
+
+<a name="experience"></a>
+<section>
+  <div class="mb-12">
+    <h1>Experience</h1>
+    <ul class="flex w-full flex-col gap-8 pt-12">
+      {
+        jobs.map((job) => (
+          <li class="grid grid-cols-[2fr_5fr_3fr] gap-8">
+            <div class="flex flex-col gap-1">
+              <p class="text-2xl font-black">{job.company}</p>
+              <span class="text-xs text-gray-500">{job.duration}</span>
+            </div>
+            <p class="flex-1">{job.description}</p>
+            <p class="flex-0.8 flex flex-col text-sm text-gray-500">
+              {job.tools?.map((group) => (
+                <span>{group}</span>
+              ))}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

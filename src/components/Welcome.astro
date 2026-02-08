@@ -1,0 +1,40 @@
+---
+import { SITE_CONFIG } from "../lib/constants";
+---
+
+<a name="home"></a>
+<section
+  class="flex min-h-screen w-full flex-1 flex-col items-center pt-32 pb-40"
+>
+  <div class="flex-row gap-24 py-0 pt-6">
+    <div class="flex flex-col items-start gap-20">
+      <div class="flex flex-col pt-4 text-sm">
+        <p>Based in London, UK</p>
+        <p>Working worldwide</p>
+      </div>
+      <div class="h-120 w-100 bg-neutral-300">
+        <img class="h-full w-full object-cover" src="img/rui-costa.jpg" />
+      </div>
+    </div>
+    <div class="flex flex-col justify-between">
+      <div>
+        <p class="font-serif text-7xl">Hey there, I'm</p>
+        <p class="font-condensed text-9xl font-black">Rui Costa</p>
+        <p class="font-condensed text-7xl">Frontend Engineer</p>
+        <p class="font-condensed text-7xl">Web Developer</p>
+      </div>
+      <div class="flex items-end justify-between gap-4">
+        <p class="flex-1 text-xl text-pretty">
+          I’m a product-oriented software engineer specializing in React,
+          TypeScript, and Node.js, with a deep commitment to great UX and robust
+          testing. Over the past 10 years, I’ve developed internal and
+          market-facing tools in the trading and financial industry.
+        </p>
+        <a
+          class="bg-orange flex aspect-square w-32 shrink-0 items-center justify-center rounded-full font-bold text-white uppercase"
+          href={`mailto:${SITE_CONFIG.email}`}>Let's chat</a
+        >
+      </div>
+    </div>
+  </div>
+</section>

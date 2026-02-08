@@ -1,0 +1,51 @@
+---
+import { SITE_CONFIG } from "../lib/constants";
+
+const connectLinks = [
+  { name: "Email", href: `mailto:${SITE_CONFIG.email}` },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/ruicsh/" },
+  { name: "GitHub", href: "https://github.com/ruicsh" },
+];
+---
+
+<footer class="flex w-full flex-1 items-center justify-center py-8">
+  <div class="flex w-300 justify-between gap-20">
+    <div class="">
+      <p>Let’s connect</p>
+      <ul class="flex gap-2">
+        {
+          connectLinks.map((link) => (
+            <li>
+              <a
+                class="hover:text-orange border-b pb-0.5 text-sm font-bold"
+                href={link.href}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <dl class="flex flex-col gap-2 text-xs text-gray-500">
+      <div>
+        <dt>Company name</dt>
+        <dd>Tuplo Ltd</dd>
+      </div>
+      <div>
+        <dt>Company number</dt>
+        <dd>10205359</dd>
+      </div>
+      <div>
+        <dt>VAT registration number</dt>
+        <dd>258513687</dd>
+      </div>
+      <div>
+        <dt>Address</dt>
+        <dd>
+          71-75 Shelton Street, Covent Garden<br />London, England, WC2H 9JQ
+        </dd>
+      </div>
+    </dl>
+  </div>
+</footer>
