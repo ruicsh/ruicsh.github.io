@@ -1,6 +1,7 @@
 ---
-import { ArrowRight } from "@lucide/astro";
-import { SITE_CONFIG } from "../lib/constants";
+import { Menu as MenuIcon, X as CloseIcon } from "@lucide/astro";
+
+import ContactButton from "./ContactButton.astro";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -10,14 +11,14 @@ const navLinks = [
 ];
 ---
 
-<nav class="fixed flex w-full items-center justify-center bg-white">
-  <div class="flex h-20 w-300 items-center justify-between">
+<nav class="fixed z-50 flex w-full items-center justify-center bg-white">
+  <div class="flex h-20 w-300 items-center justify-between px-3 md:px-0">
     <a href="/">
-      <p class="font-condensed text-xl uppercase">
+      <p class="font-condensed text-2xl uppercase md:text-xl">
         <span class="font-black">Rui</span> Costa
       </p>
     </a>
-    <ul class="flex items-center gap-12">
+    <ul class="hidden items-center gap-12 md:flex">
       {
         navLinks.map((link) => (
           <li>
@@ -28,9 +29,52 @@ const navLinks = [
         ))
       }
     </ul>
-    <a
-      class="hover:bg-orange flex items-center gap-2 rounded-sm border border-[#e0e0e0] px-4 py-2 hover:text-white"
-      href={`mailto:${SITE_CONFIG.email}`}>Contact <ArrowRight size={16} /></a
-    >
+    <ContactButton class="hidden md:flex" variant="rectangular" />
+    <button id="mobile-menu-button" class="md:hidden" aria-label="Toggle menu">
+      <MenuIcon id="menu-icon" size={24} stroke-width={4} />
+      <CloseIcon id="close-icon" size={24} class="hidden" />
+    </button>
   </div>
 </nav>
+<div
+  id="mobile-menu"
+  class="fixed top-20 right-0 left-0 z-40 hidden flex-col border border-x-0 border-t-gray-700 bg-white py-4 md:hidden"
+>
+  <ul class="flex flex-col items-center">
+    {
+      navLinks.map((link) => (
+        <li class="py-2">
+          <a class="mobile-menu-link" href={link.href}>
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="flex justify-center py-2">
+    <ContactButton variant="rectangular" />
+  </div>
+</div>
+
+<script>
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+  const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+
+  menuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+    menuIcon?.classList.toggle("hidden");
+    closeIcon?.classList.toggle("hidden");
+  });
+
+  // Close menu when clicking on a link
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    });
+  });
+</script>

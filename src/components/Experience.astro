@@ -55,13 +55,13 @@ const jobs = [
     <ul class="flex w-full flex-col gap-8 pt-12">
       {
         jobs.map((job) => (
-          <li class="grid grid-cols-[2fr_5fr_3fr] gap-8">
+          <li class="flex flex-col gap-1 md:grid md:grid-cols-[2fr_5fr_3fr] md:gap-8">
             <div class="flex flex-col gap-1">
               <p class="text-2xl font-black">{job.company}</p>
               <span class="text-xs text-gray-500">{job.duration}</span>
             </div>
             <p class="flex-1">{job.description}</p>
-            <p class="flex-0.8 flex flex-col text-sm text-gray-500">
+            <p class="flex flex-col text-sm text-gray-500">
               {job.tools?.map((group) => (
                 <span>{group}</span>
               ))}

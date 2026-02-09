@@ -1,16 +1,20 @@
+---
+import ContactButton from "./ContactButton.astro";
+---
+
 <a name="about"></a>
-<section>
+<section class="mb-24">
   <div class="gap-12">
     <h1>About</h1>
-    <div class="flex gap-12">
-      <p class="flex-1 text-2xl text-pretty">
+    <div class="flex flex-col gap-4 md:flex-row md:gap-12 md:text-2xl">
+      <p class="md:flex-1">
         I’m a product-oriented software engineer specializing in React,
         TypeScript, and Node.js, with a strong focus on building clean, scalable
         web applications. I care deeply about user experience and design, and I
         enjoy turning complex problems into intuitive, high-quality interfaces
         that feel great to use.
       </p>
-      <p class="flex-1 text-2xl text-pretty">
+      <p class="md:flex-1">
         Over the past ten years, I’ve worked in the trading and financial
         sector, developing internal, front-office, and market-facing tools in
         fast-paced environments. I’m passionate about engineering best
@@ -19,9 +23,9 @@
         deliver real impact.
       </p>
     </div>
-    <div>
+    <div class="mt-12">
       <h2>Skills</h2>
-      <ul class="mt-4 columns-3 gap-4 space-y-2 text-lg">
+      <ul class="mt-4 gap-4 space-y-2 md:columns-3 md:text-lg">
         <li class="text-xl font-bold">React, Next.js, Angular, TypeScript</li>
         <li>Hooks, Redux, Zustand, RxJS, React Query</li>
         <li>AG Grid, D3, ArcGIS, Electron</li>
@@ -40,5 +44,6 @@
         <li>neovim, docker, git, bash</li>
       </ul>
     </div>
+    <div class="flex justify-center pt-12"><ContactButton /></div>
   </div>
 </section>
