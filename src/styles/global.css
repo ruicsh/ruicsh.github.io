@@ -10,7 +10,7 @@
 
 @layer base {
   section {
-    @apply flex w-full flex-col items-center lg:min-h-svh;
+    @apply flex w-full flex-col items-center;
   }
 
   footer > div,
