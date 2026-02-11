@@ -10,11 +10,12 @@
 
 @layer base {
   section {
-    @apply flex w-full flex-col items-center md:min-h-svh md:py-16;
+    @apply flex w-full flex-col items-center lg:min-h-svh;
   }
 
+  footer > div,
   section > div {
-    @apply flex w-full flex-col px-2 md:w-300 md:px-0;
+    @apply flex w-full flex-col px-2 md:px-4 lg:w-300 lg:px-0;
   }
 
   h1 {
@@ -31,5 +32,9 @@
 
   p {
     @apply text-pretty;
+  }
+
+  a[name] {
+    @apply block h-24;
   }
 }

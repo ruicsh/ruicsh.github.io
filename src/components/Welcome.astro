@@ -1,31 +1,31 @@
 ---
-import { SITE_CONFIG } from "../lib/constants";
-
 import ContactButton from "./ContactButton.astro";
 ---
 
 <a name="home"></a>
-<section class="pt-32 pb-40">
-  <div class="gap-5 md:grid md:grid-cols-[min-content_1fr] md:gap-24">
-    <div class="order-2 row-span-2 flex flex-col items-start gap-20 md:order-0">
-      <div class="hidden flex-col pt-4 text-sm md:flex">
+<section class="pt-8">
+  <div
+    class="gap-5 md:grid md:grid-cols-[1fr_0.9fr] md:gap-12 lg:grid-cols-[min-content_1fr_0.5fr] lg:gap-24"
+  >
+    <div class="order-2 row-span-2 flex flex-col items-start gap-20 lg:order-0">
+      <div class="hidden flex-col pt-4 text-sm lg:flex">
         <p>Based in London, UK</p>
         <p>Working worldwide</p>
       </div>
-      <div class="w-full md:h-120 md:w-100">
+      <div class="w-full lg:h-120 lg:w-100">
         <img class="h-full w-full object-cover" src="img/rui-costa.jpg" />
       </div>
     </div>
-    <div class="order-1 flex flex-col gap-2 md:order-0 md:gap-0">
-      <p class="font-serif text-4xl md:text-7xl">Hey there, I'm</p>
-      <p class="font-condensed text-6xl font-black md:text-9xl">Rui Costa</p>
+    <div class="order-1 flex flex-col gap-2 lg:order-0 lg:col-span-2 lg:gap-0">
+      <p class="font-serif text-4xl lg:text-7xl">Hey there, I'm</p>
+      <p class="font-condensed text-6xl font-black lg:text-9xl">Rui Costa</p>
       <div>
-        <p class="font-condensed text-4xl md:text-7xl">Frontend Engineer,</p>
-        <p class="font-condensed text-4xl md:text-7xl">Web Developer</p>
+        <p class="font-condensed text-4xl lg:text-7xl">Frontend Engineer,</p>
+        <p class="font-condensed text-4xl lg:text-7xl">Web Developer</p>
       </div>
     </div>
     <div
-      class="order-3 flex flex-col items-center gap-8 md:order-0 md:flex-row md:items-end md:justify-between"
+      class="order-3 flex flex-col items-center gap-8 lg:order-0 lg:flex-row lg:items-end lg:justify-between"
     >
       <p class="flex-1 md:text-xl">
         I’m a product-oriented software engineer specializing in React,
@@ -33,6 +33,10 @@ import ContactButton from "./ContactButton.astro";
         testing. Over the past 10 years, I’ve developed internal and
         market-facing tools in the trading and financial industry.
       </p>
+    </div>
+    <div
+      class="order-4 col-span-full flex items-center justify-center lg:order-0 lg:col-span-1"
+    >
       <ContactButton />
     </div>
   </div>
